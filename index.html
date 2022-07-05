@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>svg editor</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://kit.fontawesome.com/2265754842.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <div class="menu">
+        <button class="menu-button"> Файл </button>
+        <button class="menu-button"> Действие </button> 
+        <button class="menu-button"> Вид </button>
+        <button class="menu-button"> Помощь </button>
+      </div>
+    </header>
+    <main>
+      <div class="toolbar">
+        <div>
+          <input type="radio" id="cursor" name="tools" checked/>
+          <label for="cursor"><i class="fa-solid fa-arrow-pointer"></i></label>
+          <input type="radio" id="hand" name="tools">
+          <label for="hand"><i class="fa-solid fa-hand-pointer"></i></label>
+          <input type="radio" id="pencile" name="tools">
+          <label for="pencile"><i class="fa-solid fa-pencil"></i></label>
+          <input type="radio" id="eraser" name="tools">
+          <label for="eraser"><i class="fa-solid fa-eraser"></i></label>
+          <input type="radio" id="palette" name="tools">
+          <label for="palette"><i class="fa-solid fa-palette"></i></label>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

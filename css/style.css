@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+header {
+  width: 100%;
+  height: 30px;
+  position: fixed;
+  background-color: #F8F8F8;
+}
+
+main {
+  height: 100%;
+  display: flex;
+}
+
+.toolbar {
+  width: auto;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  margin-top: 30px;
+  background-color: #F8F8F8;
+}
+
+
+.menu-button {
+  width: 60px;
+  height: 30px;
+  background-color: #F8F8F8;
+  border: none;
+  transition-duration: 0.2s;
+}
+
+.menu-button:hover {
+  background-color: #E0E0E0;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: #F8F8F8;
+}
+input[type="radio"]:hover + label {
+  background-color: #DFEEFF;
+}
+input[type="radio"]:checked + label {
+  color: #F8F8F8;
+  background-color: #6FB3FF;
+}
+
+input[type="radio"] + label i {
+  margin: auto;
+}
