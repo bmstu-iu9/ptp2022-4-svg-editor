@@ -4,11 +4,10 @@ const pencileButton = document.getElementById("pencile");
 const eraserButton  = document.getElementById("eraser");
 const paletteButton = document.getElementById("palette");
 const cursorButton  = document.getElementById("cursor");
+const handButton    = document.getElementById("hand");
 const workspace     = document.getElementById('workspace');
-const handButton    = document.getElementById('hand');
 
 // Объявление переменных
-
 
 let ToolInfoPanel = {
   panel: document.getElementById("tool-info"),
@@ -21,8 +20,8 @@ eraserButton.addEventListener("click", () => {
     ToolInfoPanel.panel.style.display = "none";
     ToolInfoPanel.status = "not active";
   } else {
-  	ToolInfoPanel.panel.style.display = "flex";
-  	ToolInfoPanel.panel.innerHTML = "eraser";
+    ToolInfoPanel.panel.style.display = "flex";
+    ToolInfoPanel.panel.innerHTML = "eraser";
     ToolInfoPanel.status = "eraser";
   }
 });
@@ -33,8 +32,8 @@ paletteButton.addEventListener("click", () => {
     ToolInfoPanel.panel.style.display = "none";
     ToolInfoPanel.status = "not active";
   } else {
-  	ToolInfoPanel.panel.style.display = "flex";
-  	ToolInfoPanel.panel.innerHTML = "palette";
+    ToolInfoPanel.panel.style.display = "flex";
+    ToolInfoPanel.panel.innerHTML = "palette";
     ToolInfoPanel.status = "palette";
   }
 });
