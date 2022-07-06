@@ -3,44 +3,49 @@
 const pencileButton = document.getElementById("pencile");
 const eraserButton  = document.getElementById("eraser");
 const paletteButton = document.getElementById("palette");
+const cursorButton  = document.getElementById("cursor");
+const handButton    = document.getElementById("hand");
+const workspace     = document.getElementById('workspace');
 
 // Объявление переменных
-
 
 let ToolInfoPanel = {
   panel: document.getElementById("tool-info"),
   status: "not active"
 }
 
-pencileButton.addEventListener("click", () => {
-  if (ToolInfoPanel.status == "pencil") {
-    ToolInfoPanel.panel.style.display = "none";
-    ToolInfoPanel.status = "not active";
-  } else {
-  	ToolInfoPanel.panel.style.display = "block";
-  	ToolInfoPanel.panel.innerHTML = "pencil";
-    ToolInfoPanel.status = "pencil";
-  }
-});
-
 eraserButton.addEventListener("click", () => {
+  pencileActive = false;
   if (ToolInfoPanel.status == "eraser") {
     ToolInfoPanel.panel.style.display = "none";
     ToolInfoPanel.status = "not active";
   } else {
-  	ToolInfoPanel.panel.style.display = "block";
-  	ToolInfoPanel.panel.innerHTML = "eraser";
+    ToolInfoPanel.panel.style.display = "flex";
+    ToolInfoPanel.panel.innerHTML = "eraser";
     ToolInfoPanel.status = "eraser";
   }
 });
 
 paletteButton.addEventListener("click", () => {
+  pencileActive = false;
   if (ToolInfoPanel.status == "palette") {
     ToolInfoPanel.panel.style.display = "none";
     ToolInfoPanel.status = "not active";
   } else {
-  	ToolInfoPanel.panel.style.display = "block";
-  	ToolInfoPanel.panel.innerHTML = "palette";
+    ToolInfoPanel.panel.style.display = "flex";
+    ToolInfoPanel.panel.innerHTML = "palette";
     ToolInfoPanel.status = "palette";
   }
+});
+
+cursorButton.addEventListener("click", () => {
+  ToolInfoPanel.panel.style.display = "none";
+  ToolInfoPanel.status = "cursor";
+  pencileActive = false;
+});
+
+handButton.addEventListener("click", () => {
+  ToolInfoPanel.panel.style.display = "none";
+  ToolInfoPanel.status = "hand";
+  pencileActive = false;
 });

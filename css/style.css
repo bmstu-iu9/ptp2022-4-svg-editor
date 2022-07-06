@@ -35,6 +35,9 @@ main {
   display: none;
   background-color: #F8F8F8;
   z-index: 2;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .background {
