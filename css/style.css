@@ -12,6 +12,7 @@ header {
   height: 30px;
   position: fixed;
   background-color: #F8F8F8;
+  z-index: 2;
 }
 
 main {
@@ -26,12 +27,14 @@ main {
   display: flex;
   position: fixed;
   background-color: #F8F8F8;
+  z-index: 2;
 }
 
 .tool-info {
   width: 180px;
   display: none;
   background-color: #F8F8F8;
+  z-index: 2;
 }
 
 .background {
@@ -43,7 +46,9 @@ main {
 
 .workspace {
   margin: auto;
+  box-shadow: 0px 0px 15px 0px #AAAAAA;
   background-color: #FFFFFF;
+  z-index: 1;
 }
 
 
