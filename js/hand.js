@@ -1,8 +1,5 @@
 'use strict';
 
-const workspace = document.getElementById('workspace')
-const handButton = document.getElementById('hand')
-
 workspace.onmousedown = function(event) {
 	if (!handButton.checked) {
 		return;
