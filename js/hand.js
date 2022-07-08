@@ -1,27 +1,31 @@
-'use strict';
+hand.addEventListener('click', () => {
+  toolInfoPanel.style.display = 'none';
+  toolInfoStatus = hand;
+  selectedTool = hand;
+});
 
-workspace.onmousedown = function(event) {
-	if (!handButton.checked) {
+svgPanel.onmousedown = function(event) {
+	if (selectedTool != hand) {
 		return;
 	}
 
-	let workspaceLocation = workspace.getBoundingClientRect();
-	let offsetX = event.clientX - workspaceLocation.left;
-	let offsetY = event.clientY - workspaceLocation.top;
+	let svgPanelLocation = svgPanel.getBoundingClientRect();
+	let offsetX = event.clientX - svgPanelLocation.left;
+	let offsetY = event.clientY - svgPanelLocation.top;
 
-	workspace.style.cursor = 'pointer';
-	workspace.style.position = "fixed";
-	workspace.style.left = event.clientX - offsetX + 'px';
-	workspace.style.top = event.clientY - offsetY + 'px';
+	svgPanel.style.cursor = 'pointer';
+	svgPanel.style.position = 'fixed';
+	svgPanel.style.left = event.clientX - offsetX + 'px';
+	svgPanel.style.top = event.clientY - offsetY + 'px';
 
 	document.onmousemove = function(event) {
-		workspace.style.left = event.clientX - offsetX + 'px';
-		workspace.style.top = event.clientY - offsetY + 'px';
+		svgPanel.style.left = event.clientX - offsetX + 'px';
+		svgPanel.style.top = event.clientY - offsetY + 'px';
 	}
 
-	workspace.onmouseup = function(event) {
+	svgPanel.onmouseup = function(event) {
 		document.onmousemove = null;
-		workspace.onmouseup = null;
-		workspace.style.cursor = 'default';
+		svgPanel.onmouseup = null;
+		svgPanel.style.cursor = 'default';
 	}
 }
