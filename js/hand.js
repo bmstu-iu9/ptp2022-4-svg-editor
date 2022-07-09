@@ -1,9 +1,3 @@
-hand.addEventListener('click', () => {
-  toolInfoPanel.style.display = 'none';
-  toolInfoStatus = hand;
-  selectedTool = hand;
-});
-
 svgPanel.onmousedown = function(event) {
 	if (selectedTool != hand) {
 		return;
@@ -23,9 +17,12 @@ svgPanel.onmousedown = function(event) {
 		svgPanel.style.top = event.clientY - offsetY + 'px';
 	}
 
-	svgPanel.onmouseup = function(event) {
-		document.onmousemove = null;
+	function breakeMouseMove() {
+    document.onmousemove = null;
 		svgPanel.onmouseup = null;
 		svgPanel.style.cursor = 'default';
-	}
+  }
+
+	svgPanel.onmouseup = breakeMouseMove;
+	svgPanel.onmouseleave = breakeMouseMove;
 }
