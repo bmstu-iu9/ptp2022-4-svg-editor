@@ -1,19 +1,18 @@
-// Регулировка следа карандаша
-pencileWidthRange.addEventListener('mousedown', () => {
-  pencileWidthRange.onmousemove = () => {
+pencileWidthRange.onmousedown = function() {
+  pencileWidthRange.onmousemove = function() {
     pencileWidthValue = pencileWidthRange.value;
     pencileWidthIllustration.setAttribute('r', pencileWidthValue);
-  }
-});
+  };
+};
 
-// Работа карандаша
-svgPanel.addEventListener('mousedown', event => {
+
+svgPanel.addEventListener('mousedown', (event) => {
   if (selectedTool != pencile) {
     return;
   }
 
-  let path  = document.createElementNS(svgNS, 'path');
   let curve = `M ${event.offsetX} ${event.offsetY}`;
+  let path  = document.createElementNS(svgNS, 'path');
   
   path.setAttribute('d', curve);
   path.setAttribute('fill', 'none');
@@ -22,16 +21,16 @@ svgPanel.addEventListener('mousedown', event => {
 
   svgPanel.append(path);
 
-  svgPanel.onmousemove = event => {
+  svgPanel.onmousemove = function(event) {
     curve += ` L ${event.offsetX} ${event.offsetY}`;
     path.setAttribute('d', curve);
-  }
+  };
 
-  function breakeMouseMove() {
+  function deleteHandlers() {
     svgPanel.onmousemove = null;
     svgPanel.onmouseup   = null;
   }
 
-  svgPanel.onmouseleave = breakeMouseMove;
-  svgPanel.onmouseup = breakeMouseMove;
+  svgPanel.onmouseleave = deleteHandlers;
+  svgPanel.onmouseup = deleteHandlers;
 });

@@ -4,42 +4,64 @@
     <meta charset="UTF-8">
     <title>Векторный графический редактор</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://kit.fontawesome.com/2265754842.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
       <div class="menu">
-        <button class="menu-button"> Файл </button>
+        <button class="menu-button"> Файл     </button>
         <button class="menu-button"> Действие </button> 
-        <button class="menu-button"> Вид </button>
-        <button class="menu-button"> Помощь </button>
+        <button class="menu-button"> Вид      </button>
+        <button class="menu-button"> Помощь   </button>
       </div>
     </header>
     <main>
       <div class="tool-panel">
-        <div>
-          <input type="radio" id="cursor" alt="cursor" name="tools" checked/>
-          <label for="cursor"><i class="fa-solid fa-arrow-pointer"></i></label>
-          <input type="radio" id="hand" alt="hand" name="tools">
-          <label for="hand"><i class="fa-solid fa-hand-pointer"></i></label>
-          <input type="radio" id="pencile" alt="pencile" name="tools">
-          <label for="pencile"><i class="fa-solid fa-pencil"></i></label>
-          <input type="radio" id="eraser" alt="eraser" name="tools">
-          <label for="eraser"><i class="fa-solid fa-eraser"></i></label>
-          <input type="radio" id="palette" alt="palette" name="tools">
-          <label for="palette"><i class="fa-solid fa-palette"></i></label>
+        <div class="tool-buttons-panel">
+          <input type="radio" id="cursor" alt="cursor" name="tool" checked>
+          <label for="cursor">
+            <img src="media/icons/cursor-default.svg" alt="cursor" draggable="false" />
+          </label>
+          <input type="radio" id="hand" alt="hand" name="tool">
+          <label for="hand">
+            <img src="media/icons/cursor-pointer.svg" alt="hand" draggable="false" />
+          </label>
+          <input type="radio" id="pencile" alt="pencile" name="tool">
+          <label for="pencile">
+            <img src="media/icons/lead-pencil.svg" alt="pencile" draggable="false" />
+          </label>
+          <input type="radio" id="line" alt="line" name="tool">
+          <label for="line">
+            <img src="media/icons/vector-line.svg" alt="line" draggable="false" />
+          </label>
+          <input type="radio" id="polyline" alt="polyline" name="tool">
+          <label for="polyline">
+            <img src="media/icons/vector-polyline.svg" alt="polyline" draggable="false" />
+          </label>
+          <input type="radio" id="eraser" alt="eraser" name="tool">
+          <label for="eraser">
+            <img src="media/icons/eraser.svg" alt="eraser" draggable="false" />
+          </label>
+          <input type="radio" id="palette" alt="palette" name="tool">
+          <label for="palette">
+            <img src="media/icons/palette.svg" alt="palette" draggable="false" />
+          </label>
         </div>
-        <div id="pencile-info" class="tool-info-panel">
+        <div id="pencile-info-panel" class="tool-info-panel hidden">
           <input type="range" id="pencile-width-range" name="pencile-width-range" min="1" max="50">
-          <svg width="100" height="100"
-            xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="25" fill="blue" id="pencile-width-illustration"/>
+          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="25" fill="blue" id="pencile-width-illustration" />
           </svg>
         </div>
-        <div id="eraser-info" class="tool-info-panel">
+        <div id="line-info-panel" class="tool-info-panel hidden">
+          LINE
+        </div>
+        <div id="polyline-info-panel" class="tool-info-panel hidden">
+          POLYLINE
+        </div>
+        <div id="eraser-info-panel" class="tool-info-panel hidden">
           ERASER
         </div>
-        <div id="palette-info" class="tool-info-panel">
+        <div id="palette-info-panel" class="tool-info-panel hidden">
           PALETTE
         </div>   
       </div>
@@ -49,11 +71,13 @@
     </main>
     <!-- скрипты -->
     <script src="js/declarations.js"></script>
-    <script src="js/tool-info.js"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/hand.js"></script>
-    <script src="js/pencile.js"></script>
-    <script src="js/eraser.js"></script>
-    <script src="js/palette.js"></script>
+    <script src="js/tool-info.js"   ></script>
+    <script src="js/cursor.js"      ></script>
+    <script src="js/hand.js"        ></script>
+    <script src="js/pencile.js"     ></script>
+    <script src="js/line.js"        ></script>
+    <script src="js/polyline.js"    ></script>
+    <script src="js/eraser.js"      ></script>
+    <script src="js/palette.js"     ></script>
   </body>
 </html>
