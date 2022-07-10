@@ -1,22 +1,20 @@
 svgPanel.onmouseover = function() {
-	if (selectedTool != hand) {
+	if (selectedTool != handTool) {
 		return;
 	}
-
 	svgPanel.style.cursor = 'pointer';
 };
 
 svgPanel.onmouseout = function() {
-	if (selectedTool != hand) {
+	if (selectedTool != handTool) {
 		return;
 	}
-
 	svgPanel.style.cursor = 'default';
 };
 
 
 svgPanel.addEventListener('mousedown', (event) => {
-	if (selectedTool != hand) {
+	if (selectedTool != handTool) {
 		return;
 	}
 

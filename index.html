@@ -47,13 +47,18 @@
           </label>
         </div>
         <div id="pencile-info-panel" class="tool-info-panel hidden">
-          <input type="range" id="pencile-width-range" name="pencile-width-range" min="1" max="50">
+          <input type="range" id="pencile-width-range" name="pencile-width-range"
+                 min="1" max="50" value="5">
           <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="25" fill="blue" id="pencile-width-illustration" />
+            <circle cx="50" cy="50" r="5" id="pencile-width-illustration" />
           </svg>
         </div>
         <div id="line-info-panel" class="tool-info-panel hidden">
-          LINE
+          <input type="range" id="line-width-range" name="line-width-range"
+                 min="1" max="50" value="5">
+          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="5" id="line-width-illustration" />
+          </svg>
         </div>
         <div id="polyline-info-panel" class="tool-info-panel hidden">
           POLYLINE
@@ -66,7 +71,7 @@
         </div>   
       </div>
       <svg id="svg-panel" class="svg-panel" width="600" height="600"
-        xmlns="http://www.w3.org/2000/svg">
+           xmlns="http://www.w3.org/2000/svg">
       </svg>
     </main>
     <!-- скрипты -->

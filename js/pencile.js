@@ -7,7 +7,7 @@ pencileWidthRange.onmousedown = function() {
 
 
 svgPanel.addEventListener('mousedown', (event) => {
-  if (selectedTool != pencile) {
+  if (selectedTool != pencileTool) {
     return;
   }
 
@@ -17,7 +17,7 @@ svgPanel.addEventListener('mousedown', (event) => {
   path.setAttribute('d', curve);
   path.setAttribute('fill', 'none');
   path.setAttribute('stroke-width', pencileWidthValue);
-  path.setAttribute('stroke', 'blue');
+  path.setAttribute('stroke', selectedColor);
 
   svgPanel.append(path);
 
