@@ -32,9 +32,19 @@ main {
   z-index: 2;
 }
 
+.tool-buttons-panel {
+  width: 60px;
+  height: auto;
+  z-index: 2;
+}
+
 .tool-info-panel {
-  width: auto;
-  background-color: #F8F8F8;
+  width: 180px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   z-index: 2;
 }
 
@@ -44,6 +54,11 @@ main {
   background-color: #FFFFFF;
   z-index: 1;
 }
+
+.hidden {
+  display: none;
+}
+
 
 .menu-button {
   width: 60px;
@@ -57,18 +72,6 @@ main {
   background-color: #E0E0E0;
 }
 
-.tool-info-panel {
-  width: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.hidden {
-  display: none;
-}
-
 input[type="radio"] {
   display: none;
 }
@@ -77,20 +80,26 @@ input[type="radio"] + label {
   width: 60px;
   height: 60px;
   display: flex;
-  border: none;
-  outline: none;
   cursor: pointer;
   transition: background-color 0.2s;
   background-color: #F8F8F8;
 }
+
 input[type="radio"]:hover + label {
   background-color: #DFEEFF;
 }
 input[type="radio"]:checked + label {
-  color: #F8F8F8;
+  fill: red;
   background-color: #6FB3FF;
 }
 
-input[type="radio"] + label i {
+input[type="radio"] + label img {
+  width: 30px;
+  height: 30px;
+  user-select: none;
   margin: auto;
+}
+
+input[type="radio"]:checked + label img {
+  filter: invert(100%) sepia(0%) saturate(21%) hue-rotate(26deg) brightness(103%) contrast(100%);
 }

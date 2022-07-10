@@ -1,4 +1,21 @@
-svgPanel.onmousedown = function(event) {
+svgPanel.onmouseover = function() {
+	if (selectedTool != hand) {
+		return;
+	}
+
+	svgPanel.style.cursor = 'pointer';
+};
+
+svgPanel.onmouseout = function() {
+	if (selectedTool != hand) {
+		return;
+	}
+
+	svgPanel.style.cursor = 'default';
+};
+
+
+svgPanel.addEventListener('mousedown', (event) => {
 	if (selectedTool != hand) {
 		return;
 	}
@@ -7,22 +24,31 @@ svgPanel.onmousedown = function(event) {
 	let offsetX = event.clientX - svgPanelLocation.left;
 	let offsetY = event.clientY - svgPanelLocation.top;
 
-	svgPanel.style.cursor = 'pointer';
 	svgPanel.style.position = 'fixed';
-	svgPanel.style.left = event.clientX - offsetX + 'px';
-	svgPanel.style.top = event.clientY - offsetY + 'px';
+	moveAt(event.clientX, event.clientY);
 
-	document.onmousemove = function(event) {
-		svgPanel.style.left = event.clientX - offsetX + 'px';
-		svgPanel.style.top = event.clientY - offsetY + 'px';
+	function moveAt(clientX, clientY) {
+		svgPanel.style.left = clientX - offsetX + 'px';
+		svgPanel.style.top  = clientY - offsetY + 'px';
 	}
 
-	function breakeMouseMove() {
-    document.onmousemove = null;
-		svgPanel.onmouseup = null;
-		svgPanel.style.cursor = 'default';
-  }
+	function onMouseMove(event) {
+		moveAt(event.clientX, event.clientY);
+	}
 
-	svgPanel.onmouseup = breakeMouseMove;
-	svgPanel.onmouseleave = breakeMouseMove;
-}
+	function deleteHandlers() {
+		document.removeEventListener('mousemove', onMouseMove);
+		svgPanel.onmouseup = null;
+	}
+
+	document.addEventListener('mousemove', onMouseMove);
+	svgPanel.onmouseup = deleteHandlers;
+
+	// На случай перетягивания svgPanel за пределы документа.
+	document.onmouseleave = deleteHandlers;
+
+	// Необходимо для исключения раздваивания.
+	svgPanel.ondragstart = function() {
+		return false;
+	};	
+});

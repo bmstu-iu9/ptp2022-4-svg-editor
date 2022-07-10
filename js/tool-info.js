@@ -1,10 +1,10 @@
 function hideAllInfoPanels() {
-  pencileInfo.classList.add('hidden');
-  eraserInfo.classList.add('hidden');
-  paletteInfo.classList.add('hidden');
+  pencileInfoPanel.classList.add('hidden');
+  lineInfoPanel.classList.add('hidden');
+  polylineInfoPanel.classList.add('hidden');
+  eraserInfoPanel.classList.add('hidden');
+  paletteInfoPanel.classList.add('hidden');
 }
-
-hideAllInfoPanels();
 
 
 cursor.addEventListener('click', () => {
@@ -22,22 +22,46 @@ hand.addEventListener('click', () => {
 pencile.addEventListener('click', () => {
   if (toolInfoStatus == pencile) {
     toolInfoStatus = null;
-    pencileInfo.classList.add('hidden');
+    pencileInfoPanel.classList.add('hidden');
   } else {
     hideAllInfoPanels();
-    pencileInfo.classList.remove('hidden');
+    pencileInfoPanel.classList.remove('hidden');
     toolInfoStatus = pencile;
     selectedTool = pencile;
+  }
+});
+
+line.addEventListener('click', () => {
+  if (toolInfoStatus == line) {
+    toolInfoStatus = null;
+    lineInfoPanel.classList.add('hidden');
+  } else {
+    hideAllInfoPanels();
+    lineInfoPanel.classList.remove('hidden');
+    toolInfoStatus = line;
+    selectedTool = line;
+  }
+});
+
+polyline.addEventListener('click', () => {
+  if (toolInfoStatus == polyline) {
+    toolInfoStatus = null;
+    polylineInfoPanel.classList.add('hidden');
+  } else {
+    hideAllInfoPanels();
+    polylineInfoPanel.classList.remove('hidden');
+    toolInfoStatus = polyline;
+    selectedTool = polyline;
   }
 });
 
 palette.addEventListener('click', () => {
   if (toolInfoStatus == palette) {
     toolInfoStatus = null;
-    paletteInfo.classList.add('hidden');
+    paletteInfoPanel.classList.add('hidden');
   } else {
     hideAllInfoPanels();
-    paletteInfo.classList.remove('hidden');
+    paletteInfoPanel.classList.remove('hidden');
     toolInfoStatus = palette;
     selectedTool = palette;
   }
@@ -46,10 +70,10 @@ palette.addEventListener('click', () => {
 eraser.addEventListener('click', () => {
   if (toolInfoStatus == eraser) {
     toolInfoStatus = null;
-    eraserInfo.classList.add('hidden');
+    eraserInfoPanel.classList.add('hidden');
   } else {
     hideAllInfoPanels();
-    eraserInfo.classList.remove('hidden');
+    eraserInfoPanel.classList.remove('hidden');
     toolInfoStatus = eraser;
     selectedTool = eraser;
   }
