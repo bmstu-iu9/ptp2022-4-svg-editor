@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 html, body {
@@ -96,7 +97,6 @@ input[type="radio"]:checked + label {
 input[type="radio"] + label img {
   width: 30px;
   height: 30px;
-  user-select: none;
   margin: auto;
 }
 
