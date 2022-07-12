@@ -26,5 +26,18 @@ const paletteInfoPanel         = document.getElementById('palette-info-panel');
 const svgPanel                 = document.getElementById('svg-panel');
 const svgNS                    = "http://www.w3.org/2000/svg";
 
+
+const white                    = '#FFFFFF';
+const black                    = '#000000';
+
+const gray                     = '#E0E0E0';
+const lightGray                = '#F8F8F8';
+
+const lightBlue                = '#CCEEFF';
+const blue                     = '#00AAFF';
+const darkBlue                 = '#00AABB';
+
+
 let selectedTool               = null;
-let selectedColor              = '#000000';
+let selectedPoint              = null;
+let selectedColor              = black;

@@ -1,17 +1,9 @@
-lineWidthRange.onmousedown = function() {
-    lineWidthRange.onmousemove = function() {
-        lineWidthValue = lineWidthRange.value;
-        lineWidthIllustration.setAttribute('r', lineWidthValue);
-    };
-};
-
-
 class Line extends Figure {
     constructor(svg) {
         super(svg);
     }
 
-    static draw(event) {
+    static prepareLineDrawing(event) {
         if (selectedTool != lineTool) {
             return;
         }
@@ -34,28 +26,37 @@ class Line extends Figure {
         const line = new Line( createSvgLine() );
         svgPanel.append(line.svg);
 
-        const onMouseMove = (event) => {
-            line.svg.setAttribute('x2', event.offsetX);
-            line.svg.setAttribute('y2', event.offsetY);
+        const doLineDrawing = (event) => {
+            line.x2 = event.offsetX;
+            line.y2 = event.offsetY;
         };
 
-        const onMouseUp = (event) => {
-            svgPanel.removeEventListener('mousemove', onMouseMove);
-            svgPanel.removeEventListener('mouseup', onMouseUp);
-            svgPanel.removeEventListener('mouseleave', onMouseUp);
+        const finishLineDrawing = (event) => {
+            svgPanel.removeEventListener('mousemove', doLineDrawing);
+            svgPanel.removeEventListener('mouseup', finishLineDrawing);
+            svgPanel.removeEventListener('mouseleave', finishLineDrawing);
 
-            line.addPivotPoint(line.x1, line.y1);
-            line.addPivotPoint(line.x2, line.y2);
-    
-            line.addCenterPivotPoint();
+            line.opacity = 1;
 
-            line.svg.setAttribute('opacity', 1);
-            line.adjustHighlighting();
+            line.addLinePoint(line.x1, line.y1);
+            line.addLinePoint(line.x2, line.y2);
+
+            line.enableLineCenterPoint();
+
+            line.enableHighlight();
         };
 
-        svgPanel.addEventListener('mousemove', onMouseMove);
-        svgPanel.addEventListener('mouseup', onMouseUp);
-        svgPanel.addEventListener('mouseleave', onMouseUp);
+        svgPanel.addEventListener('mousemove', doLineDrawing);
+        svgPanel.addEventListener('mouseup', finishLineDrawing);
+        svgPanel.addEventListener('mouseleave', finishLineDrawing);
+    }
+
+    addLinePoint(cx, cy) {
+        this.points.push( new LinePoint(this, cx, cy) );
+    }
+
+    enableLineCenterPoint() {
+        this.centerPoint = new LineCenterPoint(this);
     }
 
     set x1(value) { this.svg.setAttribute('x1', +value); }
@@ -63,10 +64,12 @@ class Line extends Figure {
     set x2(value) { this.svg.setAttribute('x2', +value); }
     set y2(value) { this.svg.setAttribute('y2', +value); }
 
+    set opacity(value) { this.svg.setAttribute('opacity', +value); }
+
     get x1() { return +this.svg.getAttribute('x1'); }
     get y1() { return +this.svg.getAttribute('y1'); }
     get x2() { return +this.svg.getAttribute('x2'); }
     get y2() { return +this.svg.getAttribute('y2'); }
 }
 
-svgPanel.addEventListener('mousedown', Line.draw);
+svgPanel.addEventListener('mousedown', Line.prepareLineDrawing);
