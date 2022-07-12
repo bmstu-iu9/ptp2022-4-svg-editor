@@ -87,11 +87,11 @@ input[type="radio"] + label {
 }
 
 input[type="radio"]:hover + label {
-  background-color: #DFEEFF;
+  background-color: #CCEEFF;
 }
 input[type="radio"]:checked + label {
   fill: red;
-  background-color: #6FB3FF;
+  background-color: #00AAFF;
 }
 
 input[type="radio"] + label img {
