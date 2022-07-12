@@ -41,7 +41,7 @@ class Line extends Figure {
             line.addLinePoint(line.x1, line.y1);
             line.addLinePoint(line.x2, line.y2);
 
-            line.enableLineCenterPoint();
+            line.enableCenterLinePoint();
 
             line.enableHighlight();
         };
@@ -55,8 +55,19 @@ class Line extends Figure {
         this.points.push( new LinePoint(this, cx, cy) );
     }
 
-    enableLineCenterPoint() {
-        this.centerPoint = new LineCenterPoint(this);
+    enableCenterLinePoint() {
+        let cx = 0;
+        let cy = 0;
+
+        this.points.forEach( (point) => {
+            cx += point.cx;
+            cy += point.cy;
+        });
+
+        cx /= this.points.length;
+        cy /= this.points.length;
+
+        this.centerPoint = new LinePoint(this, cx, cy);
     }
 
     set x1(value) { this.svg.setAttribute('x1', +value); }
