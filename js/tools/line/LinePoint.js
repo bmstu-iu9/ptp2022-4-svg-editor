@@ -54,7 +54,40 @@ class LinePoint extends Point {
 			if (selectedTool != cursorTool || this == this.figure.centerPoint) {
 				return;
 			}
-			//TODO: реализовать гомотетию.
+
+			this.fill = blue;
+			selectedPoint = this;
+
+			const doLineTransformation = ( (event) => {
+				if (this.cx == this.figure.x1 &&
+					this.cy == this.figure.y1) {
+					
+					this.figure.x1 = event.offsetX;
+					this.figure.y1 = event.offsetY;
+				} else {
+					this.figure.x2 = event.offsetX;
+					this.figure.y2 = event.offsetY;					
+				}
+
+				this.cx = event.offsetX;
+				this.cy = event.offsetY;
+
+				this.figure.centerPoint.cx = (this.figure.x1 + this.figure.x2) / 2;
+				this.figure.centerPoint.cy = (this.figure.y1 + this.figure.y2) / 2;
+			}).bind(this);
+
+			const finishLineTransformation = ( (event) => {
+				svgPanel.removeEventListener('mousemove', doLineTransformation);
+				svgPanel.removeEventListener('mouseup', finishLineTransformation);
+				svgPanel.removeEventListener('mouseleave', finishLineTransformation);
+
+				this.fill = white;
+				selectedPoint = null;			
+			}).bind(this);
+
+			svgPanel.addEventListener('mousemove', doLineTransformation);
+			svgPanel.addEventListener('mouseup', finishLineTransformation);
+			svgPanel.addEventListener('mouseleave', finishLineTransformation);
 		}).bind(this);
 
 		this.circle.addEventListener('mousedown', prepareLineTransformation);
