@@ -5,6 +5,7 @@ const lineTool                 = document.getElementById('line');
 const polylineTool             = document.getElementById('polyline');
 const eraserTool               = document.getElementById('eraser');
 const paletteTool              = document.getElementById('palette');
+const rectangleTool            = document.getElementById('rectangle');
 
 const toolInfoPanel            = document.getElementById('tool-info-panel');
 let toolInfoStatus             = null;
