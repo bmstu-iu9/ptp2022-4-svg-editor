@@ -78,3 +78,9 @@ eraserTool.addEventListener('click', () => {
     selectedTool = eraserTool;
   }
 });
+
+rectangleTool.addEventListener('click', () => {
+  toolInfoStatus = null;
+  hideAllInfoPanels();
+  selectedTool = rectangleTool;
+});
