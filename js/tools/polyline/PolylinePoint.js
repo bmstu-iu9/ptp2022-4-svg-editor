@@ -1,12 +1,12 @@
-class LinePoint extends Point {
+class PolylinePoint extends Point {
 	constructor(figure, cx, cy) {
 		super(figure, cx, cy);
 
-		this.enableLineTransformation();
+		this.enablePolylineTransformation();
 	}
 
-	enableLineTransformation() {
-		const prepareLineTransformation = ( () => {
+	enablePolylineTransformation() {
+		const preparePolylineTransformation = ( () => {
 			if (selectedTool != CURSOR) {
 				return;
 			}
@@ -15,18 +15,10 @@ class LinePoint extends Point {
 			isSomeFigureCaptured = true;
 
 			const doLineTransformation = ( (event) => {
-				if (this.cx == this.figure.x1 &&
-					this.cy == this.figure.y1) {
-
-					this.figure.x1 = event.offsetX;
-					this.figure.y1 = event.offsetY;
-				} else {
-					this.figure.x2 = event.offsetX;
-					this.figure.y2 = event.offsetY;					
-				}
-
 				this.cx = event.offsetX;
 				this.cy = event.offsetY;
+
+				this.figure.updateSvgPoints();
 
 			} ).bind(this);
 
@@ -46,6 +38,6 @@ class LinePoint extends Point {
 
 		} ).bind(this);
 
-		this.circle.addEventListener('mousedown', prepareLineTransformation);
+		this.circle.addEventListener('mousedown', preparePolylineTransformation);
 	}
 }

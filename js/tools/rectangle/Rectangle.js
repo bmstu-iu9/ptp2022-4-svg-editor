@@ -1,91 +1,122 @@
 class Rectangle extends Figure {
 	constructor(svg) {
 		super(svg);
+
+		this.enableRectangleMotion();
 	}
 
 	static prepareRectangleDrawing(event) {
-		if (selectedTool != rectangleTool) {
+		if (selectedTool != RECTANGLE) {
 			return;
 		}
 
-		const createSvgRectangle = () => {
-			let svgRectangle = document.createElementNS(svgNS, 'rect');
+		let rectangle = new Rectangle(
+			createSvgRectangle(event.offsetX, event.offsetY, 0, 0, selectedColor, 0.5)
+		);
 
-			svgRectangle.setAttribute('x', event.offsetX);
-			svgRectangle.setAttribute('y', event.offsetY);
-
-			svgRectangle.setAttribute('width', 0);
-			svgRectangle.setAttribute('height', 0);
-
-			svgRectangle.setAttribute('fill', selectedColor);
-			svgRectangle.setAttribute('opacity', 0.5);
-
-			return svgRectangle;
-		}
-
-		const rectangle = new Rectangle( createSvgRectangle() );
 		svgPanel.append(rectangle.svg);
 
-		let shiftHold = false;
-
 		const doRectangleDrawing = (event) => {
-			if (shiftHold) {
-				let m = Math.min(event.offsetX - rectangle.x, event.offsetY - rectangle.y);
+			if (shiftDown) {
+				const m = Math.min(event.offsetX - rectangle.x, event.offsetY - rectangle.y);
 				if (m > 0) {
 					rectangle.width = m;
 					rectangle.height = m;
 				}
 			} else {
-				if ((event.offsetX - rectangle.x) > 0) {
+				if (event.offsetX - rectangle.x > 0) {
 					rectangle.width = event.offsetX - rectangle.x;
 				}
-				if ((event.offsetY - rectangle.y) > 0) {
+				if (event.offsetY - rectangle.y > 0) {
 					rectangle.height = event.offsetY - rectangle.y;
 				}
 			}
 		}
 
-		const finishRectangleDrawing = (event) => {
+		const cancelRectangleDrawing = (event) => {
+			rectangle.svg.remove();
+			rectangle = null;
+
 			svgPanel.removeEventListener('mousemove', doRectangleDrawing);
 			svgPanel.removeEventListener('mouseup', finishRectangleDrawing);
-			svgPanel.removeEventListener('mouseleave', finishRectangleDrawing);
-			window.removeEventListener('keydown', enableShiftMode);
-			window.removeEventListener('keyup', disableShiftMode);
+			svgPanel.removeEventListener('contextmenu', cancelRectangleDrawing);
+			svgPanel.removeEventListener('mouseleave', cancelRectangleDrawing);
+
+			event.preventDefault();
+		}
+
+		const finishRectangleDrawing = (event) => {
+			if (rectangle.width == 0 && rectangle.height == 0) {
+				cancelRectangleDrawing(event);
+				return;
+			}
 
 			rectangle.opacity = 1;
 
 			rectangle.addRectanglePoint(rectangle.x + rectangle.width, rectangle.y + rectangle.height);
 
-			rectangle.enableCenterRectanglePoint();
-
 			rectangle.enableHighlight();
-		}
 
-		const enableShiftMode = (event) => {
-			if (event.keyCode == 16) {
-				shiftHold = true;
-			}
-		}
-
-		const disableShiftMode = (event) => {
-			if (event.keyCode == 16) {
-				shiftHold = false;
-			}
+			svgPanel.removeEventListener('mousemove', doRectangleDrawing);
+			svgPanel.removeEventListener('mouseup', finishRectangleDrawing);
+			svgPanel.removeEventListener('contextmenu', cancelRectangleDrawing);
+			svgPanel.removeEventListener('mouseleave', cancelRectangleDrawing);
 		}
 
 		svgPanel.addEventListener('mousemove', doRectangleDrawing);
+		svgPanel.addEventListener('contextmenu', cancelRectangleDrawing);
+		svgPanel.addEventListener('mouseleave', cancelRectangleDrawing);
 		svgPanel.addEventListener('mouseup', finishRectangleDrawing);
-		svgPanel.addEventListener('mouseleave', finishRectangleDrawing);
-		window.addEventListener('keydown', enableShiftMode);
-		window.addEventListener('keyup', disableShiftMode);
+	}
+
+	enableRectangleMotion() {
+		const prepareRectangleMotion = ( (event) => {
+			if (selectedTool != CURSOR) {
+				return;
+			}
+
+			isSomeFigureCaptured = true;
+
+            let offsetX = event.offsetX;
+            let offsetY = event.offsetY;
+
+			const doRectangleMotion = ( (event) => {
+				const shiftX = event.offsetX - offsetX;
+				const shiftY = event.offsetY - offsetY;
+
+				this.points.forEach( (point) => {
+					point.cx += shiftX;
+					point.cy += shiftY;
+				});
+
+				this.x += shiftX;
+				this.y += shiftY;
+
+				offsetX += shiftX;
+				offsetY += shiftY;
+
+			} ).bind(this)
+
+			const finishRectangleMotion = ( (event) => {
+				isSomeFigureCaptured = false;
+
+				svgPanel.removeEventListener('mousemove', doRectangleMotion);
+				svgPanel.removeEventListener('mouseup', finishRectangleMotion);
+				svgPanel.removeEventListener('mouseleave', finishRectangleMotion);
+
+			} ).bind(this);
+
+			svgPanel.addEventListener('mousemove', doRectangleMotion);
+			svgPanel.addEventListener('mouseup', finishRectangleMotion);
+			svgPanel.addEventListener('mouseleave', finishRectangleMotion);
+
+		} ).bind(this)
+
+		this.svg.addEventListener('mousedown', prepareRectangleMotion);
 	}
 
 	addRectanglePoint(cx, cy) {
 		this.points.push( new RectanglePoint(this, cx, cy) );
-	}
-
-	enableCenterRectanglePoint() {
-		this.centerPoint = new RectanglePoint(this, this.x + this.width / 2, this.y + this.height / 2);
 	}
 
 	set width(value) { this.svg.setAttribute('width', +value); }

@@ -33,13 +33,13 @@ main {
   z-index: 2;
 }
 
-.tool-buttons-panel {
+.tool-buttons {
   width: 60px;
   height: auto;
   z-index: 2;
 }
 
-.tool-info-panel {
+.tool-options {
   width: 180px;
   height: auto;
   display: flex;
