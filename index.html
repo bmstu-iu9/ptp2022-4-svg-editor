@@ -2,7 +2,8 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8">
-    <title>Векторный графический редактор</title>
+    <title>LightSVG</title>
+    <link rel="shortcut icon" href="media/title/cloud.svg" type="image/svg">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
@@ -16,7 +17,7 @@
     </header>
     <main>
       <div class="tool-panel">
-        <div class="tool-buttons-panel">
+        <div class="tool-buttons">
           <input type="radio" id="cursor" alt="cursor" name="tool" checked>
           <label for="cursor">
             <img src="media/icons/cursor-default.svg" alt="cursor" draggable="false" />
@@ -50,27 +51,31 @@
             <img src="media/icons/palette.svg" alt="palette" draggable="false" />
           </label>
         </div>
-        <div id="pencile-info-panel" class="tool-info-panel hidden">
-          <input type="range" id="pencile-width-range" name="pencile-width-range"
+        <div id="pencile-options" class="tool-options hidden">
+          <input type="range" id="pencile-range" name="pencile-range"
                  min="1" max="50" value="5">
           <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="5" id="pencile-width-illustration" />
+            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="pencile-preview" />
           </svg>
         </div>
-        <div id="line-info-panel" class="tool-info-panel hidden">
-          <input type="range" id="line-width-range" name="line-width-range"
+        <div id="line-options" class="tool-options hidden">
+          <input type="range" id="line-range" name="line-range"
                  min="1" max="50" value="5">
           <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="5" id="line-width-illustration" />
+            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="line-preview" />
           </svg>
         </div>
-        <div id="polyline-info-panel" class="tool-info-panel hidden">
-          POLYLINE
+        <div id="polyline-options" class="tool-options hidden">
+          <input type="range" id="polyline-range" name="polyline-range"
+                 min="1" max="50" value="5">
+          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="polyline-preview" />
+          </svg>
         </div>
-        <div id="eraser-info-panel" class="tool-info-panel hidden">
+        <div id="eraser-options" class="tool-options hidden">
           ERASER
         </div>
-        <div id="palette-info-panel" class="tool-info-panel hidden">
+        <div id="palette-options" class="tool-options hidden">
           PALETTE
         </div>   
       </div>
@@ -78,22 +83,29 @@
            xmlns="http://www.w3.org/2000/svg">
       </svg>
     </main>
-    <!-- скрипты -->
-    <script src="js/declarations.js"></script>
+    <script src="js/common/declarations.js"            ></script>
+    <script src="js/common/document.js"                ></script>
+    <script src="js/common/create-svg.js"              ></script>
 
-    <script src="js/user-interface/tool-info.js"></script>
+    <script src="js/user-interface/tool-options.js"    ></script>
 
-    <script src="js/tools/figure/Figure.js"     ></script>
-    <script src="js/tools/figure/Point.js"      ></script>
+    <script src="js/tools/hand.js"                     ></script>
 
-    <script src="js/tools/hand.js"   ></script>
-    <script src="js/tools/pencile.js"></script>
+    <script src="js/tools/figure/Figure.js"            ></script>
+    <script src="js/tools/figure/Point.js"             ></script>
 
-    <script src="js/tools/line/line-options.js"   ></script>
-    <script src="js/tools/line/Line.js"           ></script>
-    <script src="js/tools/line/LinePoint.js"      ></script>
+    <script src="js/tools/pencile/pencile-options.js"  ></script>
+    <script src="js/tools/pencile/Pencile.js"          ></script>
 
-    <script src="js/tools/rectangle/RectanglePoint.js"></script>
-    <script src="js/tools/rectangle/Rectangle.js"     ></script>
+    <script src="js/tools/line/line-options.js"        ></script>
+    <script src="js/tools/line/Line.js"                ></script>
+    <script src="js/tools/line/LinePoint.js"           ></script>
+
+    <script src="js/tools/rectangle/Rectangle.js"      ></script>
+    <script src="js/tools/rectangle/RectanglePoint.js" ></script>
+
+    <script src="js/tools/polyline/polyline-options.js"></script>
+    <script src="js/tools/polyline/Polyline.js"        ></script>
+    <script src="js/tools/polyline/PolylinePoint.js"   ></script>
   </body>
 </html>

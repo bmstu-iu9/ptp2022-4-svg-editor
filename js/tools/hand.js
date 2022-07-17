@@ -1,52 +1,45 @@
-svgPanel.onmouseover = function() {
-	if (selectedTool != handTool) {
+svgPanel.addEventListener('mouseover', () => {
+	if (selectedTool != HAND) {
 		return;
 	}
+
 	svgPanel.style.cursor = 'pointer';
-};
+});
 
-svgPanel.onmouseout = function() {
-	if (selectedTool != handTool) {
+svgPanel.addEventListener('mouseout', () => {
+	if (selectedTool != HAND) {
 		return;
 	}
+	
 	svgPanel.style.cursor = 'default';
-};
-
+});
 
 svgPanel.addEventListener('mousedown', (event) => {
-	if (selectedTool != handTool) {
+	if (selectedTool != HAND) {
 		return;
 	}
 
-	let svgPanelLocation = svgPanel.getBoundingClientRect();
-	let offsetX = event.clientX - svgPanelLocation.left;
-	let offsetY = event.clientY - svgPanelLocation.top;
+	const svgPanelLocation = svgPanel.getBoundingClientRect();
+	const offsetX = event.clientX - svgPanelLocation.left;
+	const offsetY = event.clientY - svgPanelLocation.top;
 
 	svgPanel.style.position = 'fixed';
-	moveAt(event.clientX, event.clientY);
 
-	function moveAt(clientX, clientY) {
-		svgPanel.style.left = clientX - offsetX + 'px';
-		svgPanel.style.top  = clientY - offsetY + 'px';
+	svgPanel.style.left = event.clientX - offsetX + 'px';
+	svgPanel.style.top  = event.clientY - offsetY + 'px';
+
+	const doSvgPanelMotion = (event) => {
+		svgPanel.style.left = event.clientX - offsetX + 'px';
+		svgPanel.style.top  = event.clientY - offsetY + 'px';
+	};
+
+	const finishSvgPanelMotion = () => {
+		document.removeEventListener('mousemove', doSvgPanelMotion);
+		document.removeEventListener('mouseup', finishSvgPanelMotion);
+		document.removeEventListener('mouseleave', finishSvgPanelMotion);
 	}
 
-	function onMouseMove(event) {
-		moveAt(event.clientX, event.clientY);
-	}
-
-	function deleteHandlers() {
-		document.removeEventListener('mousemove', onMouseMove);
-		svgPanel.onmouseup = null;
-	}
-
-	document.addEventListener('mousemove', onMouseMove);
-	svgPanel.onmouseup = deleteHandlers;
-
-	// На случай перетягивания svgPanel за пределы документа.
-	document.onmouseleave = deleteHandlers;
-
-	// Необходимо для исключения раздваивания.
-	svgPanel.ondragstart = function() {
-		return false;
-	};	
+	document.addEventListener('mousemove', doSvgPanelMotion);
+	document.addEventListener('mouseup', finishSvgPanelMotion);
+	document.addEventListener('mouseleave', finishSvgPanelMotion);
 });

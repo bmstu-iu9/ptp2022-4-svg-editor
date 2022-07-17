@@ -1,38 +1,33 @@
 class Point {
 	constructor(figure, cx, cy) {
-		const createPoint = () => {
-			let circle = document.createElementNS(svgNS, 'circle');
-
-			circle.setAttribute('cx', cx);
-			circle.setAttribute('cy', cy);
-			circle.setAttribute('r', 4);
-
-			circle.setAttribute('stroke', black);
-			circle.setAttribute('stroke-width', 1);
-			circle.setAttribute('fill', white);
-
-			return circle;
-		};
-
 		this.figure = figure;
-		this.circle = createPoint();
+
+		this.circle = (
+			createSvgCircle(cx, cy, 4, 1, black, white, 1)
+		);
+		svgPanel.append(this.circle);
+
 		this.enableHover();
 	}
 
 	enableHover() {
 		const addHover = ( () => {
-			if (selectedTool != cursorTool) {
+			if (selectedTool != CURSOR) {
 				return;
 			}
+
 			this.fill = lightBlue;
-		}).bind(this);
+
+		} ).bind(this);
 
 		const removeHover = ( () => {
-			if (selectedTool != cursorTool) {
+			if (selectedTool != CURSOR) {
 				return;
 			}
+
 			this.fill = white;
-		}).bind(this);
+
+		} ).bind(this);
 
 		this.circle.addEventListener('mouseover', addHover);
 		this.circle.addEventListener('mouseout', removeHover);

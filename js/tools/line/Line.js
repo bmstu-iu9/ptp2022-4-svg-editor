@@ -1,29 +1,20 @@
 class Line extends Figure {
     constructor(svg) {
         super(svg);
+
+        this.enableLineMotion();
     }
 
     static prepareLineDrawing(event) {
-        if (selectedTool != lineTool) {
+        if (selectedTool != LINE) {
             return;
         }
 
-        const createSvgLine = () => {
-            let svgLine = document.createElementNS(svgNS, 'line');
+        let line = new Line(
+            createSvgLine(event.offsetX, event.offsetY, event.offsetX, event.offsetY, 
+                          lineWidth, selectedColor, 0.5)
+        );
 
-            svgLine.setAttribute('x1', event.offsetX);
-            svgLine.setAttribute('y1', event.offsetY);
-            svgLine.setAttribute('x2', event.offsetX);
-            svgLine.setAttribute('y2', event.offsetY);
-
-            svgLine.setAttribute('stroke-width', lineWidthValue);
-            svgLine.setAttribute('stroke', selectedColor);
-            svgLine.setAttribute('opacity', 0.5);
-
-            return svgLine;
-        };
-
-        const line = new Line( createSvgLine() );
         svgPanel.append(line.svg);
 
         const doLineDrawing = (event) => {
@@ -31,43 +22,94 @@ class Line extends Figure {
             line.y2 = event.offsetY;
         };
 
-        const finishLineDrawing = (event) => {
-            svgPanel.removeEventListener('mousemove', doLineDrawing);
-            svgPanel.removeEventListener('mouseup', finishLineDrawing);
-            svgPanel.removeEventListener('mouseleave', finishLineDrawing);
-
+        const finishLineDrawing = () => {
             line.opacity = 1;
 
             line.addLinePoint(line.x1, line.y1);
             line.addLinePoint(line.x2, line.y2);
 
-            line.enableCenterLinePoint();
-
             line.enableHighlight();
+
+            svgPanel.removeEventListener('mousemove', doLineDrawing);
+            svgPanel.removeEventListener('click', finishLineDrawing);
+            svgPanel.removeEventListener('contextmenu', cancelLineDrawing);
+            svgPanel.removeEventListener('mouseleave', cancelLineDrawing);
+
+            svgPanel.addEventListener('click', Line.prepareLineDrawing);
         };
 
+        const cancelLineDrawing = (event) => {
+            line.svg.remove();
+            line = null;
+
+            svgPanel.removeEventListener('mousemove', doLineDrawing);
+            svgPanel.removeEventListener('click', finishLineDrawing);
+            svgPanel.removeEventListener('contextmenu', cancelLineDrawing);
+            svgPanel.removeEventListener('mouseleave', cancelLineDrawing);
+
+            svgPanel.addEventListener('click', Line.prepareLineDrawing);
+
+            event.preventDefault();
+        };
+
+        svgPanel.removeEventListener('click', Line.prepareLineDrawing);
+
         svgPanel.addEventListener('mousemove', doLineDrawing);
-        svgPanel.addEventListener('mouseup', finishLineDrawing);
-        svgPanel.addEventListener('mouseleave', finishLineDrawing);
+        svgPanel.addEventListener('click', finishLineDrawing);
+        svgPanel.addEventListener('contextmenu', cancelLineDrawing);
+        svgPanel.addEventListener('mouseleave', cancelLineDrawing);
+    }
+
+    enableLineMotion() {
+        const prepareLineMotion = ( (event) => {
+            if (selectedTool != CURSOR) {
+                return;
+            }
+
+            isSomeFigureCaptured = true;
+
+            let offsetX = event.offsetX;
+            let offsetY = event.offsetY;
+
+            const doLineMotion = ( (event) => {
+                const shiftX = event.offsetX - offsetX;
+                const shiftY = event.offsetY - offsetY;
+
+                this.points.forEach( (point) => {
+                    point.cx += shiftX;
+                    point.cy += shiftY;
+                });
+
+                this.x1 += shiftX;
+                this.y1 += shiftY;
+                this.x2 += shiftX;
+                this.y2 += shiftY;
+
+                offsetX += shiftX;
+                offsetY += shiftY;
+
+            } ).bind(this);
+
+            const finishLineMotion = ( () => {
+                isSomeFigureCaptured = false;
+
+                svgPanel.removeEventListener('mousemove', doLineMotion);
+                svgPanel.removeEventListener('mouseup', finishLineMotion);
+                svgPanel.removeEventListener('mouseleave', finishLineMotion);
+
+            } ).bind(this);
+
+            svgPanel.addEventListener('mousemove', doLineMotion);
+            svgPanel.addEventListener('mouseup', finishLineMotion);
+            svgPanel.addEventListener('mouseleave', finishLineMotion);
+
+        } ).bind(this);
+
+        this.svg.addEventListener('mousedown', prepareLineMotion);
     }
 
     addLinePoint(cx, cy) {
         this.points.push( new LinePoint(this, cx, cy) );
-    }
-
-    enableCenterLinePoint() {
-        let cx = 0;
-        let cy = 0;
-
-        this.points.forEach( (point) => {
-            cx += point.cx;
-            cy += point.cy;
-        });
-
-        cx /= this.points.length;
-        cy /= this.points.length;
-
-        this.centerPoint = new LinePoint(this, cx, cy);
     }
 
     set x1(value) { this.svg.setAttribute('x1', +value); }
@@ -83,4 +125,4 @@ class Line extends Figure {
     get y2() { return +this.svg.getAttribute('y2'); }
 }
 
-svgPanel.addEventListener('mousedown', Line.prepareLineDrawing);
+svgPanel.addEventListener('click', Line.prepareLineDrawing);

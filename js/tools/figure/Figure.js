@@ -2,60 +2,111 @@ class Figure {
 	constructor(svg) {
 		this.svg = svg;
 		this.points = [];
-		this.centerPoint = null;
 
-		this.isHighlighted = false;
+		this.enableCursorHover();
 	}
 
     showPoints() {
         this.points.forEach( (point) => {
             svgPanel.append(point.circle);
         });
-        svgPanel.append(this.centerPoint.circle);
     }
 
     removePoints() {
         this.points.forEach( (point) => {
             point.circle.remove();
         });
-        this.centerPoint.circle.remove();
     }
 
 	enableHighlight() {
-		this.showPoints();
-		this.isHighlighted = true;
+		selectedFigure = this;
 
 		const addHighlight = ( () => {
-			if (selectedTool != cursorTool || this.isHighlighted == true) {
+			if (selectedTool != CURSOR || selectedFigure == this) {
 				return;
 			}
+
+			if (selectedFigure != null) {
+				selectedFigure.removePoints();
+			}
+
 			this.showPoints();
-			this.isHighlighted = true;
+			selectedFigure = this;
+
 		} ).bind(this);
 
 		const removeHighlight = ( () => {
-			if (this.isHighlighted == false || selectedPoint != null) {
+			if (isSomeFigureCaptured || selectedFigure != this) {
 				return;
 			}
+
 			this.removePoints();
-			this.isHighlighted = false;
+			selectedFigure = null;
+
 		} ).bind(this);
 
 		this.svg.addEventListener('mousedown', addHighlight);
 		svgPanel.addEventListener('mousedown', removeHighlight);
 
 		this.svg.addEventListener('mouseover', () => {
-			if (selectedTool != cursorTool || this.isHighlighted == true) {
+			if (selectedTool != CURSOR || selectedFigure == this) {
 				return;
 			}
+
 			svgPanel.removeEventListener('mousedown', removeHighlight);
 		});
 
 		this.svg.addEventListener('mouseout', () => {
-			if (selectedTool != cursorTool || this.isHighlighted == false) {
+			if (selectedTool != CURSOR || selectedFigure != this) {
 				return;
 			}
+
 			svgPanel.addEventListener('mousedown', removeHighlight);
+		});
+	}
+
+	enableCursorHover() {
+		const addHover = ( () => {
+			if (selectedTool != CURSOR) {
+				return;
+			}
+
+			this.svg.style.cursor = 'move';
+
+		} ).bind(this);
+
+		const removeHover = ( () => {
+			if (selectedTool != CURSOR) {
+				return;
+			}
+
+			this.svg.style.cursor = 'default';
+
+		} ).bind(this);
+
+		this.svg.addEventListener('mouseover', addHover);
+		this.svg.addEventListener('mouseout', removeHover);
+
+		this.svg.addEventListener('mousedown', () => {
+			if (selectedTool != CURSOR) {
+				return;
+			}
+
+			this.svg.removeEventListener('mouseover', addHover);
+			this.svg.removeEventListener('mouseout', removeHover);
+
+			svgPanel.style.cursor = 'move';
+		});
+
+		this.svg.addEventListener('mouseup', () => {
+			if (selectedTool != CURSOR) {
+				return;
+			}
+
+			this.svg.addEventListener('mouseover', addHover);
+			this.svg.addEventListener('mouseout', removeHover);
+
+			svgPanel.style.cursor = 'default';
 		});
 	}
 }
