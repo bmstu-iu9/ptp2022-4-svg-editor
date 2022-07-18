@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>LightSVG</title>
-    <link rel="shortcut icon" href="media/title/cloud.svg" type="image/svg">
+    <link rel="shortcut icon" href="media/title/pencil.svg" type="image/svg">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
@@ -38,6 +38,10 @@
           <label for="polyline">
             <img src="media/icons/vector-polyline.svg" alt="polyline" draggable="false" />
           </label>
+          <input type="radio" id="polygon" alt="polygon" name="tool">
+          <label for="polygon">
+            <img src="media/icons/vector-polygon.svg" alt="polygon" draggable="false" />
+          </label>
           <input type="radio" id="rectangle" alt="rectangle" name="tool">
           <label for="rectangle">
             <img src="media/icons/rectangle.svg" alt="rectangle" draggable="false" />
@@ -70,6 +74,13 @@
                  min="1" max="50" value="5">
           <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="5" fill="#00AAFF" id="polyline-preview" />
+          </svg>
+        </div>
+        <div id="polygon-options" class="tool-options hidden">
+          <input type="range" id="polygon-range" name="polygon-range"
+                 min="1" max="50" value="5">
+          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="polygon-preview" />
           </svg>
         </div>
         <div id="eraser-options" class="tool-options hidden">
@@ -107,5 +118,9 @@
     <script src="js/tools/polyline/polyline-options.js"></script>
     <script src="js/tools/polyline/Polyline.js"        ></script>
     <script src="js/tools/polyline/PolylinePoint.js"   ></script>
+
+    <script src="js/tools/polygon/polygon-options.js"></script>
+    <script src="js/tools/polygon/Polygon.js"        ></script>
+    <script src="js/tools/polygon/PolygonPoint.js"   ></script>
   </body>
 </html>

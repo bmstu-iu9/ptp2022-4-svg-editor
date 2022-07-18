@@ -14,7 +14,7 @@ class Rectangle extends Figure {
 		const y1 = event.offsetY;
 
 		let rectangle = new Rectangle(
-			createSvgRectangle(x1, y1, 0, 0, selectedColor, 0.5)
+			createSvgRectangle(x1, y1, 0, 0, polygonWidth, lightBlue, selectedColor, 0.5)
 		);
 
 		svgPanel.append(rectangle.svg);

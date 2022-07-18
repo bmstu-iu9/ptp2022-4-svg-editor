@@ -1,3 +1,7 @@
+// TODO: написать функцию createSvg, в которую будут передаваться значения общих для 
+// всех svg-фигур аттрибутов. Так во многом удастся избежать дублирования, наблюдаемого ниже,
+// а уникальные аттрибуты svg-фигур будут устанавливаться "вручную".
+
 const createSvgPath = (d, strokeWidth, stroke, fill, opacity) => {
     const svgPath = document.createElementNS(svgNS, 'path');
 
@@ -39,7 +43,20 @@ const createSvgPolyline = (points, strokeWidth, stroke, fill, opacity) => {
     return svgPolyline;
 };
 
-const createSvgRectangle = (x, y, width, height, fill, opacity) => {
+const createSvgPolygon = (points, strokeWidth, stroke, fill, opacity) => {
+    const svgPolygon = document.createElementNS(svgNS, 'polygon');
+
+    svgPolygon.setAttribute('points', points);
+        
+    svgPolygon.setAttribute('stroke-width', strokeWidth);
+    svgPolygon.setAttribute('stroke', stroke);
+    svgPolygon.setAttribute('fill', fill);
+    svgPolygon.setAttribute('opacity', opacity);
+
+    return svgPolygon;
+};
+
+const createSvgRectangle = (x, y, width, height, strokeWidth, stroke, fill, opacity) => {
     const svgRectangle = document.createElementNS(svgNS, 'rect');
 
     svgRectangle.setAttribute('x', x);
@@ -48,6 +65,8 @@ const createSvgRectangle = (x, y, width, height, fill, opacity) => {
     svgRectangle.setAttribute('width', width);
     svgRectangle.setAttribute('height', height);
 
+    svgRectangle.setAttribute('stroke-width', strokeWidth);
+    svgRectangle.setAttribute('stroke', stroke);
     svgRectangle.setAttribute('fill', fill);
     svgRectangle.setAttribute('opacity', opacity);
 

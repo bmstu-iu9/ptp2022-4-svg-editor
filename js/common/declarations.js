@@ -3,6 +3,7 @@ const HAND               = document.getElementById('hand');
 const PENCILE            = document.getElementById('pencile');
 const LINE               = document.getElementById('line');
 const POLYLINE           = document.getElementById('polyline');
+const POLYGON            = document.getElementById('polygon');
 const ERASER             = document.getElementById('eraser');
 const PALETTE            = document.getElementById('palette');
 const RECTANGLE          = document.getElementById('rectangle');
@@ -24,6 +25,11 @@ const polylineOptions    = document.getElementById('polyline-options');
 const polylineRange      = document.getElementById('polyline-range');
 const polylinePreview    = document.getElementById('polyline-preview');
 let   polylineWidth      = 5;
+
+const polygonOptions    = document.getElementById('polygon-options');
+const polygonRange      = document.getElementById('polygon-range');
+const polygonPreview    = document.getElementById('polygon-preview');
+let   polygonWidth      = 5;
 
 const eraserOptions      = document.getElementById('eraser-options');
 const paletteOptions     = document.getElementById('palette-options');

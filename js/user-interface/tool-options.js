@@ -1,7 +1,11 @@
+// TODO: реализовать класс Tool, экземплярами которого будут являться наблюдаемые ниже 
+// инструменты. В дальнейшем это поможет с систематизацей и сократит дублирование кода.
+
 const hideAllInfoPanels = () => {
     pencileOptions.classList.add('hidden');
     lineOptions.classList.add('hidden');
     polylineOptions.classList.add('hidden');
+    polygonOptions.classList.add('hidden');
     eraserOptions.classList.add('hidden');
     paletteOptions.classList.add('hidden');
 };
@@ -52,6 +56,18 @@ POLYLINE.addEventListener('click', () => {
         polylineOptions.classList.remove('hidden');
         toolOptionsStatus = POLYLINE;
         selectedTool = POLYLINE;
+    }
+});
+
+POLYGON.addEventListener('click', () => {
+    if (toolOptionsStatus == POLYGON) {
+        toolOptionsStatus = null;
+        polygonOptions.classList.add('hidden');
+    } else {
+        hideAllInfoPanels();
+        polygonOptions.classList.remove('hidden');
+        toolOptionsStatus = POLYGON;
+        selectedTool = POLYGON;
     }
 });
 
