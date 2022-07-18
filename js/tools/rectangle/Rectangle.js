@@ -10,27 +10,66 @@ class Rectangle extends Figure {
 			return;
 		}
 
+		const x1 = event.offsetX;
+		const y1 = event.offsetY;
+
 		let rectangle = new Rectangle(
-			createSvgRectangle(event.offsetX, event.offsetY, 0, 0,
-			                   polygonWidth, lightBlue, selectedColor, 0.5)
+			createSvgRectangle(x1, y1, 0, 0, polygonWidth, lightBlue, selectedColor, 0.5)
 		);
 
 		svgPanel.append(rectangle.svg);
 
 		const doRectangleDrawing = (event) => {
-			if (shiftDown) {
-				const m = Math.min(event.offsetX - rectangle.x, event.offsetY - rectangle.y);
-				if (m > 0) {
+			const x2 = event.offsetX;
+			const y2 = event.offsetY;
+			const shiftX = x2 - x1;
+			const shiftY = y2 - y1;
+			const m = Math.min(shiftX, shiftY);
+
+			if (shiftX >= 0 && shiftY >= 0) {
+				if (shiftDown) {
 					rectangle.width = m;
 					rectangle.height = m;
+				} else {
+					rectangle.width = shiftX;
+					rectangle.height = shiftY;
 				}
-			} else {
-				if (event.offsetX - rectangle.x > 0) {
-					rectangle.width = event.offsetX - rectangle.x;
+
+				rectangle.x = x1;
+				rectangle.y = y1;
+			} else if (shiftX >= 0 && shiftY <= 0) {
+				if (shiftDown) {
+					rectangle.width = -m;
+					rectangle.height = -m;
+				} else {
+					rectangle.width = shiftX;
+					rectangle.height = -shiftY;
 				}
-				if (event.offsetY - rectangle.y > 0) {
-					rectangle.height = event.offsetY - rectangle.y;
+
+				rectangle.x = x1;
+				rectangle.y = y1 - rectangle.height;
+			} else if (shiftX <= 0 && shiftY >= 0) {
+				if (shiftDown) {
+					rectangle.width = -m;
+					rectangle.height = -m;
+				} else {
+					rectangle.width = -shiftX;
+					rectangle.height = shiftY;
 				}
+
+				rectangle.x = x1 - rectangle.width;
+				rectangle.y = y1;
+			} else if (shiftX <= 0 && shiftY <= 0) {
+				if (shiftDown) {
+					rectangle.width = -m;
+					rectangle.height = -m;
+				} else {
+					rectangle.width = -shiftX;
+					rectangle.height = -shiftY;
+				}
+
+				rectangle.x = x1 - rectangle.width;
+				rectangle.y = y1 - rectangle.height;
 			}
 		}
 
@@ -54,7 +93,10 @@ class Rectangle extends Figure {
 
 			rectangle.opacity = 1;
 
+			rectangle.addRectanglePoint(rectangle.x, rectangle.y);
+			rectangle.addRectanglePoint(rectangle.x + rectangle.width, rectangle.y);
 			rectangle.addRectanglePoint(rectangle.x + rectangle.width, rectangle.y + rectangle.height);
+			rectangle.addRectanglePoint(rectangle.x, rectangle.y + rectangle.height);
 
 			rectangle.enableHighlight();
 
