@@ -11,30 +11,104 @@ class RectanglePoint extends Point {
 				return;
 			}
 
+			let x1, y1;
+			let stablePoint;
+
+			if (this.cx == this.figure.x && this.cy == this.figure.y) {
+				x1 = this.figure.x + this.figure.width;
+				y1 = this.figure.y + this.figure.height;
+			} else if (this.cx == this.figure.x + this.figure.width && this.cy == this.figure.y) {
+				x1 = this.figure.x;
+				y1 = this.figure.y + this.figure.height;
+			} else if (this.cx == this.figure.x + this.figure.width && this.cy == this.figure.y + this.figure.height) {
+				x1 = this.figure.x;
+				y1 = this.figure.y;
+			} else if (this.cx == this.figure.x && this.cy == this.figure.y + this.figure.height) {
+				x1 = this.figure.x + this.figure.width;
+				y1 = this.figure.y;
+			}
+
+			this.figure.points.forEach((point) => {
+				if (point.cx == x1 && point.cy == y1) {
+					stablePoint = point;
+				}
+			})
+
 			this.fill = blue;
+			this.figure.svg.setAttribute('opacity', 0.5);
 			isSomeFigureCaptured = true;
 
 			const doRectangleTransformation = ( (event) => {
-				const offsetX = event.offsetX - this.figure.x;
-				const offsetY = event.offsetY - this.figure.y;
+				const x2 = event.offsetX;
+				const y2 = event.offsetY;
+				const shiftX = x2 - x1;
+				const shiftY = y2 - y1;
+				const m = Math.min(shiftX, shiftY);
 
-				if (shiftDown) {
-					const m = Math.min(offsetX, offsetY);
-					if (m > 0) {
+				this.cx = x2;
+				this.cy = y2;
+
+				if (shiftX >= 0 && shiftY >= 0) {
+					if (shiftDown) {
 						this.figure.width = m;
 						this.figure.height = m;
+					} else {
+						this.figure.width = shiftX;
+						this.figure.height = shiftY;
+					}
 
-						this.cx = this.figure.x + m;
-						this.cy = this.figure.y + m;
+					this.figure.x = x1;
+					this.figure.y = y1;
+
+				} else if (shiftX >= 0 && shiftY <= 0) {
+					if (shiftDown) {
+						this.figure.width = -m;
+						this.figure.height = -m;
+					} else {
+						this.figure.width = shiftX;
+						this.figure.height = -shiftY;
 					}
-				} else {
-					if (offsetX > 0) {
-						this.figure.width = offsetX;
-						this.cx = event.offsetX;
+
+					this.figure.x = x1;
+					this.figure.y = y1 - this.figure.height;
+
+				} else if (shiftX <= 0 && shiftY >= 0) {
+					if (shiftDown) {
+						this.figure.width = -m;
+						this.figure.height = -m;
+					} else {
+						this.figure.width = -shiftX;
+						this.figure.height = shiftY;
 					}
-					if (offsetY > 0) {
-						this.figure.height = offsetY;
-						this.cy = event.offsetY;
+
+					this.figure.x = x1 - this.figure.width;
+					this.figure.y = y1;
+				} else if (shiftX <= 0 && shiftY <= 0) {
+					if (shiftDown) {
+						this.figure.width = -m;
+						this.figure.height = -m;
+					} else {
+						this.figure.width = -shiftX;
+						this.figure.height = -shiftY;
+					}
+
+					this.figure.x = x1 - this.figure.width;
+					this.figure.y = y1 - this.figure.height;
+				}
+
+				let pickPoint = 0;
+
+				for (let i = 0; i < 4; i++) {
+					if (this.figure.points[i] != stablePoint && this.figure.points[i] != this) {
+						if (pickPoint == 0) {
+							this.figure.points[i].cx = x1;
+							this.figure.points[i].cy = y2;
+							pickPoint = 1;
+						} else {
+							this.figure.points[i].cx = x2;
+							this.figure.points[i].cy = y1;
+							pickPoint = 0;
+						}
 					}
 				}
 
@@ -43,6 +117,7 @@ class RectanglePoint extends Point {
 			const finishRectangleTransformation = ( (event) => {
 				this.fill = lightBlue;
 				isSomeFigureCaptured = false;
+				this.figure.svg.setAttribute('opacity', 1);
 
 				svgPanel.removeEventListener('mousemove', doRectangleTransformation);
 				svgPanel.removeEventListener('mouseup', finishRectangleTransformation);
