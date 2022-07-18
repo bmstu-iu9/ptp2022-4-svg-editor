@@ -14,7 +14,7 @@ class PolylinePoint extends Point {
 			this.fill = blue;
 			isSomeFigureCaptured = true;
 
-			const doLineTransformation = ( (event) => {
+			const doPolylineTransformation = ( (event) => {
 				this.cx = event.offsetX;
 				this.cy = event.offsetY;
 
@@ -22,19 +22,19 @@ class PolylinePoint extends Point {
 
 			} ).bind(this);
 
-			const finishLineTransformation = ( () => {
+			const finishPolylineTransformation = ( () => {
 				this.fill = lightBlue;
 				isSomeFigureCaptured = false;
 
-				svgPanel.removeEventListener('mousemove', doLineTransformation);
-				svgPanel.removeEventListener('mouseup', finishLineTransformation);
-				svgPanel.removeEventListener('mouseleave', finishLineTransformation);
+				svgPanel.removeEventListener('mousemove', doPolylineTransformation);
+				svgPanel.removeEventListener('mouseup', finishPolylineTransformation);
+				svgPanel.removeEventListener('mouseleave', finishPolylineTransformation);
 
 			} ).bind(this);
 
-			svgPanel.addEventListener('mousemove', doLineTransformation);
-			svgPanel.addEventListener('mouseup', finishLineTransformation);
-			svgPanel.addEventListener('mouseleave', finishLineTransformation);
+			svgPanel.addEventListener('mousemove', doPolylineTransformation);
+			svgPanel.addEventListener('mouseup', finishPolylineTransformation);
+			svgPanel.addEventListener('mouseleave', finishPolylineTransformation);
 
 		} ).bind(this);
 
