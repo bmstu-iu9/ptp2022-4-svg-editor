@@ -52,6 +52,8 @@ class RectanglePoint extends Point {
 					if (shiftDown) {
 						this.figure.width = m;
 						this.figure.height = m;
+						this.cx = x1 + m;
+						this.cy = y1 + m;
 					} else {
 						this.figure.width = shiftX;
 						this.figure.height = shiftY;
@@ -64,6 +66,8 @@ class RectanglePoint extends Point {
 					if (shiftDown) {
 						this.figure.width = -m;
 						this.figure.height = -m;
+						this.cx = x1 - m;
+						this.cy = y1 + m;
 					} else {
 						this.figure.width = shiftX;
 						this.figure.height = -shiftY;
@@ -76,6 +80,8 @@ class RectanglePoint extends Point {
 					if (shiftDown) {
 						this.figure.width = -m;
 						this.figure.height = -m;
+						this.cx = x1 + m;
+						this.cy = y1 - m;
 					} else {
 						this.figure.width = -shiftX;
 						this.figure.height = shiftY;
@@ -87,6 +93,8 @@ class RectanglePoint extends Point {
 					if (shiftDown) {
 						this.figure.width = -m;
 						this.figure.height = -m;
+						this.cx = x1 + m;
+						this.cy = y1 + m;
 					} else {
 						this.figure.width = -shiftX;
 						this.figure.height = -shiftY;
@@ -102,10 +110,10 @@ class RectanglePoint extends Point {
 					if (this.figure.points[i] != stablePoint && this.figure.points[i] != this) {
 						if (pickPoint == 0) {
 							this.figure.points[i].cx = x1;
-							this.figure.points[i].cy = y2;
+							this.figure.points[i].cy = this.cy;
 							pickPoint = 1;
 						} else {
-							this.figure.points[i].cx = x2;
+							this.figure.points[i].cx = this.cx;
 							this.figure.points[i].cy = y1;
 							pickPoint = 0;
 						}
