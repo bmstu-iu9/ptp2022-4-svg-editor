@@ -7,6 +7,8 @@ const POLYGON            = document.getElementById('polygon');
 const ERASER             = document.getElementById('eraser');
 const PALETTE            = document.getElementById('palette');
 const RECTANGLE          = document.getElementById('rectangle');
+const ELLIPSE            = document.getElementById('ellipse');
+
 
 const toolOptions        = document.getElementById('tool-options');
 let toolOptionsStatus    = null;
