@@ -3,7 +3,6 @@ document.addEventListener('keydown', (event) => {
 		return;
 	}
 	shiftDown = true;
-		console.log("shift")
 
 	const shiftUp = () => {
 		shiftDown = false;

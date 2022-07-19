@@ -73,6 +73,23 @@ const createSvgRectangle = (x, y, width, height, strokeWidth, stroke, fill, opac
     return svgRectangle;
 }
 
+const createSvgEllipse = (cx, cy, rx, ry, strokeWidth, stroke, fill, opacity) => {
+    const svgEllipse = document.createElementNS(svgNS, 'ellipse');
+
+    svgEllipse.setAttribute('cx', cx);
+    svgEllipse.setAttribute('cy', cy);
+
+    svgEllipse.setAttribute('rx', rx);
+    svgEllipse.setAttribute('ry', ry);
+
+    svgEllipse.setAttribute('stroke-width', strokeWidth);
+    svgEllipse.setAttribute('stroke', stroke);
+    svgEllipse.setAttribute('fill', fill);
+    svgEllipse.setAttribute('opacity', opacity);
+
+    return svgEllipse;
+}
+
 const createSvgCircle = (cx, cy, r, strokeWidth, stroke, fill, opacity) => {
     const svgCircle = document.createElementNS(svgNS, 'circle');
 

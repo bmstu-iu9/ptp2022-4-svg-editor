@@ -77,6 +77,12 @@ RECTANGLE.addEventListener('click', () => {
     selectedTool = RECTANGLE;
 });
 
+ELLIPSE.addEventListener('click', () => {
+    toolOptionsStatus = null;
+    hideAllInfoPanels();
+    selectedTool = ELLIPSE;
+});
+
 PALETTE.addEventListener('click', () => {
     if (toolOptionsStatus == PALETTE) {
         toolOptionsStatus = null;
