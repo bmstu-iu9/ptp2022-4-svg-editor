@@ -2,17 +2,18 @@
 // всех svg-фигур аттрибутов. Так во многом удастся избежать дублирования, наблюдаемого ниже,
 // а уникальные аттрибуты svg-фигур будут устанавливаться "вручную".
 
-const createSvgPath = (d, strokeWidth, stroke, fill, opacity) => {
-    const svgPath = document.createElementNS(svgNS, 'path');
+const createSvgPencile = (strokeWidth, stroke, opacity) => {
+    const svgPencil = document.createElementNS(svgNS, 'polyline');
 
-    svgPath.setAttribute('d', d);
+    svgPencil.setAttribute('points', '');
+    svgPencil.setAttribute('stroke-width', strokeWidth);
+    svgPencil.setAttribute('stroke', stroke);
+    svgPencil.setAttribute('fill', 'none');
+    svgPencil.setAttribute('opacity', opacity);
+    svgPencil.setAttribute('stroke-linejoin', 'round');
+    svgPencil.setAttribute('stroke-linecap', 'round');
 
-    svgPath.setAttribute('stroke-width', strokeWidth);
-    svgPath.setAttribute('stroke', stroke);
-    svgPath.setAttribute('fill', fill);
-    svgPath.setAttribute('opacity', opacity);
-
-    return svgPath;
+    return svgPencil;
 };
 
 const createSvgLine = (x1, y1, x2, y2, strokeWidth, stroke, opacity) => {
