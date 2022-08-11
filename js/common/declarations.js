@@ -8,7 +8,9 @@ const ERASER             = document.getElementById('eraser');
 const PALETTE            = document.getElementById('palette');
 const RECTANGLE          = document.getElementById('rectangle');
 const ELLIPSE            = document.getElementById('ellipse');
+const TEXT               = document.getElementById('text');
 
+let fontSize = 24;
 
 const toolOptions        = document.getElementById('tool-options');
 let toolOptionsStatus    = null;
@@ -35,6 +37,9 @@ let   polygonWidth      = 5;
 
 const eraserOptions      = document.getElementById('eraser-options');
 const paletteOptions     = document.getElementById('palette-options');
+
+const textOptions       = document.getElementById('text-options');
+const fontSizeRange     = document.getElementById('font-size-range');
 
 const svgPanel           = document.getElementById('svg-panel');
 const svgNS              = "http://www.w3.org/2000/svg";

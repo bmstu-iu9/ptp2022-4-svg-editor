@@ -10,7 +10,7 @@
     <header>
       <div class="menu">
         <button class="menu-button"> Файл     </button>
-        <button class="menu-button"> Действие </button> 
+        <button class="menu-button"> Действие </button>
         <button class="menu-button"> Вид      </button>
         <button class="menu-button"> Помощь   </button>
       </div>
@@ -49,6 +49,10 @@
           <input type="radio" id="ellipse" alt="ellipse" name="tool">
           <label for="ellipse">
             <img src="media/icons/ellipse.svg" alt="ellipse" draggable="false" />
+          </label>
+          <input type="radio" id="text" alt="text" name="tool">
+          <label for="text">
+            <img src="media/icons/text.svg" alt="text" draggable="false" />
           </label>
           <input type="radio" id="eraser" alt="eraser" name="tool">
           <label for="eraser">
@@ -92,7 +96,10 @@
         </div>
         <div id="palette-options" class="tool-options hidden">
           PALETTE
-        </div>   
+        </div>
+        <div id="text-options" class="tool-options hidden">
+          <input type="number" id="font-size-range" name="font-size-range" value="24">
+        </div>
       </div>
       <svg id="svg-panel" class="svg-panel" width="600" height="600"
            xmlns="http://www.w3.org/2000/svg">
@@ -101,6 +108,7 @@
     <script src="js/common/declarations.js"            ></script>
     <script src="js/common/document.js"                ></script>
     <script src="js/common/create-svg.js"              ></script>
+    <script src="js/common/get-coords.js"              ></script>
 
     <script src="js/user-interface/tool-options.js"    ></script>
 
@@ -130,5 +138,9 @@
     <script src="js/tools/polygon/polygon-options.js"></script>
     <script src="js/tools/polygon/Polygon.js"        ></script>
     <script src="js/tools/polygon/PolygonPoint.js"   ></script>
+
+    <script src="js/tools/text/text-options.js"></script>
+    <script src="js/tools/text/Text.js"></script>
+    <script src="js/tools/text/TextPoint.js"></script>
   </body>
 </html>

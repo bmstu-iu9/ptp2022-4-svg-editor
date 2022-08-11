@@ -10,16 +10,19 @@ class Line extends Figure {
             return;
         }
 
+        const coords = getMouseCoords(event);
+
         let line = new Line(
-            createSvgLine(event.offsetX, event.offsetY, event.offsetX, event.offsetY, 
+            createSvgLine(coords.x, coords.y, coords.x, coords.y,
                           lineWidth, selectedColor, 0.5)
         );
 
         svgPanel.append(line.svg);
 
         const doLineDrawing = (event) => {
-            line.x2 = event.offsetX;
-            line.y2 = event.offsetY;
+            const coords = getMouseCoords(event);
+            line.x2 = coords.x;
+            line.y2 = coords.y;
         };
 
         const finishLineDrawing = () => {
@@ -68,12 +71,15 @@ class Line extends Figure {
 
             isSomeFigureCaptured = true;
 
-            let offsetX = event.offsetX;
-            let offsetY = event.offsetY;
+            const coords = getMouseCoords(event);
+
+            let offsetX = coords.x;
+            let offsetY = coords.y;
 
             const doLineMotion = ( (event) => {
-                const shiftX = event.offsetX - offsetX;
-                const shiftY = event.offsetY - offsetY;
+                const coords = getMouseCoords(event);
+                const shiftX = coords.x - offsetX;
+                const shiftY = coords.y - offsetY;
 
                 this.points.forEach( (point) => {
                     point.cx += shiftX;

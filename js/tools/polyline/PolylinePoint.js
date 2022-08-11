@@ -15,8 +15,9 @@ class PolylinePoint extends Point {
 			isSomeFigureCaptured = true;
 
 			const doPolylineTransformation = ( (event) => {
-				this.cx = event.offsetX;
-				this.cy = event.offsetY;
+				const coords = getMouseCoords(event);
+				this.cx = coords.x;
+				this.cy = coords.y;
 
 				this.figure.updateSvgPoints();
 

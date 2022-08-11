@@ -1,4 +1,4 @@
-// TODO: реализовать класс Tool, экземплярами которого будут являться наблюдаемые ниже 
+// TODO: реализовать класс Tool, экземплярами которого будут являться наблюдаемые ниже
 // инструменты. В дальнейшем это поможет с систематизацей и сократит дублирование кода.
 
 const hideAllInfoPanels = () => {
@@ -8,6 +8,7 @@ const hideAllInfoPanels = () => {
     polygonOptions.classList.add('hidden');
     eraserOptions.classList.add('hidden');
     paletteOptions.classList.add('hidden');
+    textOptions.classList.add('hidden');
 };
 
 
@@ -104,5 +105,17 @@ ERASER.addEventListener('click', () => {
         eraserOptions.classList.remove('hidden');
         toolOptionsStatus = ERASER;
         selectedTool = ERASER;
+    }
+});
+
+TEXT.addEventListener('click', () => {
+    if (toolOptionsStatus == TEXT) {
+        toolOptionsStatus = null;
+        textOptions.classList.add('hidden');
+    } else {
+        hideAllInfoPanels();
+        textOptions.classList.remove('hidden');
+        toolOptionsStatus = TEXT;
+        selectedTool = TEXT;
     }
 });

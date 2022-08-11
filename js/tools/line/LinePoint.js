@@ -15,18 +15,18 @@ class LinePoint extends Point {
 			isSomeFigureCaptured = true;
 
 			const doLineTransformation = ( (event) => {
+				const coords = getMouseCoords(event);
 				if (this.cx == this.figure.x1 &&
 					this.cy == this.figure.y1) {
-
-					this.figure.x1 = event.offsetX;
-					this.figure.y1 = event.offsetY;
+					this.figure.x1 = coords.x;
+					this.figure.y1 = coords.y;
 				} else {
-					this.figure.x2 = event.offsetX;
-					this.figure.y2 = event.offsetY;					
+					this.figure.x2 = coords.x;
+					this.figure.y2 = coords.y;
 				}
 
-				this.cx = event.offsetX;
-				this.cy = event.offsetY;
+				this.cx = coords.x;
+				this.cy = coords.y;
 
 			} ).bind(this);
 

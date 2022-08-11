@@ -10,16 +10,19 @@ class Polygon extends Figure {
             return;
         }
 
-        let previewLine = ( 
-            createSvgLine(event.offsetX, event.offsetY, event.offsetX, event.offsetY,
+        const coords = getMouseCoords(event);
+
+        let previewLine = (
+            createSvgLine(coords.x, coords.y, coords.x, coords.y,
                           polygonWidth, lightBlue, 0.5)
         );
 
         svgPanel.append(previewLine);
 
         const previewLineDrawing = (event) => {
-            previewLine.setAttribute('x2', event.offsetX);
-            previewLine.setAttribute('y2', event.offsetY);
+            const coords = getMouseCoords(event);
+            previewLine.setAttribute('x2', coords.x);
+            previewLine.setAttribute('y2', coords.y);
         };
 
         const addFirstPolygonEdge = () => {
@@ -63,7 +66,7 @@ class Polygon extends Figure {
 
                 svgPanel.addEventListener('click', Polygon.preparePolygonDrawing);
 
-                event.preventDefault();                
+                event.preventDefault();
             };
 
             svgPanel.removeEventListener('click', addFirstPolygonEdge);
@@ -105,12 +108,15 @@ class Polygon extends Figure {
 
             isSomeFigureCaptured = true;
 
-            let offsetX = event.offsetX;
-            let offsetY = event.offsetY;
+            const coords = getMouseCoords(event);
+
+            let offsetX = coords.x;
+            let offsetY = coords.y;
 
             const doPolygonMotion = ( (event) => {
-                const shiftX = event.offsetX - offsetX;
-                const shiftY = event.offsetY - offsetY;
+                const coords = getMouseCoords(event);
+                const shiftX = coords.x - offsetX;
+                const shiftY = coords.y - offsetY;
 
                 this.points.forEach( (point) => {
                     point.cx += shiftX;
@@ -118,7 +124,7 @@ class Polygon extends Figure {
                 } );
 
                 this.updateSvgPoints();
-                
+
                 offsetX += shiftX;
                 offsetY += shiftY;
 

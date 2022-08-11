@@ -10,8 +10,10 @@ class Rectangle extends Figure {
 			return;
 		}
 
-		const x1 = event.offsetX;
-		const y1 = event.offsetY;
+		const coords = getMouseCoords(event);
+
+		const x1 = coords.x;
+		const y1 = coords.y;
 
 		let rectangle = new Rectangle(
 			createSvgRectangle(x1, y1, 0, 0, polygonWidth, lightBlue, selectedColor, 0.5)
@@ -20,8 +22,9 @@ class Rectangle extends Figure {
 		svgPanel.append(rectangle.svg);
 
 		const doRectangleDrawing = (event) => {
-			const x2 = event.offsetX;
-			const y2 = event.offsetY;
+			const coords = getMouseCoords(event);
+			const x2 = coords.x;
+			const y2 = coords.y;
 			const shiftX = x2 - x1;
 			const shiftY = y2 - y1;
 			const m = Math.min(shiftX, shiftY);
@@ -120,12 +123,15 @@ class Rectangle extends Figure {
 
 			isSomeFigureCaptured = true;
 
-            let offsetX = event.offsetX;
-            let offsetY = event.offsetY;
+			const coords = getMouseCoords(event);
+
+            let offsetX = coords.x;
+            let offsetY = coords.y;
 
 			const doRectangleMotion = ( (event) => {
-				const shiftX = event.offsetX - offsetX;
-				const shiftY = event.offsetY - offsetY;
+				const coords = getMouseCoords(event);
+				const shiftX = coords.x - offsetX;
+				const shiftY = coords.y - offsetY;
 
 				this.points.forEach( (point) => {
 					point.cx += shiftX;

@@ -29,7 +29,7 @@ class PencilePoint extends Point {
 				x1 = this.figure.x + this.figure.width;
 				y1 = this.figure.y;
 			}
-			
+
 			this.figure.points.forEach((point) => {
 				if (point.cx == x1 && point.cy == y1) {
 					stablePoint = point;
@@ -37,13 +37,13 @@ class PencilePoint extends Point {
 			});
 
 			this.fill = blue;
-			this.figure.svg.setAttribute('opacity', 0.5);
 
 			isSomeFigureCaptured = true;
 
 			const doPencileTransformation = ( (event) => {
-				const x2 = event.offsetX;
-				const y2 = event.offsetY;
+				const coords = getMouseCoords(event);
+				const x2 = coords.x;
+				const y2 = coords.y;
 				const shiftX = x2 - x1;
 				const shiftY = y2 - y1;
 
@@ -86,7 +86,6 @@ class PencilePoint extends Point {
 			const finishPencileTransformation = ( (event) => {
 				this.fill = lightBlue;
 				isSomeFigureCaptured = false;
-				this.figure.svg.setAttribute('opacity', 1);
 
 				svgPanel.removeEventListener('mousemove',  doPencileTransformation);
 				svgPanel.removeEventListener('mouseup',    finishPencileTransformation);

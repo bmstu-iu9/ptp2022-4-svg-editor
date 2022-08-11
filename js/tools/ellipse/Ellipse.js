@@ -10,8 +10,9 @@ class Ellipse extends Figure {
 			return;
 		}
 
-		const x1 = event.offsetX;
-		const y1 = event.offsetY;
+		const coords = getMouseCoords(event);
+		const x1 = coords.x;
+		const y1 = coords.y;
 
 		let ellipse = new Ellipse (
 			createSvgEllipse(x1, y1, 0, 0, polygonWidth, lightBlue, selectedColor, 0.5)
@@ -20,11 +21,12 @@ class Ellipse extends Figure {
 		svgPanel.append(ellipse.svg);
 
 		const doEllipseDrawing = (event) => {
-			const x2 = event.offsetX;
-			const y2 = event.offsetY;
+			const coords = getMouseCoords(event);
+			const x2 = coords.x;
+			const y2 = coords.y;
 
-			const rx = Math.abs(x2 - x1);
-			const ry = Math.abs(y2 - y1);
+			const rx = Math.abs(x2 - x1) / 2;
+			const ry = Math.abs(y2 - y1) / 2;
 
 			if (shiftDown) {
 				const m = Math.min(rx, ry);
@@ -33,6 +35,18 @@ class Ellipse extends Figure {
 			} else {
 				ellipse.rx = rx;
 				ellipse.ry = ry;
+			}
+
+			if (x2 - x1 < 0) {
+				ellipse.cx = x1 - ellipse.rx;
+			} else {
+				ellipse.cx = x1 + ellipse.rx;
+			}
+
+			if (y2 - y1 < 0) {
+				ellipse.cy = y1 - ellipse.ry;
+			} else {
+				ellipse.cy = y1 + ellipse.ry;
 			}
 		}
 
@@ -84,12 +98,15 @@ class Ellipse extends Figure {
 
 			isSomeFigureCaptured = true;
 
-            let x1 = event.offsetX;
-            let y1 = event.offsetY;
+			const coords = getMouseCoords(event);
+			let x1 = coords.x;
+			let y1 = coords.y;
 
 			const doEllipseMotion = ( (event) => {
-				let x2 = event.offsetX;
-				let y2 = event.offsetY;
+
+				const coords = getMouseCoords(event);
+				let x2 = coords.x;
+				let y2 = coords.y;
 				const shiftX = x2 - x1;
 				const shiftY = y2 - y1;
 

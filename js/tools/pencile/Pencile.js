@@ -27,7 +27,8 @@ class Pencile extends Figure {
         svgPanel.append(pencile.svg);
 
         const doPencileDrawing = (event) => {
-            pencile.anchorDots.push({x: event.offsetX, y: event.offsetY});
+            const coords = getMouseCoords(event);
+            pencile.anchorDots.push({x: coords.x, y: coords.y});
             pencile.syncDots();
         }
 
@@ -55,7 +56,7 @@ class Pencile extends Figure {
             pencile.addPencilePoint(pencile.x + pencile.width, pencile.y);
             pencile.addPencilePoint(pencile.x + pencile.width, pencile.y + pencile.height);
             pencile.addPencilePoint(pencile.x,                 pencile.y + pencile.height);
-                        
+
             pencile.enableHighlight();
 
             svgPanel.removeEventListener('mousemove',   doPencileDrawing);
@@ -78,12 +79,14 @@ class Pencile extends Figure {
 
             isSomeFigureCaptured = true;
 
-            let x1 = event.offsetX;
-            let y1 = event.offsetY;
+            const coords = getMouseCoords(event);
+            let x1 = coords.x;
+            let y1 = coords.y;
 
             const doPencileMotion = ( (event) => {
-                let x2 = event.offsetX;
-                let y2 = event.offsetY;
+                const coords = getMouseCoords(event);
+                let x2 = coords.x;
+                let y2 = coords.y;
                 const shiftX = x2 - x1;
                 const shiftY = y2 - y1;
 

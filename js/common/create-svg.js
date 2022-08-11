@@ -1,4 +1,4 @@
-// TODO: написать функцию createSvg, в которую будут передаваться значения общих для 
+// TODO: написать функцию createSvg, в которую будут передаваться значения общих для
 // всех svg-фигур аттрибутов. Так во многом удастся избежать дублирования, наблюдаемого ниже,
 // а уникальные аттрибуты svg-фигур будут устанавливаться "вручную".
 
@@ -15,6 +15,26 @@ const createSvgPencile = (strokeWidth, stroke, opacity) => {
 
     return svgPencil;
 };
+
+const createSvgText = (x, y) => {
+    const foreignObject = document.createElementNS(svgNS, 'foreignObject');
+    foreignObject.setAttribute('x', x);
+    foreignObject.setAttribute('y', y);
+    foreignObject.setAttribute('width', 300);
+    foreignObject.setAttribute('height', 200);
+
+    const div = document.createElement('div');
+    div.setAttribute('contenteditable', 'true');
+    div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+    div.setAttribute('style', `overflow: hidden; overflow-wrap: break-word;
+    font-size: ${fontSize}px; font-family: Arial; width: 300px; height: 200px;
+    outline: none; color: ${selectedColor}; user-select: none;`);
+    div.innerHTML = "Text";
+
+    foreignObject.append(div);
+
+    return foreignObject;
+}
 
 const createSvgLine = (x1, y1, x2, y2, strokeWidth, stroke, opacity) => {
     const svgLine = document.createElementNS(svgNS, 'line');
@@ -35,7 +55,7 @@ const createSvgPolyline = (points, strokeWidth, stroke, fill, opacity) => {
     const svgPolyline = document.createElementNS(svgNS, 'polyline');
 
     svgPolyline.setAttribute('points', points);
-        
+
     svgPolyline.setAttribute('stroke-width', strokeWidth);
     svgPolyline.setAttribute('stroke', stroke);
     svgPolyline.setAttribute('fill', fill);
@@ -48,7 +68,7 @@ const createSvgPolygon = (points, strokeWidth, stroke, fill, opacity) => {
     const svgPolygon = document.createElementNS(svgNS, 'polygon');
 
     svgPolygon.setAttribute('points', points);
-        
+
     svgPolygon.setAttribute('stroke-width', strokeWidth);
     svgPolygon.setAttribute('stroke', stroke);
     svgPolygon.setAttribute('fill', fill);

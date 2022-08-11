@@ -35,12 +35,12 @@ class EllipsePoint extends Point {
 			})
 
 			this.fill = blue;
-			this.figure.svg.setAttribute('opacity', 0.5);
 			isSomeFigureCaptured = true;
 
 			const doEllipseTransformation = ( (event) => {
-				const x2 = event.offsetX;
-				const y2 = event.offsetY;
+				const coords = getMouseCoords(event);
+				const x2 = coords.x;
+				const y2 = coords.y;
 				const shiftX = (x2 - x1) / 2;
 				const shiftY = (y2 - y1) / 2;
 				const m = Math.min(shiftX, shiftY);
@@ -125,7 +125,6 @@ class EllipsePoint extends Point {
 			const finishEllipseTransformation = ( (event) => {
 				this.fill = lightBlue;
 				isSomeFigureCaptured = false;
-				this.figure.svg.setAttribute('opacity', 1);
 
 				svgPanel.removeEventListener('mousemove', doEllipseTransformation);
 				svgPanel.removeEventListener('mouseup', finishEllipseTransformation);
