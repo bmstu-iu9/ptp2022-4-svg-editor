@@ -28,48 +28,48 @@ class Rectangle extends Figure {
 
 			if (shiftX >= 0 && shiftY >= 0) {
 				if (shiftDown) {
-					rectangle.width = m;
-					rectangle.height = m;
+					rectangle.clientWidth = m;
+					rectangle.clientHeight = m;
 				} else {
-					rectangle.width = shiftX;
-					rectangle.height = shiftY;
+					rectangle.clientWidth = shiftX;
+					rectangle.clientHeight = shiftY;
 				}
 
-				rectangle.x = x1;
-				rectangle.y = y1;
+				rectangle.clientX = x1;
+				rectangle.clientY = y1;
 			} else if (shiftX >= 0 && shiftY <= 0) {
 				if (shiftDown) {
-					rectangle.width = -m;
-					rectangle.height = -m;
+					rectangle.clientWidth = -m;
+					rectangle.clientHeight = -m;
 				} else {
-					rectangle.width = shiftX;
-					rectangle.height = -shiftY;
+					rectangle.clientWidth = shiftX;
+					rectangle.clientHeight = -shiftY;
 				}
 
-				rectangle.x = x1;
-				rectangle.y = y1 - rectangle.height;
+				rectangle.clientX = x1;
+				rectangle.clientY = y1 - rectangle.clientHeight;
 			} else if (shiftX <= 0 && shiftY >= 0) {
 				if (shiftDown) {
-					rectangle.width = -m;
-					rectangle.height = -m;
+					rectangle.clientWidth = -m;
+					rectangle.clientHeight = -m;
 				} else {
-					rectangle.width = -shiftX;
-					rectangle.height = shiftY;
+					rectangle.clientWidth = -shiftX;
+					rectangle.clientHeight = shiftY;
 				}
 
-				rectangle.x = x1 - rectangle.width;
-				rectangle.y = y1;
+				rectangle.clientX = x1 - rectangle.clientWidth;
+				rectangle.clientY = y1;
 			} else if (shiftX <= 0 && shiftY <= 0) {
 				if (shiftDown) {
-					rectangle.width = -m;
-					rectangle.height = -m;
+					rectangle.clientWidth = -m;
+					rectangle.clientHeight = -m;
 				} else {
-					rectangle.width = -shiftX;
-					rectangle.height = -shiftY;
+					rectangle.clientWidth = -shiftX;
+					rectangle.clientHeight = -shiftY;
 				}
 
-				rectangle.x = x1 - rectangle.width;
-				rectangle.y = y1 - rectangle.height;
+				rectangle.clientX = x1 - rectangle.clientWidth;
+				rectangle.clientY = y1 - rectangle.clientHeight;
 			}
 		}
 
@@ -86,17 +86,17 @@ class Rectangle extends Figure {
 		}
 
 		const finishRectangleDrawing = (event) => {
-			if (rectangle.width == 0 && rectangle.height == 0) {
+			if (rectangle.clientWidth == 0 && rectangle.clientHeight == 0) {
 				cancelRectangleDrawing(event);
 				return;
 			}
 
 			rectangle.opacity = 1;
 
-			rectangle.addRectanglePoint(rectangle.x, rectangle.y);
-			rectangle.addRectanglePoint(rectangle.x + rectangle.width, rectangle.y);
-			rectangle.addRectanglePoint(rectangle.x + rectangle.width, rectangle.y + rectangle.height);
-			rectangle.addRectanglePoint(rectangle.x, rectangle.y + rectangle.height);
+			rectangle.addRectanglePoint(rectangle.clientX, rectangle.clientY);
+			rectangle.addRectanglePoint(rectangle.clientX + rectangle.clientWidth, rectangle.clientY);
+			rectangle.addRectanglePoint(rectangle.clientX + rectangle.clientWidth, rectangle.clientY + rectangle.clientHeight);
+			rectangle.addRectanglePoint(rectangle.clientX, rectangle.clientY + rectangle.clientHeight);
 
 			rectangle.enableHighlight();
 
@@ -132,8 +132,8 @@ class Rectangle extends Figure {
 					point.cy += shiftY;
 				});
 
-				this.x += shiftX;
-				this.y += shiftY;
+				this.clientX += shiftX;
+				this.clientY += shiftY;
 
 				offsetX += shiftX;
 				offsetY += shiftY;
@@ -168,10 +168,10 @@ class Rectangle extends Figure {
 	set x(value) { this.svg.setAttribute('x', +value); }
 	set y(value) { this.svg.setAttribute('y', +value); }
 
-	get x() { return +this.svg.getAttribute('x'); }
-	get y() { return +this.svg.getAttribute('y'); }
-	get width() { return +this.svg.getAttribute('width'); }
-	get height() { return +this.svg.getAttribute('height'); }
+	get clientX() { return +this.svg.getAttribute('x'); }
+	get clientY() { return +this.svg.getAttribute('y'); }
+	get clientWidth() { return +this.svg.getAttribute('width'); }
+	get clientHeight() { return +this.svg.getAttribute('height'); }
 }
 
 svgPanel.addEventListener('mousedown', Rectangle.prepareRectangleDrawing);

@@ -1,126 +1,1729 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html class="html" lang="ru">
   <head>
     <meta charset="UTF-8">
     <title>LightSVG</title>
-    <link rel="shortcut icon" href="media/title/pencil.svg" type="image/svg">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" href="media/title/pencil.svg">
+    <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
-    <header>
-      <div class="menu">
-        <button class="menu-button"> Файл     </button>
-        <button class="menu-button"> Действие </button> 
-        <button class="menu-button"> Вид      </button>
-        <button class="menu-button"> Помощь   </button>
-      </div>
+  <body class="body">
+    <header class="body__header header">
+      <!--TODO: написать код верхнего меню-->
     </header>
-    <main>
-      <div class="tool-panel">
-        <div class="tool-buttons">
-          <input type="radio" id="cursor" alt="cursor" name="tool" checked>
-          <label for="cursor">
-            <img src="media/icons/cursor-default.svg" alt="cursor" draggable="false" />
-          </label>
-          <input type="radio" id="hand" alt="hand" name="tool">
-          <label for="hand">
-            <img src="media/icons/cursor-pointer.svg" alt="hand" draggable="false" />
-          </label>
-          <input type="radio" id="pencile" alt="pencile" name="tool">
-          <label for="pencile">
-            <img src="media/icons/lead-pencil.svg" alt="pencile" draggable="false" />
-          </label>
-          <input type="radio" id="line" alt="line" name="tool">
-          <label for="line">
-            <img src="media/icons/vector-line.svg" alt="line" draggable="false" />
-          </label>
-          <input type="radio" id="polyline" alt="polyline" name="tool">
-          <label for="polyline">
-            <img src="media/icons/vector-polyline.svg" alt="polyline" draggable="false" />
-          </label>
-          <input type="radio" id="polygon" alt="polygon" name="tool">
-          <label for="polygon">
-            <img src="media/icons/vector-polygon.svg" alt="polygon" draggable="false" />
-          </label>
-          <input type="radio" id="rectangle" alt="rectangle" name="tool">
-          <label for="rectangle">
-            <img src="media/icons/rectangle.svg" alt="rectangle" draggable="false" />
-          </label>
-          <input type="radio" id="eraser" alt="eraser" name="tool">
-          <label for="eraser">
-            <img src="media/icons/eraser.svg" alt="eraser" draggable="false" />
-          </label>
-          <input type="radio" id="palette" alt="palette" name="tool">
-          <label for="palette">
-            <img src="media/icons/palette.svg" alt="palette" draggable="false" />
-          </label>
+    <main class="body__main main">
+      <div class="main__toolbar">
+        <div class="toolbar">
+          <!--TODO: убрать значения min, max, step и value у всех input'ов-->
+          <!--Меню-->
+          <div class="toolbar__menu">
+            <ul class="menu menu_direction-column">
+              <li class="menu__item">
+                <label class="label label_type-menu-tool label_checked-menu-tool" id="cursor-label"
+                       for="cursor-input-radio">
+                  <img class="img img_type-menu-tool img_checked-menu-tool" id="cursor-img"
+                       src="media/icons/cursor.svg" alt="Курсор" draggable="false">
+                </label>
+                <input class="input-radio" id="cursor-input-radio" type="radio" name="menu-tool" checked>
+              <li class="menu__item">
+                <label class="label label_type-menu-tool" id="hand-label" for="hand-input-radio">
+                  <img class="img img_type-menu-tool" id="hand-img"
+                       src="media/icons/hand.svg" alt="Рука" draggable="false">
+                </label>
+                <input class="input-radio" id="hand-input-radio" type="radio" name="menu-tool">
+              </li>
+              <li class="menu__item">
+                <label class="label label_type-menu-tool" id="pencil-label" for="pencil-input-radio">
+                  <img class="img img_type-menu-tool" id="pencil-img"
+                       src="media/icons/pencil.svg" alt="Карандаш" draggable="false">
+                </label>
+                <input class="input-radio" id="pencil-input-radio" type="radio" name="menu-tool">
+              </li>
+              <li class="menu__item">
+                <label class="label label_type-menu-tool" id="curves-label" for="curves-input-radio">
+                  <img class="img img_type-menu-tool" id="curves-img"
+                       src="media/icons/line.svg" alt="Кривые" draggable="false">
+                </label>
+                <input class="input-radio" id="curves-input-radio" type="radio" name="menu-tool">
+              </li>
+              <li class="menu__item">
+                <label class="label label_type-menu-tool" id="shapes-label" for="shapes-input-radio">
+                  <img class="img img_type-menu-tool" id="shapes-img"
+                       src="media/icons/rectangle.svg" alt="Формы" draggable="false">
+                </label>
+                <input class="input-radio" id="shapes-input-radio" type="radio" name="menu-tool">
+              </li>
+              <li class="menu__item">
+                <label class="label label_type-menu-tool" id="text-label" for="text-input-radio">
+                  <img class="img img_type-menu-tool" id="text-img"
+                       src="media/icons/text.svg" alt="Текст" draggable="false">
+                </label>
+                <input class="input-radio" id="text-input-radio" type="radio" name="menu-tool">
+              </li>
+              <li class="menu__item">
+                <label class="label label_type-menu-tool" id="eraser-label" for="eraser-input-radio">
+                  <img class="img img_type-menu-tool" id="eraser-img"
+                       src="media/icons/eraser.svg" alt="Ластик" draggable="false">
+                </label>
+                <input class="input-radio" id="eraser-input-radio" type="radio" name="menu-tool">
+              </li>
+            </ul>
+          </div>
+          <!--Создание карандаша-->
+          <div class="toolbar__content disabled" id="pencil-create-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span margin-null">
+                  <span class="span span_type-content">Карандаш</span>
+                </div>
+              </div>
+              <div class="content__main">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Толщина карандаша-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="pencil-create-stroke-width-input-number">
+                          <span class="span span_type-option">Толщина, <i>px</i></span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="pencil-create-stroke-width-input-range"
+                               type="range" min="1" max="50" value="5">
+                        <input class="input-number input-number_type-option rounded" id="pencil-create-stroke-width-input-number"
+                               type="number" min="1" value="5">
+                      </div>
+                    </div>
+                  </div>
+                  <!--Непрозрачность карандаша-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header margin-null">
+                        <label class="label" for="pencil-create-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="pencil-create-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="pencil-create-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет карандаша-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="pencil-create-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="pencil-create-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Редактирование карандаша-->
+          <div class="toolbar__content disabled" id="pencil-edit-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span margin-null">
+                  <span class="span span_type-content">Карандаш</span>
+                </div>
+              </div>
+              <div class="content__main">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Толщина карандаша-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="pencil-edit-stroke-width-input-number">
+                          <span class="span span_type-option">Толщина, <i>px</i></span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="pencil-edit-stroke-width-input-range"
+                               type="range" min="1" max="50" value="5">
+                        <input class="input-number input-number_type-option rounded" id="pencil-edit-stroke-width-input-number"
+                               type="number" min="1" value="5">
+                      </div>
+                    </div>
+                  </div>
+                  <!--Непрозрачность карандаша-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="pencil-edit-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="pencil-edit-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="pencil-edit-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет карандаша-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="pencil-edit-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="pencil-edit-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Создание кривых-->
+          <div class="toolbar__content disabled" id="curves-create-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__menu">
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <label class="label label_type-menu-subtool label_checked-menu-subtool rounded-left" id="line-label"
+                             for="line-input-radio">
+                        <img class="img img_type-menu-subtool img_checked-menu-subtool" id="line-img"
+                             src="media/icons/line.svg" alt="Прямая" draggable="false">
+                      </label>
+                      <input class="input-radio" id="line-input-radio" type="radio" name="curves-create-menu-subtool" checked>
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-subtool rounded-right" id="polyline-label"
+                             for="polyline-input-radio">
+                        <img class="img img_type-menu-subtool" id="polyline-img"
+                             src="media/icons/polyline.svg" alt="Ломаная" draggable="false">
+                      </label>
+                      <input class="input-radio" id="polyline-input-radio" type="radio" name="curves-create-menu-subtool">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--Создание прямой-->
+              <div class="content__main" id="line-create-content">
+                <div class="content">
+                  <div class="content__header">
+                    <div class="content__span margin-null">
+                      <span class="span span_type-content">Прямая</span>
+                    </div>
+                  </div>
+                  <div class="content__main">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Толщина прямой-->
+                      <div class="content__option">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="line-create-stroke-width-input-number">
+                              <span class="span span_type-option">Толщина, <i>px</i></span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="line-create-stroke-width-input-range"
+                                   type="range" min="1" max="50" value="5">
+                            <input class="input-number input-number_type-option rounded" id="line-create-stroke-width-input-number"
+                                   type="number" min="1" value="5">
+                          </div>
+                        </div>
+                      </div>
+                      <!--Непрозрачность прямой-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="line-create-stroke-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="line-create-stroke-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="line-create-stroke-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет прямой-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="line-create-stroke-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="line-create-stroke-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Создание ломаной-->
+              <div class="content__main disabled" id="polyline-create-content">
+                <div class="content">
+                  <div class="content__header">
+                    <div class="content__span margin-null">
+                      <span class="span span_type-content">Ломаная</span>
+                    </div>
+                  </div>
+                  <div class="content__main">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Толщина ломаной-->
+                      <div class="content__option">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="polyline-create-stroke-width-input-number">
+                              <span class="span span_type-option">Толщина, <i>px</i></span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="polyline-create-stroke-width-input-range"
+                                   type="range" min="1" max="50" value="5">
+                            <input class="input-number input-number_type-option rounded" id="polyline-create-stroke-width-input-number"
+                                   type="number" min="1" value="5">
+                          </div>
+                        </div>
+                      </div>
+                      <!--Непрозрачность ломаной-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="polyline-create-stroke-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="polyline-create-stroke-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="polyline-create-stroke-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет ломаной-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="polyline-create-stroke-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="polyline-create-stroke-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Редактирование прямой-->
+          <div class="toolbar__content disabled" id="line-edit-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span margin-null">
+                  <span class="span span_type-content">Прямая</span>
+                </div>
+              </div>
+              <div class="content__main">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Толщина прямой-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="line-edit-stroke-width-input-number">
+                          <span class="span span_type-option">Толщина, <i>px</i></span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="line-edit-stroke-width-input-range"
+                               type="range" min="1" max="50" value="5">
+                        <input class="input-number input-number_type-option rounded" id="line-edit-stroke-width-input-number"
+                               type="number" min="1" value="5">
+                      </div>
+                    </div>
+                  </div>
+                  <!--Непрозрачность прямой-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="line-edit-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="line-edit-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="line-edit-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет прямой-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="line-edit-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="line-edit-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Редактирование ломаной-->
+          <div class="toolbar__content disabled" id="polyline-edit-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span margin-null">
+                  <span class="span span_type-content">Ломаная</span>
+                </div>
+              </div>
+              <div class="content__main">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Толщина прямой-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="polyline-edit-stroke-width-input-number">
+                          <span class="span span_type-option">Толщина, <i>px</i></span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="polyline-edit-stroke-width-input-range"
+                               type="range" min="1" max="50" value="5">
+                        <input class="input-number input-number_type-option rounded" id="polyline-edit-stroke-width-input-number"
+                               type="number" min="1" value="5">
+                      </div>
+                    </div>
+                  </div>
+                  <!--Непрозрачность прямой-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="polyline-edit-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="polyline-edit-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="polyline-edit-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет ломаной-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="polyline-edit-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="polyline-edit-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Создание форм-->
+          <div class="toolbar__content disabled" id="shapes-create-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__menu">
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <label class="label label_type-menu-subtool label_checked-menu-subtool rounded-left" id="rect-label"
+                             for="rect-input-radio">
+                        <img class="img img_type-menu-subtool img_checked-menu-subtool" id="rect-img"
+                             src="media/icons/rectangle.svg" alt="Прямоугольник" draggable="false">
+                      </label>
+                      <input class="input-radio" id="rect-input-radio" type="radio" name="shapes-create-menu-subtool" checked>
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-subtool" id="polygon-label" for="polygon-input-radio">
+                        <img class="img img_type-menu-subtool" id="polygon-img"
+                             src="media/icons/polygon.svg" alt="Многоугольник" draggable="false">
+                      </label>
+                      <input class="input-radio" id="polygon-input-radio" type="radio" name="shapes-create-menu-subtool">
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-subtool rounded-right" id="ellipse-label" for="ellipse-input-radio">
+                        <img class="img img_type-menu-subtool" id="ellipse-img"
+                             src="media/icons/circle.svg" alt="Эллипс" draggable="false">
+                      </label>
+                      <input class="input-radio" id="ellipse-input-radio" type="radio" name="shapes-create-menu-subtool">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--Создание прямоугольника-->
+              <div class="content__main" id="rect-create-content">
+                <div class="content">
+                  <div class="content__header">
+                    <div class="content__span">
+                      <span class="span span_type-content">Прямоугольник</span>
+                    </div>
+                    <div class="content__menu">
+                      <ul class="menu">
+                        <li class="menu__item">
+                          <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                                 id="rect-create-toggle-fill-label" for="rect-create-toggle-fill-input-radio">
+                            <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                                  id="rect-create-toggle-fill-span">Заливка</span>
+                          </label>
+                          <input class="input-radio" id="rect-create-toggle-fill-input-radio"
+                                 type="radio" name="rect-create-menu-toggle" checked>
+                        </li>
+                        <li class="menu__item">
+                          <label class="label label_type-menu-toggle rounded-right"
+                                 id="rect-create-toggle-stroke-label" for="rect-create-toggle-stroke-input-radio">
+                            <span class="span span_type-menu-toggle"
+                                  id="rect-create-toggle-stroke-span">Обводка</span>
+                          </label>
+                          <input class="input-radio" id="rect-create-toggle-stroke-input-radio"
+                                 type="radio" name="rect-create-menu-toggle">
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--Заливка прямоугольника-->
+                  <div class="content__main" id="rect-create-fill-options">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Непрозрачность заливки прямоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="rect-create-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="rect-create-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="rect-create-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет заливки прямоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="rect-create-fill-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="rect-create-fill-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--Обводка прямоугольника-->
+                  <div class="content__main disabled" id="rect-create-stroke-options">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Толщина обводки прямоугольника-->
+                      <div class="content__option">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="rect-create-stroke-width-input-number">
+                              <span class="span span_type-option">Толщина, <i>px</i></span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="rect-create-stroke-width-input-range"
+                                   type="range" min="1" max="50" value="5">
+                            <input class="input-number input-number_type-option rounded" id="rect-create-stroke-width-input-number"
+                                   type="number" min="1" value="5">
+                          </div>
+                        </div>
+                      </div>
+                      <!--Непрозрачность обводки прямоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="rect-create-stroke-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="rect-create-stroke-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="rect-create-stroke-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет обводки прямоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="rect-create-stroke-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="rect-create-stroke-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Создание многоугольника-->
+              <div class="content__main disabled" id="polygon-create-content">
+                <div class="content">
+                  <div class="content__header">
+                    <div class="content__span">
+                      <span class="span span_type-content">Многоугольник</span>
+                    </div>
+                    <div class="content__menu">
+                      <ul class="menu">
+                        <li class="menu__item">
+                          <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                                 id="polygon-create-toggle-fill-label" for="polygon-create-toggle-fill-input-radio">
+                            <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                                  id="polygon-create-toggle-fill-span">Заливка</span>
+                          </label>
+                          <input class="input-radio" id="polygon-create-toggle-fill-input-radio"
+                                 type="radio" name="polygon-create-menu-toggle" checked>
+                        </li>
+                        <li class="menu__item">
+                          <label class="label label_type-menu-toggle rounded-right"
+                                 id="polygon-create-toggle-stroke-label" for="polygon-create-toggle-stroke-input-radio">
+                            <span class="span span_type-menu-toggle"
+                                  id="polygon-create-toggle-stroke-span">Обводка</span>
+                          </label>
+                          <input class="input-radio" id="polygon-create-toggle-stroke-input-radio"
+                                 type="radio" name="polygon-create-menu-toggle">
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--Заливка многоугольника-->
+                  <div class="content__main" id="polygon-create-fill-options">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Непрозрачность заливки многоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="polygon-create-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="polygon-create-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="polygon-create-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет заливки многоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="polygon-create-fill-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="polygon-create-fill-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--Обводка многоугольника-->
+                  <div class="content__main disabled" id="polygon-create-stroke-options">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Толщина обводки многоугольника-->
+                      <div class="content__option">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="polygon-create-stroke-width-input-number">
+                              <span class="span span_type-option">Толщина, <i>px</i></span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="polygon-create-stroke-width-input-range"
+                                   type="range" min="1" max="50" value="5">
+                            <input class="input-number input-number_type-option rounded" id="polygon-create-stroke-width-input-number"
+                                   type="number" min="1" value="5">
+                          </div>
+                        </div>
+                      </div>
+                      <!--Непрозрачность обводки многоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="polygon-create-stroke-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="polygon-create-stroke-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="polygon-create-stroke-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет обводки многоугольника-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="polygon-create-stroke-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="polygon-create-stroke-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Создание эллипса-->
+              <div class="content__main disabled" id="ellipse-create-content">
+                <div class="content">
+                  <div class="content__header">
+                    <div class="content__span">
+                      <span class="span span_type-content">Эллипс</span>
+                    </div>
+                    <div class="content__menu">
+                      <ul class="menu">
+                        <li class="menu__item">
+                          <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                                 id="ellipse-create-toggle-fill-label" for="ellipse-create-toggle-fill-input-radio">
+                            <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                                  id="ellipse-create-toggle-fill-span">Заливка</span>
+                          </label>
+                          <input class="input-radio" id="ellipse-create-toggle-fill-input-radio"
+                                 type="radio" name="ellipse-create-menu-toggle" checked>
+                        </li>
+                        <li class="menu__item">
+                          <label class="label label_type-menu-toggle rounded-right"
+                                 id="ellipse-create-toggle-stroke-label" for="ellipse-create-toggle-stroke-input-radio">
+                            <span class="span span_type-menu-toggle"
+                                  id="ellipse-create-toggle-stroke-span">Обводка</span>
+                          </label>
+                          <input class="input-radio" id="ellipse-create-toggle-stroke-input-radio"
+                                 type="radio" name="ellipse-create-menu-toggle">
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--Заливка эллипса-->
+                  <div class="content__main" id="ellipse-create-fill-options">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Непрозрачность заливки эллипса-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="ellipse-create-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="ellipse-create-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="ellipse-create-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет заливки эллипса-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="ellipse-create-fill-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="ellipse-create-fill-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--Обводка эллипса-->
+                  <div class="content__main disabled" id="ellipse-create-stroke-options">
+                    <div class="wrapper wrapper_direction-column">
+                      <!--Толщина обводки эллипса-->
+                      <div class="content__option">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="ellipse-create-stroke-width-input-number">
+                              <span class="span span_type-option">Толщина, <i>px</i></span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="ellipse-create-stroke-width-input-range"
+                                   type="range" min="1" max="50" value="5">
+                            <input class="input-number input-number_type-option rounded" id="ellipse-create-stroke-width-input-number"
+                                   type="number" min="1" value="5">
+                          </div>
+                        </div>
+                      </div>
+                      <!--Непрозрачность обводки эллипса-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__header">
+                            <label class="label" for="ellipse-create-stroke-opacity-input-number">
+                              <span class="span span_type-option">Непрозрачность</span>
+                            </label>
+                          </div>
+                          <div class="option__main">
+                            <input class="input-range input-range_type-option" id="ellipse-create-stroke-opacity-input-range"
+                                   type="range" min="0" max="1" step="0.05" value="1">
+                            <input class="input-number input-number_type-option rounded" id="ellipse-create-stroke-opacity-input-number"
+                                   type="number" min="0" max="1" step="0.01" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wrapper wrapper_direction-column">
+                      <div class="content__hr">
+                        <hr class="hr hr_type-content">
+                      </div>
+                      <!--Цвет обводки эллипса-->
+                      <div class="content__option margin-null">
+                        <div class="option">
+                          <div class="option__main">
+                            <label class="label" for="ellipse-create-stroke-input-color">
+                              <span class="span span_type-option">Цвет</span>
+                            </label>
+                            <input class="input-color input-color_type-option" id="ellipse-create-stroke-input-color"
+                                   type="color" value="#00AAFF">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Редактирование прямоугольника-->
+          <div class="toolbar__content disabled" id="rect-edit-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span">
+                  <span class="span span_type-content">Прямоугольник</span>
+                </div>
+                <div class="content__menu">
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                             id="rect-edit-toggle-fill-label" for="rect-edit-toggle-fill-input-radio">
+                        <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                              id="rect-edit-toggle-fill-span">Заливка</span>
+                      </label>
+                      <input class="input-radio" id="rect-edit-toggle-fill-input-radio"
+                             type="radio" name="rect-edit-menu-toggle" checked>
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle rounded-right"
+                             id="rect-edit-toggle-stroke-label" for="rect-edit-toggle-stroke-input-radio">
+                        <span class="span span_type-menu-toggle"
+                              id="rect-edit-toggle-stroke-span">Обводка</span>
+                      </label>
+                      <input class="input-radio" id="rect-edit-toggle-stroke-input-radio"
+                             type="radio" name="rect-edit-menu-toggle">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--Заливка прямоугольника-->
+              <div class="content__main" id="rect-edit-fill-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Непрозрачность заливки прямоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="rect-edit-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="rect-edit-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="rect-edit-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет заливки прямоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="rect-edit-fill-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="rect-edit-fill-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Обводка прямоугольника-->
+              <div class="content__main disabled" id="rect-edit-stroke-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Толщина обводки прямоугольника-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="rect-edit-stroke-width-input-number">
+                          <span class="span span_type-option">Толщина, <i>px</i></span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="rect-edit-stroke-width-input-range"
+                               type="range" min="1" max="50" value="5">
+                        <input class="input-number input-number_type-option rounded" id="rect-edit-stroke-width-input-number"
+                               type="number" min="1" value="5">
+                      </div>
+                    </div>
+                  </div>
+                  <!--Непрозрачность обводки прямоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="rect-edit-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="rect-edit-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="rect-edit-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет обводки прямоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="rect-edit-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="rect-edit-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Редактирование многоугольника-->
+          <div class="toolbar__content disabled" id="polygon-edit-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span">
+                  <span class="span span_type-content">Многоугольник</span>
+                </div>
+                <div class="content__menu">
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                             id="polygon-edit-toggle-fill-label" for="polygon-edit-toggle-fill-input-radio">
+                        <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                              id="polygon-edit-toggle-fill-span">Заливка</span>
+                      </label>
+                      <input class="input-radio" id="polygon-edit-toggle-fill-input-radio"
+                             type="radio" name="polygon-edit-menu-toggle" checked>
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle rounded-right"
+                             id="polygon-edit-toggle-stroke-label" for="polygon-edit-toggle-stroke-input-radio">
+                        <span class="span span_type-menu-toggle"
+                              id="polygon-edit-toggle-stroke-span">Обводка</span>
+                      </label>
+                      <input class="input-radio" id="polygon-edit-toggle-stroke-input-radio"
+                             type="radio" name="polygon-edit-menu-toggle">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--Заливка многоугольника-->
+              <div class="content__main" id="polygon-edit-fill-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Непрозрачность заливки многоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="polygon-edit-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="polygon-edit-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="polygon-edit-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет заливки многоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="polygon-edit-fill-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="polygon-edit-fill-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Обводка многоугольника-->
+              <div class="content__main disabled" id="polygon-edit-stroke-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Толщина обводки многоугольника-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="polygon-edit-stroke-width-input-number">
+                          <span class="span span_type-option">Толщина, <i>px</i></span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="polygon-edit-stroke-width-input-range"
+                               type="range" min="1" max="50" value="5">
+                        <input class="input-number input-number_type-option rounded" id="polygon-edit-stroke-width-input-number"
+                               type="number" min="1" value="5">
+                      </div>
+                    </div>
+                  </div>
+                  <!--Непрозрачность обводки многоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="polygon-edit-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="polygon-edit-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="polygon-edit-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет обводки многоугольника-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="polygon-edit-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="polygon-edit-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Редактирование эллипса-->
+          <div class="toolbar__content disabled" id="ellipse-edit-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span">
+                  <span class="span span_type-content">Эллипс</span>
+                </div>
+                <div class="content__menu">
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                             id="ellipse-edit-toggle-fill-label" for="ellipse-edit-toggle-fill-input-radio">
+                        <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                              id="ellipse-edit-toggle-fill-span">Заливка</span>
+                      </label>
+                      <input class="input-radio" id="ellipse-edit-toggle-fill-input-radio"
+                             type="radio" name="ellipse-edit-menu-toggle" checked>
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle rounded-right"
+                             id="ellipse-edit-toggle-stroke-label" for="ellipse-edit-toggle-stroke-input-radio">
+                        <span class="span span_type-menu-toggle"
+                              id="ellipse-edit-toggle-stroke-span">Обводка</span>
+                      </label>
+                      <input class="input-radio" id="ellipse-edit-toggle-stroke-input-radio"
+                             type="radio" name="ellipse-edit-menu-toggle">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--Заливка эллипса-->
+              <div class="content__main" id="ellipse-edit-fill-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Непрозрачность заливки эллипса-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="ellipse-edit-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="ellipse-edit-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="ellipse-edit-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет заливки эллипса-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="ellipse-edit-fill-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="ellipse-edit-fill-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Обводка эллипса-->
+              <div class="content__main disabled" id="ellipse-edit-stroke-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Толщина обводки эллипса-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="ellipse-edit-stroke-width-input-number">
+                          <span class="span span_type-option">Толщина, <i>px</i></span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="ellipse-edit-stroke-width-input-range"
+                               type="range" min="1" max="50" value="5">
+                        <input class="input-number input-number_type-option rounded" id="ellipse-edit-stroke-width-input-number"
+                               type="number" min="1" value="5">
+                      </div>
+                    </div>
+                  </div>
+                  <!--Непрозрачность обводки эллипса-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="ellipse-edit-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="ellipse-edit-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="ellipse-edit-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет обводки эллипса-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="ellipse-edit-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="ellipse-edit-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Создание текста-->
+          <div class="toolbar__content disabled" id="text-create-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span">
+                  <span class="span span_type-content">Текст</span>
+                </div>
+                <!--Кегль текста-->
+                <div class="content__option">
+                  <div class="option">
+                    <div class="option__main">
+                      <label class="label" for="text-create-size-input-number">
+                        <span class="span span_type-option">Кегль, <i>px</i></span>
+                      </label>
+                      <input class="input-number input-number_type-option rounded" id="text-create-size-input-number"
+                             type="number" min="1" value="12">
+                    </div>
+                  </div>
+                </div>
+                <!--Шрифт текста-->
+                <div class="content__option">
+                  <div class="option">
+                    <div class="option__main">
+                      <label class="label" for="text-create-font-input-checkbox">
+                        <span class="span span_type-option">Шрифт</span>
+                      </label>
+                      <div class="wrapper wrapper_direction-column">
+                        <div class="wrapper">
+                          <input class="input-text input-text_type-option rounded-top-left rounded-bottom-left"
+                                 id="text-create-font-input-text" type="text" value="Roboto" readonly>
+                          <input class="input-checkbox" id="text-create-font-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-radio rounded-top-right rounded-bottom-right"
+                                 id="text-create-font-label" for="text-create-font-input-checkbox">
+                            <img class="img img_type-option" src="media/icons/triangle-small-down.svg"
+                                 alt="Показать / скрыть">
+                          </label>
+                        </div>
+                        <div class="option__popup disabled" id="text-create-font-menu-list">
+                          <ul class="menu menu_direction-column">
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list label_checked-menu-list"
+                                     id="text-create-font-roboto-label" for="text-create-font-roboto-input-radio">
+                                <span class="span span_type-menu-list span_checked-menu-list"
+                                      id="text-create-font-roboto-span">Roboto</span>
+                              </label>
+                              <input class="input-radio" id="text-create-font-roboto-input-radio"
+                                     type="radio" name="text-create-menu-list" checked>
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list" id="text-create-font-arial-label"
+                                     for="text-create-font-arial-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-create-font-arial-span">Arial</span>
+                              </label>
+                              <input class="input-radio" id="text-create-font-arial-input-radio"
+                                     type="radio" name="text-create-menu-list">
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list" id="text-create-font-helvetica-label"
+                                     for="text-create-font-helvetica-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-create-font-helvetica-span">Helvetica</span>
+                              </label>
+                              <input class="input-radio" id="text-create-font-helvetica-input-radio"
+                                     type="radio" name="text-create-menu-list">
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list" id="text-create-font-open-sans-label"
+                                     for="text-create-font-open-sans-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-create-font-open-sans-span">Open Sans</span>
+                              </label>
+                              <input class="input-radio" id="text-create-font-open-sans-input-radio"
+                                     type="radio" name="text-create-menu-list">
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list rounded-bottom-left rounded-bottom-right"
+                                     id="text-create-font-times-new-roman-label" for="text-create-font-times-new-roman-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-create-font-times-new-roman-span">Times New Roman</span>
+                              </label>
+                              <input class="input-radio" id="text-create-font-times-new-roman-input-radio"
+                                     type="radio" name="text-create-menu-list">
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Начертание текста-->
+                <div class="content__option margin-large">
+                  <div class="option">
+                    <div class="option__main">
+                      <span class="span span_type-option">Начертание</span>
+                      <div class="wrapper">
+                        <input class="input-checkbox" id="text-create-bold-input-checkbox" type="checkbox">
+                        <label class="label label_type-option-checkbox rounded-left"
+                               id="text-create-bold-label" for="text-create-bold-input-checkbox">
+                          <span class="span span_type-option"><b>b</b></span>
+                        </label>
+                        <input class="input-checkbox" id="text-create-italic-input-checkbox" type="checkbox">
+                        <label class="label label_type-option-checkbox"
+                               id="text-create-italic-label" for="text-create-italic-input-checkbox">
+                          <span class="span"><i>i</i></span>
+                        </label>
+                        <input class="input-checkbox" id="text-create-underline-input-checkbox" type="checkbox">
+                        <label class="label label_type-option-checkbox rounded-right"
+                               id="text-create-underline-label" for="text-create-underline-input-checkbox">
+                          <span class="span"><u>u</u></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content__menu">
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                             id="text-create-toggle-fill-label" for="text-create-toggle-fill-input-radio">
+                        <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                              id="text-create-toggle-fill-span">Заливка</span>
+                      </label>
+                      <input class="input-radio" id="text-create-toggle-fill-input-radio"
+                             type="radio" name="text-create-menu-toggle" checked>
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle rounded-right" id="text-create-toggle-stroke-label"
+                             for="text-create-toggle-stroke-input-radio">
+                        <span class="span span_type-menu-toggle"
+                              id="text-create-toggle-stroke-span">Обводка</span>
+                      </label>
+                      <input class="input-radio" id="text-create-toggle-stroke-input-radio"
+                             type="radio" name="text-create-menu-toggle">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--Заливка текста-->
+              <div class="content__main" id="text-create-fill-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Непрозрачность заливки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="text-create-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="text-create-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="text-create-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет заливки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="text-create-fill-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="text-create-fill-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Обводка текста-->
+              <div class="content__main disabled" id="text-create-stroke-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Непрозрачность обводки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="text-create-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="text-create-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="text-create-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет обводки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="text-create-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="text-create-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Редактирование текста-->
+          <div class="toolbar__content disabled" id="text-edit-content">
+            <div class="content">
+              <div class="content__header">
+                <div class="content__span">
+                  <span class="span span_type-content">Текст</span>
+                </div>
+                <!--Кегль текста-->
+                <div class="content__option">
+                  <div class="option">
+                    <div class="option__main">
+                      <label class="label" for="text-edit-size-input-number">
+                        <span class="span span_type-option">Кегль, <i>px</i></span>
+                      </label>
+                      <input class="input-number input-number_type-option rounded" id="text-edit-size-input-number"
+                             type="number" min="1" value="12">
+                    </div>
+                  </div>
+                </div>
+                <!--Шрифт текста-->
+                <div class="content__option">
+                  <div class="option">
+                    <div class="option__main">
+                      <label class="label" for="text-edit-font-input-checkbox">
+                        <span class="span span_type-option">Шрифт</span>
+                      </label>
+                      <div class="wrapper wrapper_direction-column">
+                        <div class="wrapper">
+                          <input class="input-text input-text_type-option rounded-top-left rounded-bottom-left"
+                                 id="text-edit-font-input-text" type="text" value="Roboto" readonly>
+                          <input class="input-checkbox" id="text-edit-font-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-radio rounded-top-right rounded-bottom-right"
+                                 id="text-edit-font-label" for="text-edit-font-input-checkbox">
+                            <img class="img img_type-option" src="media/icons/triangle-small-down.svg"
+                                 alt="Показать / скрыть">
+                          </label>
+                        </div>
+                        <div class="option__popup disabled" id="text-edit-font-menu-list">
+                          <ul class="menu menu_direction-column">
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list label_checked-menu-list"
+                                     id="text-edit-font-roboto-label" for="text-edit-font-roboto-input-radio">
+                                <span class="span span_type-menu-list span_checked-menu-list"
+                                      id="text-edit-font-roboto-span">Roboto</span>
+                              </label>
+                              <input class="input-radio" id="text-edit-font-roboto-input-radio"
+                                     type="radio" name="text-edit-menu-list" checked>
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list" id="text-edit-font-arial-label"
+                                     for="text-edit-font-arial-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-edit-font-arial-span">Arial</span>
+                              </label>
+                              <input class="input-radio" id="text-edit-font-arial-input-radio"
+                                     type="radio" name="text-edit-menu-list">
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list" id="text-edit-font-helvetica-label"
+                                     for="text-edit-font-helvetica-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-edit-font-helvetica-span">Helvetica</span>
+                              </label>
+                              <input class="input-radio" id="text-edit-font-helvetica-input-radio"
+                                     type="radio" name="text-edit-menu-list">
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list" id="text-edit-font-open-sans-label"
+                                     for="text-edit-font-open-sans-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-edit-font-open-sans-span">Open Sans</span>
+                              </label>
+                              <input class="input-radio" id="text-edit-font-open-sans-input-radio"
+                                     type="radio" name="text-edit-menu-list">
+                            </li>
+                            <li class="menu__item">
+                              <label class="label label_type-menu-list rounded-bottom-left rounded-bottom-right"
+                                     id="text-edit-font-times-new-roman-label" for="text-edit-font-times-new-roman-input-radio">
+                                <span class="span span_type-menu-list"
+                                      id="text-edit-font-times-new-roman-span">Times New Roman</span>
+                              </label>
+                              <input class="input-radio" id="text-edit-font-times-new-roman-input-radio"
+                                     type="radio" name="text-edit-menu-list">
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Начертание текста-->
+                <div class="content__option margin-large">
+                  <div class="option">
+                    <div class="option__main">
+                      <span class="span span_type-option">Начертание</span>
+                      <div class="wrapper">
+                        <input class="input-checkbox" id="text-edit-bold-input-checkbox" type="checkbox">
+                        <label class="label label_type-option-checkbox rounded-left"
+                               id="text-edit-bold-label" for="text-edit-bold-input-checkbox">
+                          <span class="span span_type-option"><b>b</b></span>
+                        </label>
+                        <input class="input-checkbox" id="text-edit-italic-input-checkbox" type="checkbox">
+                        <label class="label label_type-option-checkbox"
+                               id="text-edit-italic-label" for="text-edit-italic-input-checkbox">
+                          <span class="span"><i>i</i></span>
+                        </label>
+                        <input class="input-checkbox" id="text-edit-underline-input-checkbox" type="checkbox">
+                        <label class="label label_type-option-checkbox rounded-right"
+                               id="text-edit-underline-label" for="text-edit-underline-input-checkbox">
+                          <span class="span"><u>u</u></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content__menu">
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
+                             id="text-edit-toggle-fill-label" for="text-edit-toggle-fill-input-radio">
+                        <span class="span span_type-menu-toggle span_checked-menu-toggle"
+                              id="text-edit-toggle-fill-span">Заливка</span>
+                      </label>
+                      <input class="input-radio" id="text-edit-toggle-fill-input-radio"
+                             type="radio" name="text-edit-menu-toggle" checked>
+                    </li>
+                    <li class="menu__item">
+                      <label class="label label_type-menu-toggle rounded-right" id="text-edit-toggle-stroke-label"
+                             for="text-edit-toggle-stroke-input-radio">
+                        <span class="span span_type-menu-toggle"
+                              id="text-edit-toggle-stroke-span">Обводка</span>
+                      </label>
+                      <input class="input-radio" id="text-edit-toggle-stroke-input-radio"
+                             type="radio" name="text-edit-menu-toggle">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--Заливка текста-->
+              <div class="content__main" id="text-edit-fill-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Непрозрачность заливки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="text-edit-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="text-edit-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="text-edit-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет заливки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="text-edit-fill-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="text-edit-fill-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Обводка текста-->
+              <div class="content__main disabled" id="text-edit-stroke-options">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Непрозрачность обводки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__header">
+                        <label class="label" for="text-edit-stroke-opacity-input-number">
+                          <span class="span span_type-option">Непрозрачность</span>
+                        </label>
+                      </div>
+                      <div class="option__main">
+                        <input class="input-range input-range_type-option" id="text-edit-stroke-opacity-input-range"
+                               type="range" min="0" max="1" step="0.05" value="1">
+                        <input class="input-number input-number_type-option rounded" id="text-edit-stroke-opacity-input-number"
+                               type="number" min="0" max="1" step="0.01" value="1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wrapper wrapper_direction-column">
+                  <div class="content__hr">
+                    <hr class="hr hr_type-content">
+                  </div>
+                  <!--Цвет обводки текста-->
+                  <div class="content__option margin-null">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="text-edit-stroke-input-color">
+                          <span class="span span_type-option">Цвет</span>
+                        </label>
+                        <input class="input-color input-color_type-option" id="text-edit-stroke-input-color"
+                               type="color" value="#00AAFF">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="pencile-options" class="tool-options hidden">
-          <input type="range" id="pencile-range" name="pencile-range"
-                 min="1" max="50" value="5">
-          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="pencile-preview" />
-          </svg>
-        </div>
-        <div id="line-options" class="tool-options hidden">
-          <input type="range" id="line-range" name="line-range"
-                 min="1" max="50" value="5">
-          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="line-preview" />
-          </svg>
-        </div>
-        <div id="polyline-options" class="tool-options hidden">
-          <input type="range" id="polyline-range" name="polyline-range"
-                 min="1" max="50" value="5">
-          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="polyline-preview" />
-          </svg>
-        </div>
-        <div id="polygon-options" class="tool-options hidden">
-          <input type="range" id="polygon-range" name="polygon-range"
-                 min="1" max="50" value="5">
-          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="5" fill="#00AAFF" id="polygon-preview" />
-          </svg>
-        </div>
-        <div id="eraser-options" class="tool-options hidden">
-          ERASER
-        </div>
-        <div id="palette-options" class="tool-options hidden">
-          PALETTE
-        </div>   
       </div>
-      <svg id="svg-panel" class="svg-panel" width="600" height="600"
-           xmlns="http://www.w3.org/2000/svg">
-      </svg>
+      <div class="main__canvas">
+        <svg class="canvas" id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
     </main>
-    <script src="js/common/declarations.js"            ></script>
-    <script src="js/common/document.js"                ></script>
-    <script src="js/common/create-svg.js"              ></script>
+    <!--Скрипты-->
+    <script src="js/SVG/CreateSvg.js"></script>
+    <script src="js/SVG/SVG.js"></script>
+    <script src="js/SVG/Canvas.js"></script>
 
-    <script src="js/user-interface/tool-options.js"    ></script>
+    <script src="js/SVG/Figure/Figure.js"></script>
 
-    <script src="js/tools/hand.js"                     ></script>
+    <script src="js/SVG/Point/MathOperations.js"></script>
+    <script src="js/SVG/Point/Point.js"></script>
+    <script src="js/SVG/Point/ScalePoint.js"></script>
+    <script src="js/SVG/Point/RotatePoint.js"></script>
 
-    <script src="js/tools/figure/Figure.js"            ></script>
-    <script src="js/tools/figure/Point.js"             ></script>
+    <script src="js/user-interface/Menu/Menu.js"></script>
+    <script src="js/user-interface/Menu/Submenu.js"></script>
 
-    <script src="js/tools/pencile/pencile-options.js"  ></script>
-    <script src="js/tools/pencile/Pencile.js"          ></script>
+    <script src="js/user-interface/Item/Item.js"></script>
+    <script src="js/user-interface/Item/Tool.js"></script>
+    <script src="js/user-interface/Item/Subtool.js"></script>
+    <script src="js/user-interface/Item/Toggle.js"></script>
+    <script src="js/user-interface/Item/List.js"></script>
 
-    <script src="js/tools/line/line-options.js"        ></script>
-    <script src="js/tools/line/Line.js"                ></script>
-    <script src="js/tools/line/LinePoint.js"           ></script>
+    <script src="js/user-interface/Content.js"></script>
 
-    <script src="js/tools/rectangle/Rectangle.js"      ></script>
-    <script src="js/tools/rectangle/RectanglePoint.js" ></script>
+    <script src="js/user-interface/Option/BaseOption.js"></script>
+    <script src="js/user-interface/Option/NumberOption.js"></script>
+    <script src="js/user-interface/Option/RangeOption.js"></script>
+    <script src="js/user-interface/Option/ColorOption.js"></script>
+    <script src="js/user-interface/Option/RadioOption.js"></script>
+    <script src="js/user-interface/Option/CheckboxOption.js"></script>
 
-    <script src="js/tools/polyline/polyline-options.js"></script>
-    <script src="js/tools/polyline/Polyline.js"        ></script>
-    <script src="js/tools/polyline/PolylinePoint.js"   ></script>
+    <script src="js/common/Document.js"></script>
+    <script src="js/common/Colors.js"></script>
+    <script src="js/common/Declaration.js"></script>
+    <script src="js/common/Initialization.js"></script>
 
-    <script src="js/tools/polygon/polygon-options.js"></script>
-    <script src="js/tools/polygon/Polygon.js"        ></script>
-    <script src="js/tools/polygon/PolygonPoint.js"   ></script>
+    <script src="js/tools/Hand.js"></script>
+    <script src="js/tools/Line.js"></script>
   </body>
 </html>
