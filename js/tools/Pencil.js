@@ -1,10 +1,12 @@
-class Pencile extends Figure {
+class Pencil extends Figure {
 
     constructor(svg) {
         super(svg);
         this.anchorDots = [];
 
-        this.enablePencileMotion();
+        this.enableFigureHandlers(
+            this.addPencileEditContent, this.adjustPencileEditContent.bind(this), this.removePencileEditContent
+        );
     }
 
     syncDots() {
@@ -16,122 +18,90 @@ class Pencile extends Figure {
     }
 
     static preparePencileDrawing(event) {
-        if (selectedTool != PENCILE) {
+        if (toolbar.item !== pencil) {
             return;
         }
 
-        let pencile = new Pencile(
-            createSvgPencile(pencileWidth, selectedColor, 0.5)
+        let figurePencile = new Pencil(
+            createSvgPolyline("", pencil.create.strokeWidth.value, pencil.create.strokeOpacity.value,
+                              pencil.create.stroke.value)
         );
 
-        svgPanel.append(pencile.svg);
+        canvas.svg.append(figurePencile.svg);
 
         const doPencileDrawing = (event) => {
-            pencile.anchorDots.push({x: event.offsetX, y: event.offsetY});
-            pencile.syncDots();
-        }
-
-        const cancelPencileDrawing = (event) => {
-            pencile.svg.remove();
-            pencile = null;
-
-            svgPanel.removeEventListener('mousemove',   doPencileDrawing);
-            svgPanel.removeEventListener('mouseup',     finishPencileDrawing);
-            svgPanel.removeEventListener('contextmenu', cancelPencileDrawing);
-            svgPanel.removeEventListener('mouseleave',  cancelPencileDrawing);
-
-            event.preventDefault();
+            figurePencile.anchorDots.push({x: event.offsetX, y: event.offsetY});
+            figurePencile.syncDots();
         }
 
         const finishPencileDrawing = (event) => {
-            if (pencile.anchorDots == []) {
-                cancelPencileDrawing(event);
-                return;
-            }
+            figurePencile.initialWidth = figurePencile.clientWidth;
+            figurePencile.initialHeight = figurePencile.clientHeight;
 
-            pencile.opacity = 1;
+            figurePencile.centerX = figurePencile.initialWidth * 0.5;
+            figurePencile.centerY = figurePencile.initialHeight * 0.5;
 
-            pencile.addPencilePoint(pencile.x,                 pencile.y);
-            pencile.addPencilePoint(pencile.x + pencile.width, pencile.y);
-            pencile.addPencilePoint(pencile.x + pencile.width, pencile.y + pencile.height);
-            pencile.addPencilePoint(pencile.x,                 pencile.y + pencile.height);
-                        
-            pencile.enableHighlight();
+            figurePencile.rotations.push({
+                angle: 0,
+                x: figurePencile.centerX,
+                y: figurePencile.centerY
+            })
 
-            svgPanel.removeEventListener('mousemove',   doPencileDrawing);
-            svgPanel.removeEventListener('mouseup',     finishPencileDrawing);
-            svgPanel.removeEventListener('contextmenu', cancelPencileDrawing);
-            svgPanel.removeEventListener('mouseleave',  cancelPencileDrawing);
+            figurePencile.enableScalePoints();
+            figurePencile.enableRotatePoints();
+
+            figurePencile.translate(figurePencile.clientX - canvas.clientX, 
+                                    figurePencile.clientY - canvas.clientY);
+
+            figurePencile.anchorDots.forEach((dot) => {
+                dot.x -= figurePencile.translateX;
+                dot.y -= figurePencile.translateY;
+            });
+
+            figurePencile.syncDots();
+
+            figurePencile.updateTransformation();
+
+            canvas.svg.removeEventListener('mousemove',   doPencileDrawing);
+            canvas.svg.removeEventListener('mouseup',     finishPencileDrawing);
+            canvas.svg.removeEventListener('contextmenu', cancelPencileDrawing);
+            canvas.svg.removeEventListener('mouseleave',  cancelPencileDrawing);
         }
 
-        svgPanel.addEventListener('mousemove',   doPencileDrawing);
-        svgPanel.addEventListener('contextmenu', cancelPencileDrawing);
-        svgPanel.addEventListener('mouseleave',  cancelPencileDrawing);
-        svgPanel.addEventListener('mouseup',     finishPencileDrawing);
+
+        const cancelPencileDrawing = (event) => {
+            figurePencile.svg.remove();
+            figurePencile = null;
+
+            canvas.svg.removeEventListener('mousemove',   doPencileDrawing);
+            canvas.svg.removeEventListener('mouseup',     finishPencileDrawing);
+            canvas.svg.removeEventListener('contextmenu', cancelPencileDrawing);
+            canvas.svg.removeEventListener('mouseleave',  cancelPencileDrawing);
+        }
+
+        canvas.svg.addEventListener('mousemove',   doPencileDrawing);
+        canvas.svg.addEventListener('contextmenu', cancelPencileDrawing);
+        canvas.svg.addEventListener('mouseleave',  cancelPencileDrawing);
+        canvas.svg.addEventListener('mouseup',     finishPencileDrawing);
     }
 
-    enablePencileMotion() {
-        const preparePencileMotion = ( (event) => {
-            if (selectedTool != CURSOR) {
-                return;
-            }
-
-            isSomeFigureCaptured = true;
-
-            let x1 = event.offsetX;
-            let y1 = event.offsetY;
-
-            const doPencileMotion = ( (event) => {
-                let x2 = event.offsetX;
-                let y2 = event.offsetY;
-                const shiftX = x2 - x1;
-                const shiftY = y2 - y1;
-
-                this.anchorDots.forEach( (dot) => {
-                    dot.x += shiftX;
-                    dot.y += shiftY;
-                });
-
-                this.points.forEach( (point) => {
-                    point.cx += shiftX;
-                    point.cy += shiftY;
-                });
-
-                this.syncDots();
-
-                x1 = x2;
-                y1 = y2;
-
-            } ).bind(this);
-
-            const finishPencileMotion = ( (event) => {
-                isSomeFigureCaptured = false;
-
-                svgPanel.removeEventListener('mousemove',  doPencileMotion);
-                svgPanel.removeEventListener('mouseup',    finishPencileMotion);
-                svgPanel.removeEventListener('mouseleave', finishPencileMotion);
-            } ).bind(this);
-
-            svgPanel.addEventListener('mousemove',  doPencileMotion);
-            svgPanel.addEventListener('mouseup',    finishPencileMotion);
-            svgPanel.addEventListener('mouseleave', finishPencileMotion);
-
-        } ).bind(this);
-
-        this.svg.addEventListener('mousedown', preparePencileMotion);
+    addPencileEditContent() {
+        pencil.edit.content.classList.remove('disabled');
+        toolbar.content = pencil.edit.content;
     }
 
-    addPencilePoint(cx, cy) {
-        this.points.push( new PencilePoint(this, cx, cy) );
+    removePencileEditContent() {
+        pencil.edit.content.classList.add('disabled');
+        toolbar.content = null;
     }
 
-    set dots(value)    { this.svg.setAttribute('points', value);  }
-    set opacity(value) { this.svg.setAttribute('opacity', value); }
+    adjustPencileEditContent() {
+        pencil.edit.strokeWidth.value = this.strokeWidth;
+        pencil.edit.strokeOpacity.value = this.strokeOpacity;
+        pencil.edit.stroke.value = this.stroke;
+    }
 
-    get x()      { return Math.round(this.svg.getBoundingClientRect().left   - svgPanel.getBoundingClientRect().left); }
-    get y()      { return Math.round(this.svg.getBoundingClientRect().top    - svgPanel.getBoundingClientRect().top);  }
-    get width()  { return Math.round(this.svg.getBoundingClientRect().right  - this.svg.getBoundingClientRect().left); }
-    get height() { return Math.round(this.svg.getBoundingClientRect().bottom - this.svg.getBoundingClientRect().top);  }
+    set dots(value) { this.svg.setAttribute('points', value);  }
 }
 
-svgPanel.addEventListener('mousedown', Pencile.preparePencileDrawing);
+canvas.svg.addEventListener('mousedown', Pencil.preparePencileDrawing);
