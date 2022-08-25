@@ -24,6 +24,8 @@ const createSvgPolyline = (points, strokeWidth, strokeOpacity, stroke) => {
     svgPolyline.setAttribute('stroke-width', strokeWidth);
     svgPolyline.setAttribute('stroke-opacity', strokeOpacity);
     svgPolyline.setAttribute('stroke', stroke);
+    svgPolyline.setAttribute('fill', 'none');
+    svgPolyline.setAttribute('stroke-linecap', 'round');
 
     svgPolyline.setAttribute('points', points);
 
@@ -61,6 +63,22 @@ const createSvgRect = (x, y, width, height, strokeWidth, strokeOpacity, stroke, 
     return svgRect;
 };
 
+const createSvgEllipse = (cx, cy, rx, ry, strokeWidth, strokeOpacity, stroke, opacity, fill) => {
+    const svgEllipse = document.createElementNS(svgNS, 'ellipse');
+
+    svgEllipse.setAttribute('stroke-width', strokeWidth);
+    svgEllipse.setAttribute('stroke-opacity', strokeOpacity);
+    svgEllipse.setAttribute('stroke', stroke);
+    svgEllipse.setAttribute('opacity', opacity);
+    svgEllipse.setAttribute('fill', fill);
+
+    svgEllipse.setAttribute('cx', cx);
+    svgEllipse.setAttribute('cy', cy);
+    svgEllipse.setAttribute('rx', rx);
+    svgEllipse.setAttribute('ry', ry);
+
+    return svgEllipse;
+}
 
 const createSvgCircle = (cx, cy, r, strokeWidth, strokeOpacity, stroke, opacity, fill) => {
     const svgCircle = document.createElementNS(svgNS, 'circle');
