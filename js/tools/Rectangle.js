@@ -81,11 +81,9 @@ class Rectangle extends Figure {
             figureRectangle.updateTransformation();
 
 			canvas.svg.removeEventListener('mousemove', doRectangleDrawing);
-			canvas.svg.removeEventListener('click', finishRectangleDrawing);
+			canvas.svg.removeEventListener('mouseup', finishRectangleDrawing);
 			canvas.svg.removeEventListener('contextmenu', cancelRectangleDrawing);
 			canvas.svg.removeEventListener('mouseleave', cancelRectangleDrawing);
-
-			canvas.svg.addEventListener('click', Rectangle.prepareRectangleDrawing);
 		}
 
 		const cancelRectangleDrawing = (event) => {
@@ -93,17 +91,13 @@ class Rectangle extends Figure {
 			figureRectangle = null;
 
 			canvas.svg.removeEventListener('mousemove', doRectangleDrawing);
-			canvas.svg.removeEventListener('click', finishRectangleDrawing);
+			canvas.svg.removeEventListener('mouseup', finishRectangleDrawing);
 			canvas.svg.removeEventListener('contextmenu', cancelRectangleDrawing);
 			canvas.svg.removeEventListener('mouseleave', cancelRectangleDrawing);
-
-			canvas.svg.addEventListener('click', Rectangle.prepareRectangleDrawing);
 		}
 
-		canvas.svg.removeEventListener('click', Rectangle.prepareRectangleDrawing);
-
 		canvas.svg.addEventListener('mousemove', doRectangleDrawing);
-		canvas.svg.addEventListener('click', finishRectangleDrawing);
+		canvas.svg.addEventListener('mouseup', finishRectangleDrawing);
 		canvas.svg.addEventListener('contextmenu', cancelRectangleDrawing);
 		canvas.svg.addEventListener('mouseleave', cancelRectangleDrawing);
 	}
@@ -122,6 +116,8 @@ class Rectangle extends Figure {
 		rect.edit.strokeWidth.value = this.strokeWidth;
         rect.edit.strokeOpacity.value = this.strokeOpacity;
         rect.edit.stroke.value = this.stroke;
+        rect.edit.opacity.value = this.opacity;
+        rect.edit.fill.value = this.fill;
 	}
 
 	set x(value) { this.svg.setAttribute('x', +value); }
@@ -134,9 +130,11 @@ class Rectangle extends Figure {
 	get width() { return +this.svg.getAttribute('width'); }
 	get height() { return +this.svg.getAttribute('height'); }
 
-	get strokeWidth()   { return +this.svg.getAttribute('stroke-width'); }
-    get strokeOpacity() { return +this.svg.getAttribute('stroke-opacity'); }
-    get stroke()        { return +this.svg.getAttribute('stroke'); }
+	get strokeWidth()   { return this.svg.getAttribute('stroke-width'); }
+    get strokeOpacity() { return this.svg.getAttribute('stroke-opacity'); }
+    get stroke()        { return this.svg.getAttribute('stroke'); }
+    get opacity()       { return this.svg.getAttribute('opacity'); }
+    get fill()          { return this.svg.getAttribute('fill'); }    
 }
 
-canvas.svg.addEventListener('click', Rectangle.prepareRectangleDrawing);
+canvas.svg.addEventListener('mousedown', Rectangle.prepareRectangleDrawing);

@@ -5,7 +5,7 @@ class Pencil extends Figure {
         this.anchorDots = [];
 
         this.enableFigureHandlers(
-            this.addPencileEditContent, this.adjustPencileEditContent.bind(this), this.removePencileEditContent
+            this.addPencilEditContent, this.adjustPencilEditContent.bind(this), this.removePencilEditContent
         );
     }
 
@@ -17,91 +17,95 @@ class Pencil extends Figure {
         this.dots = points;
     }
 
-    static preparePencileDrawing(event) {
+    static preparePencilDrawing(event) {
         if (toolbar.item !== pencil) {
             return;
         }
 
-        let figurePencile = new Pencil(
+        let figurePencil = new Pencil(
             createSvgPolyline("", pencil.create.strokeWidth.value, pencil.create.strokeOpacity.value,
                               pencil.create.stroke.value)
         );
 
-        canvas.svg.append(figurePencile.svg);
+        canvas.svg.append(figurePencil.svg);
 
-        const doPencileDrawing = (event) => {
-            figurePencile.anchorDots.push({x: event.offsetX, y: event.offsetY});
-            figurePencile.syncDots();
+        const doPencilDrawing = (event) => {
+            figurePencil.anchorDots.push({x: event.offsetX, y: event.offsetY});
+            figurePencil.syncDots();
         }
 
-        const finishPencileDrawing = (event) => {
-            figurePencile.initialWidth = figurePencile.clientWidth;
-            figurePencile.initialHeight = figurePencile.clientHeight;
+        const finishPencilDrawing = (event) => {
+            figurePencil.initialWidth = figurePencil.clientWidth;
+            figurePencil.initialHeight = figurePencil.clientHeight;
 
-            figurePencile.centerX = figurePencile.initialWidth * 0.5;
-            figurePencile.centerY = figurePencile.initialHeight * 0.5;
+            figurePencil.centerX = figurePencil.initialWidth * 0.5;
+            figurePencil.centerY = figurePencil.initialHeight * 0.5;
 
-            figurePencile.rotations.push({
+            figurePencil.rotations.push({
                 angle: 0,
-                x: figurePencile.centerX,
-                y: figurePencile.centerY
+                x: figurePencil.centerX,
+                y: figurePencil.centerY
             })
 
-            figurePencile.enableScalePoints();
-            figurePencile.enableRotatePoints();
+            figurePencil.enableScalePoints();
+            figurePencil.enableRotatePoints();
 
-            figurePencile.translate(figurePencile.clientX - canvas.clientX, 
-                                    figurePencile.clientY - canvas.clientY);
+            figurePencil.translate(figurePencil.clientX - canvas.clientX, 
+                                    figurePencil.clientY - canvas.clientY);
 
-            figurePencile.anchorDots.forEach((dot) => {
-                dot.x -= figurePencile.translateX;
-                dot.y -= figurePencile.translateY;
+            figurePencil.anchorDots.forEach((dot) => {
+                dot.x -= figurePencil.translateX;
+                dot.y -= figurePencil.translateY;
             });
 
-            figurePencile.syncDots();
+            figurePencil.syncDots();
 
-            figurePencile.updateTransformation();
+            figurePencil.updateTransformation();
 
-            canvas.svg.removeEventListener('mousemove',   doPencileDrawing);
-            canvas.svg.removeEventListener('mouseup',     finishPencileDrawing);
-            canvas.svg.removeEventListener('contextmenu', cancelPencileDrawing);
-            canvas.svg.removeEventListener('mouseleave',  cancelPencileDrawing);
+            canvas.svg.removeEventListener('mousemove',   doPencilDrawing);
+            canvas.svg.removeEventListener('mouseup',     finishPencilDrawing);
+            canvas.svg.removeEventListener('contextmenu', cancelPencilDrawing);
+            canvas.svg.removeEventListener('mouseleave',  cancelPencilDrawing);
         }
 
 
-        const cancelPencileDrawing = (event) => {
-            figurePencile.svg.remove();
-            figurePencile = null;
+        const cancelPencilDrawing = (event) => {
+            figurePencil.svg.remove();
+            figurePencil = null;
 
-            canvas.svg.removeEventListener('mousemove',   doPencileDrawing);
-            canvas.svg.removeEventListener('mouseup',     finishPencileDrawing);
-            canvas.svg.removeEventListener('contextmenu', cancelPencileDrawing);
-            canvas.svg.removeEventListener('mouseleave',  cancelPencileDrawing);
+            canvas.svg.removeEventListener('mousemove',   doPencilDrawing);
+            canvas.svg.removeEventListener('mouseup',     finishPencilDrawing);
+            canvas.svg.removeEventListener('contextmenu', cancelPencilDrawing);
+            canvas.svg.removeEventListener('mouseleave',  cancelPencilDrawing);
         }
 
-        canvas.svg.addEventListener('mousemove',   doPencileDrawing);
-        canvas.svg.addEventListener('contextmenu', cancelPencileDrawing);
-        canvas.svg.addEventListener('mouseleave',  cancelPencileDrawing);
-        canvas.svg.addEventListener('mouseup',     finishPencileDrawing);
+        canvas.svg.addEventListener('mousemove',   doPencilDrawing);
+        canvas.svg.addEventListener('contextmenu', cancelPencilDrawing);
+        canvas.svg.addEventListener('mouseleave',  cancelPencilDrawing);
+        canvas.svg.addEventListener('mouseup',     finishPencilDrawing);
     }
 
-    addPencileEditContent() {
+    addPencilEditContent() {
         pencil.edit.content.classList.remove('disabled');
         toolbar.content = pencil.edit.content;
     }
 
-    removePencileEditContent() {
+    removePencilEditContent() {
         pencil.edit.content.classList.add('disabled');
         toolbar.content = null;
     }
 
-    adjustPencileEditContent() {
+    adjustPencilEditContent() {
         pencil.edit.strokeWidth.value = this.strokeWidth;
         pencil.edit.strokeOpacity.value = this.strokeOpacity;
         pencil.edit.stroke.value = this.stroke;
     }
 
     set dots(value) { this.svg.setAttribute('points', value);  }
+
+    get strokeWidth()   { return this.svg.getAttribute('stroke-width'); }
+    get strokeOpacity() { return this.svg.getAttribute('stroke-opacity'); }
+    get stroke()        { return this.svg.getAttribute('stroke'); }
 }
 
-canvas.svg.addEventListener('mousedown', Pencil.preparePencileDrawing);
+canvas.svg.addEventListener('mousedown', Pencil.preparePencilDrawing);

@@ -72,11 +72,9 @@ class Ellipse extends Figure {
             figureEllipse.updateTransformation();
 
             canvas.svg.removeEventListener('mousemove', doEllipseDrawing);
-			canvas.svg.removeEventListener('click', finishEllipseDrawing);
+			canvas.svg.removeEventListener('mouseup', finishEllipseDrawing);
 			canvas.svg.removeEventListener('contextmenu', cancelEllipseDrawing);
 			canvas.svg.removeEventListener('mouseleave', cancelEllipseDrawing);
-
-			canvas.svg.addEventListener('click', Ellipse.prepareEllipseDrawing);
 		}
 
 		const cancelEllipseDrawing = (event) => {
@@ -84,17 +82,13 @@ class Ellipse extends Figure {
 			figureEllipse = null;
 
 			canvas.svg.removeEventListener('mousemove', doEllipseDrawing);
-			canvas.svg.removeEventListener('click', finishEllipseDrawing);
+			canvas.svg.removeEventListener('mouseup', finishEllipseDrawing);
 			canvas.svg.removeEventListener('contextmenu', cancelEllipseDrawing);
 			canvas.svg.removeEventListener('mouseleave', cancelEllipseDrawing);
-
-			canvas.svg.addEventListener('click', Ellipse.prepareEllipseDrawing);
 		}
 
-		canvas.svg.removeEventListener('click', Ellipse.prepareEllipseDrawing);
-
 		canvas.svg.addEventListener('mousemove', doEllipseDrawing);
-		canvas.svg.addEventListener('click', finishEllipseDrawing);
+		canvas.svg.addEventListener('mouseup', finishEllipseDrawing);
 		canvas.svg.addEventListener('contextmenu', cancelEllipseDrawing);
 		canvas.svg.addEventListener('mouseleave', cancelEllipseDrawing);
 	}
@@ -113,6 +107,8 @@ class Ellipse extends Figure {
 		ellipse.edit.strokeWidth.value = this.strokeWidth;
         ellipse.edit.strokeOpacity.value = this.strokeOpacity;
         ellipse.edit.stroke.value = this.stroke;
+        ellipse.edit.opacity.value = this.opacity;
+        ellipse.edit.fill.value = this.fill;
 	}
 
 	set cx(value) { this.svg.setAttribute('cx', +value); }
@@ -125,9 +121,11 @@ class Ellipse extends Figure {
 	get rx() { return +this.svg.getAttribute('rx'); }
 	get ry() { return +this.svg.getAttribute('ry'); }
 
-	get strokeWidth()   { return +this.svg.getAttribute('stroke-width'); }
-    get strokeOpacity() { return +this.svg.getAttribute('stroke-opacity'); }
-    get stroke()        { return +this.svg.getAttribute('stroke'); }
+	get strokeWidth()   { return this.svg.getAttribute('stroke-width'); }
+    get strokeOpacity() { return this.svg.getAttribute('stroke-opacity'); }
+    get stroke()        { return this.svg.getAttribute('stroke'); }
+    get opacity()       { return this.svg.getAttribute('opacity'); }
+    get fill()          { return this.svg.getAttribute('fill'); }
 }
 
-canvas.svg.addEventListener('click', Ellipse.prepareEllipseDrawing);
+canvas.svg.addEventListener('mousedown', Ellipse.prepareEllipseDrawing);
