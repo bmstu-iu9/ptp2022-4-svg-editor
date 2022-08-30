@@ -263,14 +263,14 @@ rect.create.opacity.value = 1;
 
 rect.create.fill = new ColorOption(rectCreateFillInputColor);
 
-rect.create.fill.value = blue;
+rect.create.fill.value = lightBlue;
 
 rect.create.strokeWidth = new RangeOption(
     rectCreateStrokeWidthInputRange, rectCreateStrokeWidthInputNumber
 );
 rect.create.strokeWidth.minRange = 1;
 rect.create.strokeWidth.maxRange = 50;
-rect.create.strokeWidth.stepRange = 5;
+rect.create.strokeWidth.stepRange = 1;
 
 rect.create.strokeWidth.minNumber = 1;
 rect.create.strokeWidth.stepNumber = 1;
@@ -332,7 +332,7 @@ rect.edit.strokeWidth = new RangeOption(
 );
 rect.edit.strokeWidth.minRange = 1;
 rect.edit.strokeWidth.maxRange = 50;
-rect.edit.strokeWidth.stepRange = 5;
+rect.edit.strokeWidth.stepRange = 1;
 
 rect.edit.strokeWidth.minNumber = 1;
 rect.edit.strokeWidth.stepNumber = 1;
@@ -387,14 +387,14 @@ polygon.create.opacity.value = 1;
 
 polygon.create.fill = new ColorOption(polygonCreateFillInputColor);
 
-polygon.create.fill.value = blue;
+polygon.create.fill.value = lightBlue;
 
 polygon.create.strokeWidth = new RangeOption(
     polygonCreateStrokeWidthInputRange, polygonCreateStrokeWidthInputNumber
 );
 polygon.create.strokeWidth.minRange = 1;
 polygon.create.strokeWidth.maxRange = 50;
-polygon.create.strokeWidth.stepRange = 5;
+polygon.create.strokeWidth.stepRange = 1;
 
 polygon.create.strokeWidth.minNumber = 1;
 polygon.create.strokeWidth.stepNumber = 1;
@@ -456,7 +456,7 @@ polygon.edit.strokeWidth = new RangeOption(
 );
 polygon.edit.strokeWidth.minRange = 1;
 polygon.edit.strokeWidth.maxRange = 50;
-polygon.edit.strokeWidth.stepRange = 5;
+polygon.edit.strokeWidth.stepRange = 1;
 
 polygon.edit.strokeWidth.minNumber = 1;
 polygon.edit.strokeWidth.stepNumber = 1;
@@ -511,7 +511,7 @@ ellipse.create.opacity.value = 1;
 
 ellipse.create.fill = new ColorOption(ellipseCreateFillInputColor);
 
-ellipse.create.fill.value = blue;
+ellipse.create.fill.value = lightBlue;
 
 ellipse.create.strokeWidth = new RangeOption(
     ellipseCreateStrokeWidthInputRange, ellipseCreateStrokeWidthInputNumber
@@ -683,7 +683,7 @@ text.create.opacity.value = 1;
 
 text.create.fill = new ColorOption(textCreateFillInputColor);
 
-text.create.fill.value = blue;
+text.create.fill.value = lightBlue;
 
 text.create.strokeOpacity = new RangeOption(
     textCreateStrokeOpacityInputRange, textCreateStrokeOpacityInputNumber
