@@ -2,162 +2,176 @@ class Polygon extends Figure {
     constructor(svg) {
         super(svg);
 
-        this.enablePolygonMotion();
+        this.svgPoints = [];
+
+        this.enableFigureHandlers(
+            this.addPolygonEditContent, this.adjustPolygonEditContent.bind(this), this.removePolygonEditContent
+        );
     }
 
     static preparePolygonDrawing(event) {
-        if (selectedTool != POLYGON) {
+        if (toolbar.item !== shapes || shapesCreateSubtool.item !== polygon) {
             return;
         }
 
-        let previewLine = ( 
-            createSvgLine(event.offsetX, event.offsetY, event.offsetX, event.offsetY,
-                          polygonWidth, lightBlue, 0.5)
+        let previewLine = (
+            createSvgLine(
+                event.offsetX, event.offsetY, event.offsetX, event.offsetY,
+                polygon.create.strokeWidth.value, polygon.create.strokeOpacity.value * 0.5,
+                polygon.create.stroke.value
+            )
         );
 
-        svgPanel.append(previewLine);
+        canvas.svg.append(previewLine);
 
-        const previewLineDrawing = (event) => {
+        const previewPolygonDrawing = (event) => {
             previewLine.setAttribute('x2', event.offsetX);
             previewLine.setAttribute('y2', event.offsetY);
         };
 
         const addFirstPolygonEdge = () => {
-            const polygon = new Polygon(
-                createSvgPolygon('', polygonWidth, lightBlue, selectedColor, 1)
+            const figurePolygon = new Polygon(
+                createSvgPolygon(
+                    '', polygon.create.strokeWidth.value, polygon.create.strokeOpacity.value,
+                    polygon.create.stroke.value, polygon.create.opacity.value, polygon.create.fill.value
+                )
             );
 
-            svgPanel.append(polygon.svg);
+            canvas.svg.append(figurePolygon.svg);
 
-            polygon.addPolygonPoint(previewLine.getAttribute('x1'), previewLine.getAttribute('y1'));
-            polygon.addPolygonPoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
+            figurePolygon.addSvgPoint(previewLine.getAttribute('x1'), previewLine.getAttribute('y1'));
+            figurePolygon.addSvgPoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
 
-            polygon.updateSvgPoints();
+            figurePolygon.updateSvgPoints();
 
             previewLine.setAttribute('x1', previewLine.getAttribute('x2'));
             previewLine.setAttribute('y1', previewLine.getAttribute('y2'));
 
-            const addPolygonEdge = (event) => {
-                if (event.target.tagName == 'circle') {
-                    return;
-                }
+            const addPolygonEdge = () => {
+                figurePolygon.addSvgPoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
 
-                polygon.addPolygonPoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
-
-                polygon.updateSvgPoints();
+                figurePolygon.updateSvgPoints();
 
                 previewLine.setAttribute('x1', previewLine.getAttribute('x2'));
                 previewLine.setAttribute('y1', previewLine.getAttribute('y2'));
             };
 
-            const finishPolygonDrawing = (event) => {
+            const finishPolygonDrawing = () => {
                 previewLine.remove();
                 previewLine = null;
 
-                polygon.enableHighlight();
+                figurePolygon.initialWidth = figurePolygon.clientWidth;
+                figurePolygon.initialHeight = figurePolygon.clientHeight;
 
-                svgPanel.removeEventListener('click', addPolygonEdge);
-                svgPanel.removeEventListener('mousemove', previewLineDrawing);
-                svgPanel.removeEventListener('contextmenu', finishPolygonDrawing);
-                svgPanel.removeEventListener('mouseleave', finishPolygonDrawing);
+                figurePolygon.centerX = figurePolygon.initialWidth * 0.5;
+                figurePolygon.centerY = figurePolygon.initialHeight * 0.5;
 
-                svgPanel.addEventListener('click', Polygon.preparePolygonDrawing);
+                figurePolygon.rotations.push({
+                    angle: 0,
+                    x: figurePolygon.centerX,
+                    y: figurePolygon.centerY
+                })
 
-                event.preventDefault();                
+                figurePolygon.enableScalePoints();
+                figurePolygon.enableRotatePoints();
+
+                figurePolygon.translate(figurePolygon.clientX - canvas.clientX, figurePolygon.clientY - canvas.clientY);
+
+                figurePolygon.svgPoints.forEach( (point) => {
+                    point.x -= figurePolygon.translateX;
+                    point.y -= figurePolygon.translateY;
+                })
+
+                figurePolygon.updateSvgPoints();
+                figurePolygon.updateTransformation();
+
+                canvas.svg.removeEventListener('click', addPolygonEdge);
+                canvas.svg.removeEventListener('mousemove', previewPolygonDrawing);
+                canvas.svg.removeEventListener('contextmenu', finishPolygonDrawing);
+                canvas.svg.removeEventListener('mouseleave', finishPolygonDrawing);
+
+                canvas.svg.addEventListener('click', Polygon.preparePolygonDrawing);
             };
 
-            svgPanel.removeEventListener('click', addFirstPolygonEdge);
-            svgPanel.removeEventListener('contextmenu', cancelPolygonDrawing);
-            svgPanel.removeEventListener('mouseleave', cancelPolygonDrawing);
+            canvas.svg.removeEventListener('click', addFirstPolygonEdge);
+            canvas.svg.removeEventListener('contextmenu', cancelPolygonDrawing);
+            canvas.svg.removeEventListener('mouseleave', cancelPolygonDrawing);
 
-            svgPanel.addEventListener('click', addPolygonEdge);
-            svgPanel.addEventListener('contextmenu', finishPolygonDrawing);
-            svgPanel.addEventListener('mouseleave', finishPolygonDrawing);
+            canvas.svg.addEventListener('click', addPolygonEdge);
+            canvas.svg.addEventListener('contextmenu', finishPolygonDrawing);
+            canvas.svg.addEventListener('mouseleave', finishPolygonDrawing);
         }
 
-        const cancelPolygonDrawing = (event) => {
+        const cancelPolygonDrawing = () => {
             previewLine.remove();
             previewLine = null;
 
-            svgPanel.removeEventListener('click', addFirstPolygonEdge);
-            svgPanel.removeEventListener('mousemove', previewLineDrawing);
-            svgPanel.removeEventListener('contextmenu', cancelPolygonDrawing);
-            svgPanel.removeEventListener('mouseleave', cancelPolygonDrawing);
+            canvas.svg.removeEventListener('click', addFirstPolygonEdge);
+            canvas.svg.removeEventListener('mousemove', previewPolygonDrawing);
+            canvas.svg.removeEventListener('contextmenu', cancelPolygonDrawing);
+            canvas.svg.removeEventListener('mouseleave', cancelPolygonDrawing);
 
-            svgPanel.addEventListener('click', Polygon.preparePolygonDrawing);
-
-            event.preventDefault();
+            canvas.svg.addEventListener('click', Polygon.preparePolygonDrawing);
         };
 
-        svgPanel.removeEventListener('click', Polygon.preparePolygonDrawing);
+        canvas.svg.removeEventListener('click', Polygon.preparePolygonDrawing);
 
-        svgPanel.addEventListener('mousemove', previewLineDrawing);
-        svgPanel.addEventListener('click', addFirstPolygonEdge);
-        svgPanel.addEventListener('contextmenu', cancelPolygonDrawing);
-        svgPanel.addEventListener('mouseleave', cancelPolygonDrawing);
+        canvas.svg.addEventListener('mousemove', previewPolygonDrawing);
+        canvas.svg.addEventListener('click', addFirstPolygonEdge);
+        canvas.svg.addEventListener('contextmenu', cancelPolygonDrawing);
+        canvas.svg.addEventListener('mouseleave', cancelPolygonDrawing);
     }
 
-    enablePolygonMotion() {
-        const preparePolygonMotion = ( () => {
-            if (selectedTool != CURSOR) {
-                return;
-            }
-
-            isSomeFigureCaptured = true;
-
-            let offsetX = event.offsetX;
-            let offsetY = event.offsetY;
-
-            const doPolygonMotion = ( (event) => {
-                const shiftX = event.offsetX - offsetX;
-                const shiftY = event.offsetY - offsetY;
-
-                this.points.forEach( (point) => {
-                    point.cx += shiftX;
-                    point.cy += shiftY;
-                } );
-
-                this.updateSvgPoints();
-                
-                offsetX += shiftX;
-                offsetY += shiftY;
-
-            } ).bind(this);
-
-            const finishPolygonMotion = ( () => {
-                isSomeFigureCaptured = false;
-
-                svgPanel.removeEventListener('mousemove', doPolygonMotion);
-                svgPanel.removeEventListener('mouseup', finishPolygonMotion);
-                svgPanel.removeEventListener('mouseleave', finishPolygonMotion);
-
-            } ).bind(this);
-
-            svgPanel.addEventListener('mousemove', doPolygonMotion);
-            svgPanel.addEventListener('mouseup', finishPolygonMotion);
-            svgPanel.addEventListener('mouseleave', finishPolygonMotion);
-
-        } ).bind(this);
-
-        this.svg.addEventListener('mousedown', preparePolygonMotion);
-    }
-
-    addPolygonPoint(cx, cy) {
-        this.points.push( new PolygonPoint(this, cx, cy) );
+    addSvgPoint(x, y) {
+        this.svgPoints.push({
+            x: x,
+            y: y
+        })
     }
 
     updateSvgPoints() {
-        let newPoints = '';
+        let points = '';
 
-        this.points.forEach( (point) => {
-            newPoints += point.cx;
-            newPoints += ',';
-            newPoints += point.cy;
-            newPoints += ' ';
+        this.svgPoints.forEach( (point) => {
+            points += `${point.x},${point.y}\n`;
         });
 
-        this.svg.setAttribute('points', newPoints);
+        this.points = points;
     }
+
+    addPolygonEditContent() {
+        polygon.edit.content.classList.remove('disabled');
+        toolbar.content = polygon.edit.content;
+    }
+
+    removePolygonEditContent() {
+        polygon.edit.content.classList.add('disabled');
+        toolbar.content = null;
+    }
+
+    adjustPolygonEditContent() {
+        polygon.edit.opacity.value = this.opacity;
+        polygon.edit.fill.value = this.fill;
+        polygon.edit.strokeWidth.value = this.strokeWidth;
+        polygon.edit.strokeOpacity.value = this.strokeOpacity;
+        polygon.edit.stroke.value = this.stroke;
+    }
+
+    set points(value) { this.svg.setAttribute('points', value); }
+
+    set opacity(value)       { this.svg.setAttribute('opacity', value); }
+    set fill(value)          { this.svg.setAttribute('fill', value); }
+    set strokeWidth(value)   { this.svg.setAttribute('stroke-width', value); }
+    set strokeOpacity(value) { this.svg.setAttribute('stroke-opacity', value); }
+    set stroke(value)        { this.svg.setAttribute('stroke', value); }
+
+    get points() { return this.svg.getAttribute('points'); }
+
+    get opacity()       { return this.svg.getAttribute('opacity'); }
+    get fill()          { return this.svg.getAttribute('fill'); }
+    get strokeWidth()   { return this.svg.getAttribute('stroke-width'); }
+    get strokeOpacity() { return this.svg.getAttribute('stroke-opacity'); }
+    get stroke()        { return this.svg.getAttribute('stroke'); }
 }
 
-svgPanel.addEventListener('click', Polygon.preparePolygonDrawing);
+canvas.svg.addEventListener('click', Polygon.preparePolygonDrawing);
