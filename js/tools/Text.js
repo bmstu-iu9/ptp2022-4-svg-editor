@@ -95,7 +95,7 @@ class Text extends Figure {
 	get y()             { return this.svg.getAttribute('y'); }
     get opacity()       { return this.svg.getAttribute('opacity'); }
     get fill()          { return this.svg.getAttribute('fill'); }
-    get size()          { return +this.svg.getAttribute('font-size'); }   
+    get size()          { return this.svg.getAttribute('font-size'); }   
     get font()          { return this.svg.getAttribute('font-family'); }
 }
 
