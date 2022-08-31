@@ -2,162 +2,171 @@ class Polyline extends Figure {
     constructor(svg) {
         super(svg);
 
-        this.enablePolylineMotion();
+        this.svgPoints = [];
+
+        this.enableFigureHandlers(
+            this.addPolylineEditContent, this.adjustPolylineEditContent.bind(this), this.removePolylineEditContent
+        );
     }
 
     static preparePolylineDrawing(event) {
-        if (selectedTool != POLYLINE) {
+        if (toolbar.item !== curves || curvesCreateSubtool.item !== polyline) {
             return;
         }
 
-        let previewLine = ( 
-            createSvgLine(event.offsetX, event.offsetY, event.offsetX, event.offsetY,
-                          polylineWidth, selectedColor, 0.5)
+        let previewLine = (
+            createSvgLine(
+                event.offsetX, event.offsetY, event.offsetX, event.offsetY,
+                polyline.create.strokeWidth.value, polyline.create.strokeOpacity.value * 0.5,
+                polyline.create.stroke.value
+            )
         );
 
-        svgPanel.append(previewLine);
+        canvas.svg.append(previewLine);
 
-        const previewLineDrawing = (event) => {
+        const previewPolylineDrawing = (event) => {
             previewLine.setAttribute('x2', event.offsetX);
             previewLine.setAttribute('y2', event.offsetY);
         };
 
         const addFirstPolylineEdge = () => {
-            const polyline = new Polyline(
-                createSvgPolyline('', polylineWidth, selectedColor, 'none', 1)
+            const figurePolyline = new Polyline(
+                createSvgPolyline(
+                    '', polyline.create.strokeWidth.value, polyline.create.strokeOpacity.value,
+                    polyline.create.stroke.value
+                )
             );
 
-            svgPanel.append(polyline.svg);
+            canvas.svg.append(figurePolyline.svg);
 
-            polyline.addPolylinePoint(previewLine.getAttribute('x1'), previewLine.getAttribute('y1'));
-            polyline.addPolylinePoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
+            figurePolyline.addSvgPoint(previewLine.getAttribute('x1'), previewLine.getAttribute('y1'));
+            figurePolyline.addSvgPoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
 
-            polyline.updateSvgPoints();
+            figurePolyline.updateSvgPoints();
 
             previewLine.setAttribute('x1', previewLine.getAttribute('x2'));
             previewLine.setAttribute('y1', previewLine.getAttribute('y2'));
 
-            const addPolylineEdge = (event) => {
-                if (event.target.tagName == 'circle') {
-                    return;
-                }
+            const addPolylineEdge = () => {
+                figurePolyline.addSvgPoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
 
-                polyline.addPolylinePoint(previewLine.getAttribute('x2'), previewLine.getAttribute('y2'));
-
-                polyline.updateSvgPoints();
+                figurePolyline.updateSvgPoints();
 
                 previewLine.setAttribute('x1', previewLine.getAttribute('x2'));
                 previewLine.setAttribute('y1', previewLine.getAttribute('y2'));
             };
 
-            const finishPolylineDrawing = (event) => {
+            const finishPolylineDrawing = () => {
                 previewLine.remove();
                 previewLine = null;
 
-                polyline.enableHighlight();
+                figurePolyline.initialWidth = figurePolyline.clientWidth;
+                figurePolyline.initialHeight = figurePolyline.clientHeight;
 
-                svgPanel.removeEventListener('click', addPolylineEdge);
-                svgPanel.removeEventListener('mousemove', previewLineDrawing);
-                svgPanel.removeEventListener('contextmenu', finishPolylineDrawing);
-                svgPanel.removeEventListener('mouseleave', finishPolylineDrawing);
+                figurePolyline.centerX = figurePolyline.initialWidth * 0.5;
+                figurePolyline.centerY = figurePolyline.initialHeight * 0.5;
 
-                svgPanel.addEventListener('click', Polyline.preparePolylineDrawing);
+                figurePolyline.rotations.push({
+                    angle: 0,
+                    x: figurePolyline.centerX,
+                    y: figurePolyline.centerY
+                })
 
-                event.preventDefault();                
+                figurePolyline.enableScalePoints();
+                figurePolyline.enableRotatePoints();
+
+                figurePolyline.translate(figurePolyline.clientX - canvas.clientX, figurePolyline.clientY - canvas.clientY);
+
+                figurePolyline.svgPoints.forEach( (point) => {
+                    point.x -= figurePolyline.translateX;
+                    point.y -= figurePolyline.translateY;
+                })
+
+                figurePolyline.updateSvgPoints();
+                figurePolyline.updateTransformation();
+
+                canvas.svg.removeEventListener('click', addPolylineEdge);
+                canvas.svg.removeEventListener('mousemove', previewPolylineDrawing);
+                canvas.svg.removeEventListener('contextmenu', finishPolylineDrawing);
+                canvas.svg.removeEventListener('mouseleave', finishPolylineDrawing);
+
+                canvas.svg.addEventListener('click', Polyline.preparePolylineDrawing);
             };
 
-            svgPanel.removeEventListener('click', addFirstPolylineEdge);
-            svgPanel.removeEventListener('contextmenu', cancelPolylineDrawing);
-            svgPanel.removeEventListener('mouseleave', cancelPolylineDrawing);
+            canvas.svg.removeEventListener('click', addFirstPolylineEdge);
+            canvas.svg.removeEventListener('contextmenu', cancelPolylineDrawing);
+            canvas.svg.removeEventListener('mouseleave', cancelPolylineDrawing);
 
-            svgPanel.addEventListener('click', addPolylineEdge);
-            svgPanel.addEventListener('contextmenu', finishPolylineDrawing);
-            svgPanel.addEventListener('mouseleave', finishPolylineDrawing);
+            canvas.svg.addEventListener('click', addPolylineEdge);
+            canvas.svg.addEventListener('contextmenu', finishPolylineDrawing);
+            canvas.svg.addEventListener('mouseleave', finishPolylineDrawing);
         }
 
-        const cancelPolylineDrawing = (event) => {
+        const cancelPolylineDrawing = () => {
             previewLine.remove();
             previewLine = null;
 
-            svgPanel.removeEventListener('click', addFirstPolylineEdge);
-            svgPanel.removeEventListener('mousemove', previewLineDrawing);
-            svgPanel.removeEventListener('contextmenu', cancelPolylineDrawing);
-            svgPanel.removeEventListener('mouseleave', cancelPolylineDrawing);
+            canvas.svg.removeEventListener('click', addFirstPolylineEdge);
+            canvas.svg.removeEventListener('mousemove', previewPolylineDrawing);
+            canvas.svg.removeEventListener('contextmenu', cancelPolylineDrawing);
+            canvas.svg.removeEventListener('mouseleave', cancelPolylineDrawing);
 
-            svgPanel.addEventListener('click', Polyline.preparePolylineDrawing);
-
-            event.preventDefault();
+            canvas.svg.addEventListener('click', Polyline.preparePolylineDrawing);
         };
 
-        svgPanel.removeEventListener('click', Polyline.preparePolylineDrawing);
+        canvas.svg.removeEventListener('click', Polyline.preparePolylineDrawing);
 
-        svgPanel.addEventListener('mousemove', previewLineDrawing);
-        svgPanel.addEventListener('click', addFirstPolylineEdge);
-        svgPanel.addEventListener('contextmenu', cancelPolylineDrawing);
-        svgPanel.addEventListener('mouseleave', cancelPolylineDrawing);
+        canvas.svg.addEventListener('mousemove', previewPolylineDrawing);
+        canvas.svg.addEventListener('click', addFirstPolylineEdge);
+        canvas.svg.addEventListener('contextmenu', cancelPolylineDrawing);
+        canvas.svg.addEventListener('mouseleave', cancelPolylineDrawing);
     }
 
-    enablePolylineMotion() {
-        const preparePolylineMotion = ( () => {
-            if (selectedTool != CURSOR) {
-                return;
-            }
-
-            isSomeFigureCaptured = true;
-
-            let offsetX = event.offsetX;
-            let offsetY = event.offsetY;
-
-            const doPolylineMotion = ( (event) => {
-                const shiftX = event.offsetX - offsetX;
-                const shiftY = event.offsetY - offsetY;
-
-                this.points.forEach( (point) => {
-                    point.cx += shiftX;
-                    point.cy += shiftY;
-                } );
-
-                this.updateSvgPoints();
-                
-                offsetX += shiftX;
-                offsetY += shiftY;
-
-            } ).bind(this);
-
-            const finishPolylineMotion = ( () => {
-                isSomeFigureCaptured = false;
-
-                svgPanel.removeEventListener('mousemove', doPolylineMotion);
-                svgPanel.removeEventListener('mouseup', finishPolylineMotion);
-                svgPanel.removeEventListener('mouseleave', finishPolylineMotion);
-
-            } ).bind(this);
-
-            svgPanel.addEventListener('mousemove', doPolylineMotion);
-            svgPanel.addEventListener('mouseup', finishPolylineMotion);
-            svgPanel.addEventListener('mouseleave', finishPolylineMotion);
-
-        } ).bind(this);
-
-        this.svg.addEventListener('mousedown', preparePolylineMotion);
+    addSvgPoint(x, y) {
+        this.svgPoints.push({
+            x: x,
+            y: y
+        })
     }
 
-    addPolylinePoint(cx, cy) {
-        this.points.push( new PolylinePoint(this, cx, cy) );
-    }
 
     updateSvgPoints() {
-        let newPoints = '';
+        let points = '';
 
-        this.points.forEach( (point) => {
-            newPoints += point.cx;
-            newPoints += ',';
-            newPoints += point.cy;
-            newPoints += ' ';
+        this.svgPoints.forEach( (point) => {
+            points += `${point.x},${point.y}\n`;
         });
 
-        this.svg.setAttribute('points', newPoints);
+        this.points = points;
     }
+
+    addPolylineEditContent() {
+        polyline.edit.content.classList.remove('disabled');
+        toolbar.content = polyline.edit.content;
+    }
+
+    removePolylineEditContent() {
+        polyline.edit.content.classList.add('disabled');
+        toolbar.content = null;
+    }
+
+    adjustPolylineEditContent() {
+        polyline.edit.strokeWidth.value = this.strokeWidth;
+        polyline.edit.strokeOpacity.value = this.strokeOpacity;
+        polyline.edit.stroke.value = this.stroke;
+    }
+
+    set points(value) { this.svg.setAttribute('points', value); }
+
+    set strokeWidth(value) { this.svg.setAttribute('stroke-width', value); }
+    set strokeOpacity(value) { this.svg.setAttribute('stroke-opacity', value); }
+    set stroke(value) { this.svg.setAttribute('stroke', value); }
+
+    get points() { return this.svg.getAttribute('points'); }
+
+    get strokeWidth()   { return this.svg.getAttribute('stroke-width'); }
+    get strokeOpacity() { return this.svg.getAttribute('stroke-opacity'); }
+    get stroke()        { return this.svg.getAttribute('stroke'); }
 }
 
-svgPanel.addEventListener('click', Polyline.preparePolylineDrawing);
+canvas.svg.addEventListener('click', Polyline.preparePolylineDrawing);

@@ -14,7 +14,7 @@ class RotatePoint extends Point{
     }
 
     enableRotatePointHandlers() {
-        this.svg.addEventListener('mousedown', (event) => {
+        this.svg.addEventListener('mousedown', () => {
 
             if (this.figure.scaleX * this.figure.centerX !== this.figure.rotateX ||
                 this.figure.scaleY * this.figure.centerY !== this.figure.rotateY) {
@@ -28,15 +28,29 @@ class RotatePoint extends Point{
 
             const initialRotateAngle = this.figure.rotateAngle;
 
+            const center = {
+                x: this.figure.centerX * this.figure.scaleX,
+                y: this.figure.centerY * this.figure.scaleY
+            }
+
+            for (let i = this.figure.rotations.length - 1; i >= 0; i--) {
+                const rotated = rotate(
+                    this.figure.rotations[i].angle, center.x, center.y, this.figure.rotations[i].x, this.figure.rotations[i].y
+                );
+
+                center.x = rotated.x;
+                center.y = rotated.y;
+            }
+
             const direction = {
-                x: this.x - this.figure.centerX,
-                y: this.y - this.figure.centerY,
+                x: this.x - center.x,
+                y: this.y - center.y,
             }
             direction.modulus = modulus(direction);
 
             const normal = {
-                x: - this.y + this.figure.centerY,
-                y: this.x - this.figure.centerX
+                x: - this.y + center.y,
+                y: this.x - center.x
             }
 
             const RotatePointOnMouseMove = (event) => {
@@ -46,8 +60,8 @@ class RotatePoint extends Point{
                 }
 
                 const vector = {
-                    x: translate.x - this.figure.centerX,
-                    y: translate.y - this.figure.centerY,
+                    x: translate.x - center.x,
+                    y: translate.y - center.y,
                 }
                 vector.modulus = modulus(vector);
 
