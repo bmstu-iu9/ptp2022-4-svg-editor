@@ -95,3 +95,29 @@ const createSvgCircle = (cx, cy, r, strokeWidth, strokeOpacity, stroke, opacity,
 
     return svgCircle;
 };
+
+const createSvgText = (x, y, fontFamily, fontSize, opacity, fill) => {
+    const svgText = document.createElementNS(svgNS, 'text');
+
+    svgText.setAttribute('x', x);
+    svgText.setAttribute('y', y);
+    // TODO: Подключать шрифт из параметров
+    svgText.setAttribute('font-family', 'Arial');
+    svgText.setAttribute('font-size', fontSize);
+    svgText.setAttribute('opacity', opacity);
+    svgText.setAttribute('fill', fill);
+
+    if (text.create.bold.value) {
+        svgText.setAttribute('font-weight', 'bold');
+    }
+    if (text.create.italic.value) {
+        svgText.setAttribute('font-style', 'italic');
+    }
+    if (text.create.underline.value) {
+        svgText.setAttribute('text-decoration', 'underline');
+    }
+
+    svgText.innerHTML = "Click me twice!";
+
+    return svgText;
+}
