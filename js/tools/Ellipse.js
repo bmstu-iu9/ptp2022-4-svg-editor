@@ -8,7 +8,7 @@ class Ellipse extends Figure {
 	}
 
 	static prepareEllipseDrawing(event) {
-		if (toolbar.item !== shapes || shapesCreateSubtool.item != ellipse) {
+		if (toolbar.item !== shapes || shapesCreateSubtool.item !== ellipse) {
 			return;
 		}
 
@@ -18,7 +18,7 @@ class Ellipse extends Figure {
 		let figureEllipse = new Ellipse(
 			createSvgEllipse(x1, y1, 0, 0, ellipse.create.strokeWidth.value, 
 				          ellipse.create.strokeOpacity.value, ellipse.create.stroke.value, 
-				          ellipse.create.opacity.value, ellipse.create.fill.value)
+				          ellipse.create.opacity.value * 0.5, ellipse.create.fill.value)
 		);
 
 		canvas.svg.append(figureEllipse.svg);
@@ -47,7 +47,9 @@ class Ellipse extends Figure {
 			figureEllipse.cy = y1 + shiftY / 2;
 		}
 
-		const finishEllipseDrawing = (event) => {
+		const finishEllipseDrawing = () => {
+			figureEllipse.opacity = ellipse.create.opacity.value;
+
 			figureEllipse.initialWidth = figureEllipse.clientWidth;
             figureEllipse.initialHeight = figureEllipse.clientHeight;
 
@@ -115,6 +117,8 @@ class Ellipse extends Figure {
 	set cy(value) { this.svg.setAttribute('cy', +value); }
 	set rx(value) { this.svg.setAttribute('rx', +value); }
 	set ry(value) { this.svg.setAttribute('ry', +value); }
+
+	set opacity(value) { this.svg.setAttribute('opacity', value); }
 
 	get cx() { return +this.svg.getAttribute('cx'); }
 	get cy() { return +this.svg.getAttribute('cy'); }

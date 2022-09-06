@@ -1,6 +1,6 @@
 // RangeOption - класс опций, содержащий input типа range как основной и input типа number как побочный источники ввода.
 
-class RangeOption extends BaseOption{
+class RangeOption extends SuperOption{
     constructor(inputRange, inputNumber, attribute = null) {
         super(attribute);
 

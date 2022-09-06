@@ -5,6 +5,10 @@
     <title>LightSVG</title>
     <link rel="shortcut icon" href="media/title/pencil.svg">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lora&family=Open+Sans&
+                family=Oswald&family=Playfair+Display&family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body class="body">
     <header class="body__header header">
@@ -13,7 +17,6 @@
     <main class="body__main main">
       <div class="main__toolbar">
         <div class="toolbar">
-          <!--TODO: убрать значения min, max, step и value у всех input'ов-->
           <!--Меню-->
           <div class="toolbar__menu">
             <ul class="menu menu_direction-column">
@@ -87,10 +90,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="pencil-create-stroke-width-input-range"
-                               type="range" min="1" max="50" value="5">
-                        <input class="input-number input-number_type-option rounded" id="pencil-create-stroke-width-input-number"
-                               type="number" min="1" value="5">
+                        <input class="input-range" id="pencil-create-stroke-width-input-range" type="range">
+                        <input class="input-number rounded" id="pencil-create-stroke-width-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -103,10 +104,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="pencil-create-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="pencil-create-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="pencil-create-stroke-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="pencil-create-stroke-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -122,8 +121,7 @@
                         <label class="label" for="pencil-create-stroke-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="pencil-create-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="pencil-create-stroke-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -150,10 +148,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="pencil-edit-stroke-width-input-range"
-                               type="range" min="1" max="50" value="5">
-                        <input class="input-number input-number_type-option rounded" id="pencil-edit-stroke-width-input-number"
-                               type="number" min="1" value="5">
+                        <input class="input-range" id="pencil-edit-stroke-width-input-range" type="range">
+                        <input class="input-number rounded" id="pencil-edit-stroke-width-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -166,10 +162,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="pencil-edit-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="pencil-edit-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="pencil-edit-stroke-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="pencil-edit-stroke-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -185,8 +179,7 @@
                         <label class="label" for="pencil-edit-stroke-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="pencil-edit-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="pencil-edit-stroke-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -238,10 +231,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="line-create-stroke-width-input-range"
-                                   type="range" min="1" max="50" value="5">
-                            <input class="input-number input-number_type-option rounded" id="line-create-stroke-width-input-number"
-                                   type="number" min="1" value="5">
+                            <input class="input-range" id="line-create-stroke-width-input-range" type="range">
+                            <input class="input-number rounded" id="line-create-stroke-width-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -254,10 +245,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="line-create-stroke-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="line-create-stroke-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="line-create-stroke-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="line-create-stroke-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -273,8 +262,7 @@
                             <label class="label" for="line-create-stroke-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="line-create-stroke-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="line-create-stroke-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -301,10 +289,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="polyline-create-stroke-width-input-range"
-                                   type="range" min="1" max="50" value="5">
-                            <input class="input-number input-number_type-option rounded" id="polyline-create-stroke-width-input-number"
-                                   type="number" min="1" value="5">
+                            <input class="input-range" id="polyline-create-stroke-width-input-range" type="range">
+                            <input class="input-number rounded" id="polyline-create-stroke-width-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -317,10 +303,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="polyline-create-stroke-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="polyline-create-stroke-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="polyline-create-stroke-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="polyline-create-stroke-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -336,8 +320,7 @@
                             <label class="label" for="polyline-create-stroke-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="polyline-create-stroke-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="polyline-create-stroke-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -366,10 +349,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="line-edit-stroke-width-input-range"
-                               type="range" min="1" max="50" value="5">
-                        <input class="input-number input-number_type-option rounded" id="line-edit-stroke-width-input-number"
-                               type="number" min="1" value="5">
+                        <input class="input-range" id="line-edit-stroke-width-input-range" type="range">
+                        <input class="input-number rounded" id="line-edit-stroke-width-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -382,10 +363,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="line-edit-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="line-edit-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="line-edit-stroke-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="line-edit-stroke-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -401,8 +380,7 @@
                         <label class="label" for="line-edit-stroke-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="line-edit-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="line-edit-stroke-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -429,10 +407,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="polyline-edit-stroke-width-input-range"
-                               type="range" min="1" max="50" value="5">
-                        <input class="input-number input-number_type-option rounded" id="polyline-edit-stroke-width-input-number"
-                               type="number" min="1" value="5">
+                        <input class="input-range" id="polyline-edit-stroke-width-input-range" type="range">
+                        <input class="input-number rounded" id="polyline-edit-stroke-width-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -445,10 +421,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="polyline-edit-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="polyline-edit-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="polyline-edit-stroke-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="polyline-edit-stroke-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -464,8 +438,7 @@
                         <label class="label" for="polyline-edit-stroke-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="polyline-edit-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="polyline-edit-stroke-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -546,10 +519,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="rect-create-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="rect-create-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="rect-create-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="rect-create-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -565,8 +536,7 @@
                             <label class="label" for="rect-create-fill-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="rect-create-fill-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="rect-create-fill-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -584,10 +554,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="rect-create-stroke-width-input-range"
-                                   type="range" min="1" max="50" value="5">
-                            <input class="input-number input-number_type-option rounded" id="rect-create-stroke-width-input-number"
-                                   type="number" min="1" value="5">
+                            <input class="input-range" id="rect-create-stroke-width-input-range" type="range">
+                            <input class="input-number rounded" id="rect-create-stroke-width-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -600,10 +568,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="rect-create-stroke-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="rect-create-stroke-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="rect-create-stroke-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="rect-create-stroke-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -619,8 +585,7 @@
                             <label class="label" for="rect-create-stroke-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="rect-create-stroke-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="rect-create-stroke-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -670,10 +635,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="polygon-create-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="polygon-create-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="polygon-create-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="polygon-create-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -689,8 +652,7 @@
                             <label class="label" for="polygon-create-fill-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="polygon-create-fill-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="polygon-create-fill-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -708,10 +670,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="polygon-create-stroke-width-input-range"
-                                   type="range" min="1" max="50" value="5">
-                            <input class="input-number input-number_type-option rounded" id="polygon-create-stroke-width-input-number"
-                                   type="number" min="1" value="5">
+                            <input class="input-range" id="polygon-create-stroke-width-input-range" type="range">
+                            <input class="input-number rounded" id="polygon-create-stroke-width-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -724,10 +684,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="polygon-create-stroke-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="polygon-create-stroke-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="polygon-create-stroke-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="polygon-create-stroke-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -743,8 +701,7 @@
                             <label class="label" for="polygon-create-stroke-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="polygon-create-stroke-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="polygon-create-stroke-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -794,10 +751,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="ellipse-create-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="ellipse-create-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="ellipse-create-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="ellipse-create-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -813,8 +768,7 @@
                             <label class="label" for="ellipse-create-fill-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="ellipse-create-fill-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="ellipse-create-fill-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -832,10 +786,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="ellipse-create-stroke-width-input-range"
-                                   type="range" min="1" max="50" value="5">
-                            <input class="input-number input-number_type-option rounded" id="ellipse-create-stroke-width-input-number"
-                                   type="number" min="1" value="5">
+                            <input class="input-range" id="ellipse-create-stroke-width-input-range" type="range">
+                            <input class="input-number rounded" id="ellipse-create-stroke-width-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -848,10 +800,8 @@
                             </label>
                           </div>
                           <div class="option__main">
-                            <input class="input-range input-range_type-option" id="ellipse-create-stroke-opacity-input-range"
-                                   type="range" min="0" max="1" step="0.05" value="1">
-                            <input class="input-number input-number_type-option rounded" id="ellipse-create-stroke-opacity-input-number"
-                                   type="number" min="0" max="1" step="0.01" value="1">
+                            <input class="input-range" id="ellipse-create-stroke-opacity-input-range" type="range">
+                            <input class="input-number rounded" id="ellipse-create-stroke-opacity-input-number" type="number">
                           </div>
                         </div>
                       </div>
@@ -867,8 +817,7 @@
                             <label class="label" for="ellipse-create-stroke-input-color">
                               <span class="span span_type-option">Цвет</span>
                             </label>
-                            <input class="input-color input-color_type-option" id="ellipse-create-stroke-input-color"
-                                   type="color" value="#00AAFF">
+                            <input class="input-color" id="ellipse-create-stroke-input-color" type="color">
                           </div>
                         </div>
                       </div>
@@ -920,10 +869,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="rect-edit-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="rect-edit-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="rect-edit-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="rect-edit-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -939,8 +886,7 @@
                         <label class="label" for="rect-edit-fill-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="rect-edit-fill-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="rect-edit-fill-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -958,10 +904,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="rect-edit-stroke-width-input-range"
-                               type="range" min="1" max="50" value="5">
-                        <input class="input-number input-number_type-option rounded" id="rect-edit-stroke-width-input-number"
-                               type="number" min="1" value="5">
+                        <input class="input-range" id="rect-edit-stroke-width-input-range" type="range">
+                        <input class="input-number rounded" id="rect-edit-stroke-width-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -974,10 +918,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="rect-edit-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="rect-edit-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="rect-edit-stroke-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="rect-edit-stroke-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -993,8 +935,7 @@
                         <label class="label" for="rect-edit-stroke-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="rect-edit-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="rect-edit-stroke-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -1044,10 +985,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="polygon-edit-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="polygon-edit-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="polygon-edit-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="polygon-edit-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1063,8 +1002,7 @@
                         <label class="label" for="polygon-edit-fill-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="polygon-edit-fill-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="polygon-edit-fill-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -1082,10 +1020,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="polygon-edit-stroke-width-input-range"
-                               type="range" min="1" max="50" value="5">
-                        <input class="input-number input-number_type-option rounded" id="polygon-edit-stroke-width-input-number"
-                               type="number" min="1" value="5">
+                        <input class="input-range" id="polygon-edit-stroke-width-input-range" type="range">
+                        <input class="input-number rounded" id="polygon-edit-stroke-width-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1098,10 +1034,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="polygon-edit-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="polygon-edit-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="polygon-edit-stroke-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="polygon-edit-stroke-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1117,8 +1051,7 @@
                         <label class="label" for="polygon-edit-stroke-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="polygon-edit-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="polygon-edit-stroke-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -1168,10 +1101,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="ellipse-edit-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="ellipse-edit-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="ellipse-edit-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="ellipse-edit-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1187,8 +1118,7 @@
                         <label class="label" for="ellipse-edit-fill-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="ellipse-edit-fill-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="ellipse-edit-fill-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -1206,10 +1136,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="ellipse-edit-stroke-width-input-range"
-                               type="range" min="1" max="50" value="5">
-                        <input class="input-number input-number_type-option rounded" id="ellipse-edit-stroke-width-input-number"
-                               type="number" min="1" value="5">
+                        <input class="input-range" id="ellipse-edit-stroke-width-input-range" type="range">
+                        <input class="input-number rounded" id="ellipse-edit-stroke-width-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1222,10 +1150,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="ellipse-edit-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="ellipse-edit-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="ellipse-edit-stroke-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="ellipse-edit-stroke-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1241,8 +1167,7 @@
                         <label class="label" for="ellipse-edit-stroke-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="ellipse-edit-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="ellipse-edit-stroke-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -1254,143 +1179,66 @@
           <div class="toolbar__content disabled" id="text-create-content">
             <div class="content">
               <div class="content__header">
-                <div class="content__span">
+                <div class="content__span margin-null">
                   <span class="span span_type-content">Текст</span>
                 </div>
-                <!--Кегль текста-->
-                <div class="content__option">
-                  <div class="option">
-                    <div class="option__main">
-                      <label class="label" for="text-create-size-input-number">
-                        <span class="span span_type-option">Кегль, <i>px</i></span>
-                      </label>
-                      <input class="input-number input-number_type-option rounded" id="text-create-size-input-number"
-                             type="number" min="1" value="12">
+              </div>
+              <div class="content__main">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Кегль текста-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="text-create-font-size-input-number">
+                          <span class="span span_type-option">Кегль, <i>px</i></span>
+                        </label>
+                        <input class="input-number rounded" id="text-create-font-size-input-number" type="number">
+                      </div>
                     </div>
                   </div>
-                </div>
-                <!--Шрифт текста-->
-                <div class="content__option">
-                  <div class="option">
-                    <div class="option__main">
-                      <label class="label" for="text-create-font-input-checkbox">
-                        <span class="span span_type-option">Шрифт</span>
-                      </label>
-                      <div class="wrapper wrapper_direction-column">
+                  <!--Шрифт текста-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__main">
+                        <label class="label" for="text-create-font-family-select">
+                          <span class="span span_type-option">Шрифт</span>
+                        </label>
+                        <select class="select rounded" id="text-create-font-family-select">
+                          <option class="select__option" value="'Lobster', cursive">Lobster</option>
+                          <option class="select__option" value="'Lora', serif">Lora</option>
+                          <option class="select__option" value="'Open Sans', sans-serif" selected>Open Sans</option>
+                          <option class="select__option" value="'Oswald', sans-serif">Oswald</option>
+                          <option class="select__option" value="'Playfair Display', serif">Playfair Display</option>
+                          <option class="select__option" value="'Roboto', sans-serif">Roboto</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!--Начертание текста-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__main">
+                        <span class="span span_type-option">Начертание</span>
                         <div class="wrapper">
-                          <input class="input-text input-text_type-option rounded-top-left rounded-bottom-left"
-                                 id="text-create-font-input-text" type="text" value="Roboto" readonly>
-                          <input class="input-checkbox" id="text-create-font-input-checkbox" type="checkbox">
-                          <label class="label label_type-option-radio rounded-top-right rounded-bottom-right"
-                                 id="text-create-font-label" for="text-create-font-input-checkbox">
-                            <img class="img img_type-option" src="media/icons/triangle-small-down.svg"
-                                 alt="Показать / скрыть">
+                          <input class="input-checkbox" id="text-create-font-weight-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-checkbox rounded-left"
+                                 id="text-create-font-weight-label" for="text-create-font-weight-input-checkbox">
+                            <span class="span span_type-input-checkbox"><b>b</b></span>
+                          </label>
+                          <input class="input-checkbox" id="text-create-font-style-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-checkbox"
+                                 id="text-create-font-style-label" for="text-create-font-style-input-checkbox">
+                            <span class="span span_type-input-checkbox"><i>i</i></span>
+                          </label>
+                          <input class="input-checkbox" id="text-create-text-decoration-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-checkbox rounded-right"
+                                 id="text-create-text-decoration-label" for="text-create-text-decoration-input-checkbox">
+                            <span class="span span_type-input-checkbox"><u>u</u></span>
                           </label>
                         </div>
-                        <div class="option__popup disabled" id="text-create-font-menu-list">
-                          <ul class="menu menu_direction-column">
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list label_checked-menu-list"
-                                     id="text-create-font-roboto-label" for="text-create-font-roboto-input-radio">
-                                <span class="span span_type-menu-list span_checked-menu-list"
-                                      id="text-create-font-roboto-span">Roboto</span>
-                              </label>
-                              <input class="input-radio" id="text-create-font-roboto-input-radio"
-                                     type="radio" name="text-create-menu-list" checked>
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list" id="text-create-font-arial-label"
-                                     for="text-create-font-arial-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-create-font-arial-span">Arial</span>
-                              </label>
-                              <input class="input-radio" id="text-create-font-arial-input-radio"
-                                     type="radio" name="text-create-menu-list">
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list" id="text-create-font-helvetica-label"
-                                     for="text-create-font-helvetica-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-create-font-helvetica-span">Helvetica</span>
-                              </label>
-                              <input class="input-radio" id="text-create-font-helvetica-input-radio"
-                                     type="radio" name="text-create-menu-list">
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list" id="text-create-font-open-sans-label"
-                                     for="text-create-font-open-sans-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-create-font-open-sans-span">Open Sans</span>
-                              </label>
-                              <input class="input-radio" id="text-create-font-open-sans-input-radio"
-                                     type="radio" name="text-create-menu-list">
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list rounded-bottom-left rounded-bottom-right"
-                                     id="text-create-font-times-new-roman-label" for="text-create-font-times-new-roman-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-create-font-times-new-roman-span">Times New Roman</span>
-                              </label>
-                              <input class="input-radio" id="text-create-font-times-new-roman-input-radio"
-                                     type="radio" name="text-create-menu-list">
-                            </li>
-                          </ul>
-                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!--Начертание текста-->
-                <div class="content__option margin-large">
-                  <div class="option">
-                    <div class="option__main">
-                      <span class="span span_type-option">Начертание</span>
-                      <div class="wrapper">
-                        <input class="input-checkbox" id="text-create-bold-input-checkbox" type="checkbox">
-                        <label class="label label_type-option-checkbox rounded-left"
-                               id="text-create-bold-label" for="text-create-bold-input-checkbox">
-                          <span class="span span_type-option"><b>b</b></span>
-                        </label>
-                        <input class="input-checkbox" id="text-create-italic-input-checkbox" type="checkbox">
-                        <label class="label label_type-option-checkbox"
-                               id="text-create-italic-label" for="text-create-italic-input-checkbox">
-                          <span class="span"><i>i</i></span>
-                        </label>
-                        <input class="input-checkbox" id="text-create-underline-input-checkbox" type="checkbox">
-                        <label class="label label_type-option-checkbox rounded-right"
-                               id="text-create-underline-label" for="text-create-underline-input-checkbox">
-                          <span class="span"><u>u</u></span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="content__menu">
-                  <ul class="menu">
-                    <li class="menu__item">
-                      <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
-                             id="text-create-toggle-fill-label" for="text-create-toggle-fill-input-radio">
-                        <span class="span span_type-menu-toggle span_checked-menu-toggle"
-                              id="text-create-toggle-fill-span">Заливка</span>
-                      </label>
-                      <input class="input-radio" id="text-create-toggle-fill-input-radio"
-                             type="radio" name="text-create-menu-toggle" checked>
-                    </li>
-                    <li class="menu__item">
-                      <label class="label label_type-menu-toggle rounded-right" id="text-create-toggle-stroke-label"
-                             for="text-create-toggle-stroke-input-radio">
-                        <span class="span span_type-menu-toggle"
-                              id="text-create-toggle-stroke-span">Обводка</span>
-                      </label>
-                      <input class="input-radio" id="text-create-toggle-stroke-input-radio"
-                             type="radio" name="text-create-menu-toggle">
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!--Заливка текста-->
-              <div class="content__main" id="text-create-fill-options">
-                <div class="wrapper wrapper_direction-column">
                   <!--Непрозрачность заливки текста-->
                   <div class="content__option margin-null">
                     <div class="option">
@@ -1400,10 +1248,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="text-create-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="text-create-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="text-create-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="text-create-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1419,46 +1265,7 @@
                         <label class="label" for="text-create-fill-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="text-create-fill-input-color"
-                               type="color" value="#00AAFF">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--Обводка текста-->
-              <div class="content__main disabled" id="text-create-stroke-options">
-                <div class="wrapper wrapper_direction-column">
-                  <!--Непрозрачность обводки текста-->
-                  <div class="content__option margin-null">
-                    <div class="option">
-                      <div class="option__header">
-                        <label class="label" for="text-create-stroke-opacity-input-number">
-                          <span class="span span_type-option">Непрозрачность</span>
-                        </label>
-                      </div>
-                      <div class="option__main">
-                        <input class="input-range input-range_type-option" id="text-create-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="text-create-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="wrapper wrapper_direction-column">
-                  <div class="content__hr">
-                    <hr class="hr hr_type-content">
-                  </div>
-                  <!--Цвет обводки текста-->
-                  <div class="content__option margin-null">
-                    <div class="option">
-                      <div class="option__main">
-                        <label class="label" for="text-create-stroke-input-color">
-                          <span class="span span_type-option">Цвет</span>
-                        </label>
-                        <input class="input-color input-color_type-option" id="text-create-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="text-create-fill-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -1470,143 +1277,37 @@
           <div class="toolbar__content disabled" id="text-edit-content">
             <div class="content">
               <div class="content__header">
-                <div class="content__span">
+                <div class="content__span margin-null">
                   <span class="span span_type-content">Текст</span>
                 </div>
-                <!--Кегль текста-->
-                <div class="content__option">
-                  <div class="option">
-                    <div class="option__main">
-                      <label class="label" for="text-edit-size-input-number">
-                        <span class="span span_type-option">Кегль, <i>px</i></span>
-                      </label>
-                      <input class="input-number input-number_type-option rounded" id="text-edit-size-input-number"
-                             type="number" min="1" value="12">
-                    </div>
-                  </div>
-                </div>
-                <!--Шрифт текста-->
-                <div class="content__option">
-                  <div class="option">
-                    <div class="option__main">
-                      <label class="label" for="text-edit-font-input-checkbox">
-                        <span class="span span_type-option">Шрифт</span>
-                      </label>
-                      <div class="wrapper wrapper_direction-column">
+              </div>
+              <div class="content__main">
+                <div class="wrapper wrapper_direction-column">
+                  <!--Начертание текста-->
+                  <div class="content__option">
+                    <div class="option">
+                      <div class="option__main">
+                        <span class="span span_type-option">Начертание</span>
                         <div class="wrapper">
-                          <input class="input-text input-text_type-option rounded-top-left rounded-bottom-left"
-                                 id="text-edit-font-input-text" type="text" value="Roboto" readonly>
-                          <input class="input-checkbox" id="text-edit-font-input-checkbox" type="checkbox">
-                          <label class="label label_type-option-radio rounded-top-right rounded-bottom-right"
-                                 id="text-edit-font-label" for="text-edit-font-input-checkbox">
-                            <img class="img img_type-option" src="media/icons/triangle-small-down.svg"
-                                 alt="Показать / скрыть">
+                          <input class="input-checkbox" id="text-edit-font-weight-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-checkbox rounded-left"
+                                 id="text-edit-font-weight-label" for="text-edit-font-weight-input-checkbox">
+                            <span class="span span_type-input-checkbox"><b>b</b></span>
+                          </label>
+                          <input class="input-checkbox" id="text-edit-font-style-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-checkbox"
+                                 id="text-edit-font-style-label" for="text-edit-font-style-input-checkbox">
+                            <span class="span span_type-input-checkbox"><i>i</i></span>
+                          </label>
+                          <input class="input-checkbox" id="text-edit-text-decoration-input-checkbox" type="checkbox">
+                          <label class="label label_type-option-checkbox rounded-right"
+                                 id="text-edit-text-decoration-label" for="text-edit-text-decoration-input-checkbox">
+                            <span class="span span_type-input-checkbox"><u>u</u></span>
                           </label>
                         </div>
-                        <div class="option__popup disabled" id="text-edit-font-menu-list">
-                          <ul class="menu menu_direction-column">
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list label_checked-menu-list"
-                                     id="text-edit-font-roboto-label" for="text-edit-font-roboto-input-radio">
-                                <span class="span span_type-menu-list span_checked-menu-list"
-                                      id="text-edit-font-roboto-span">Roboto</span>
-                              </label>
-                              <input class="input-radio" id="text-edit-font-roboto-input-radio"
-                                     type="radio" name="text-edit-menu-list" checked>
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list" id="text-edit-font-arial-label"
-                                     for="text-edit-font-arial-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-edit-font-arial-span">Arial</span>
-                              </label>
-                              <input class="input-radio" id="text-edit-font-arial-input-radio"
-                                     type="radio" name="text-edit-menu-list">
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list" id="text-edit-font-helvetica-label"
-                                     for="text-edit-font-helvetica-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-edit-font-helvetica-span">Helvetica</span>
-                              </label>
-                              <input class="input-radio" id="text-edit-font-helvetica-input-radio"
-                                     type="radio" name="text-edit-menu-list">
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list" id="text-edit-font-open-sans-label"
-                                     for="text-edit-font-open-sans-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-edit-font-open-sans-span">Open Sans</span>
-                              </label>
-                              <input class="input-radio" id="text-edit-font-open-sans-input-radio"
-                                     type="radio" name="text-edit-menu-list">
-                            </li>
-                            <li class="menu__item">
-                              <label class="label label_type-menu-list rounded-bottom-left rounded-bottom-right"
-                                     id="text-edit-font-times-new-roman-label" for="text-edit-font-times-new-roman-input-radio">
-                                <span class="span span_type-menu-list"
-                                      id="text-edit-font-times-new-roman-span">Times New Roman</span>
-                              </label>
-                              <input class="input-radio" id="text-edit-font-times-new-roman-input-radio"
-                                     type="radio" name="text-edit-menu-list">
-                            </li>
-                          </ul>
-                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!--Начертание текста-->
-                <div class="content__option margin-large">
-                  <div class="option">
-                    <div class="option__main">
-                      <span class="span span_type-option">Начертание</span>
-                      <div class="wrapper">
-                        <input class="input-checkbox" id="text-edit-bold-input-checkbox" type="checkbox">
-                        <label class="label label_type-option-checkbox rounded-left"
-                               id="text-edit-bold-label" for="text-edit-bold-input-checkbox">
-                          <span class="span span_type-option"><b>b</b></span>
-                        </label>
-                        <input class="input-checkbox" id="text-edit-italic-input-checkbox" type="checkbox">
-                        <label class="label label_type-option-checkbox"
-                               id="text-edit-italic-label" for="text-edit-italic-input-checkbox">
-                          <span class="span"><i>i</i></span>
-                        </label>
-                        <input class="input-checkbox" id="text-edit-underline-input-checkbox" type="checkbox">
-                        <label class="label label_type-option-checkbox rounded-right"
-                               id="text-edit-underline-label" for="text-edit-underline-input-checkbox">
-                          <span class="span"><u>u</u></span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="content__menu">
-                  <ul class="menu">
-                    <li class="menu__item">
-                      <label class="label label_type-menu-toggle label_checked-menu-toggle rounded-left"
-                             id="text-edit-toggle-fill-label" for="text-edit-toggle-fill-input-radio">
-                        <span class="span span_type-menu-toggle span_checked-menu-toggle"
-                              id="text-edit-toggle-fill-span">Заливка</span>
-                      </label>
-                      <input class="input-radio" id="text-edit-toggle-fill-input-radio"
-                             type="radio" name="text-edit-menu-toggle" checked>
-                    </li>
-                    <li class="menu__item">
-                      <label class="label label_type-menu-toggle rounded-right" id="text-edit-toggle-stroke-label"
-                             for="text-edit-toggle-stroke-input-radio">
-                        <span class="span span_type-menu-toggle"
-                              id="text-edit-toggle-stroke-span">Обводка</span>
-                      </label>
-                      <input class="input-radio" id="text-edit-toggle-stroke-input-radio"
-                             type="radio" name="text-edit-menu-toggle">
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!--Заливка текста-->
-              <div class="content__main" id="text-edit-fill-options">
-                <div class="wrapper wrapper_direction-column">
                   <!--Непрозрачность заливки текста-->
                   <div class="content__option margin-null">
                     <div class="option">
@@ -1616,10 +1317,8 @@
                         </label>
                       </div>
                       <div class="option__main">
-                        <input class="input-range input-range_type-option" id="text-edit-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="text-edit-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
+                        <input class="input-range" id="text-edit-opacity-input-range" type="range">
+                        <input class="input-number rounded" id="text-edit-opacity-input-number" type="number">
                       </div>
                     </div>
                   </div>
@@ -1635,46 +1334,7 @@
                         <label class="label" for="text-edit-fill-input-color">
                           <span class="span span_type-option">Цвет</span>
                         </label>
-                        <input class="input-color input-color_type-option" id="text-edit-fill-input-color"
-                               type="color" value="#00AAFF">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--Обводка текста-->
-              <div class="content__main disabled" id="text-edit-stroke-options">
-                <div class="wrapper wrapper_direction-column">
-                  <!--Непрозрачность обводки текста-->
-                  <div class="content__option margin-null">
-                    <div class="option">
-                      <div class="option__header">
-                        <label class="label" for="text-edit-stroke-opacity-input-number">
-                          <span class="span span_type-option">Непрозрачность</span>
-                        </label>
-                      </div>
-                      <div class="option__main">
-                        <input class="input-range input-range_type-option" id="text-edit-stroke-opacity-input-range"
-                               type="range" min="0" max="1" step="0.05" value="1">
-                        <input class="input-number input-number_type-option rounded" id="text-edit-stroke-opacity-input-number"
-                               type="number" min="0" max="1" step="0.01" value="1">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="wrapper wrapper_direction-column">
-                  <div class="content__hr">
-                    <hr class="hr hr_type-content">
-                  </div>
-                  <!--Цвет обводки текста-->
-                  <div class="content__option margin-null">
-                    <div class="option">
-                      <div class="option__main">
-                        <label class="label" for="text-edit-stroke-input-color">
-                          <span class="span span_type-option">Цвет</span>
-                        </label>
-                        <input class="input-color input-color_type-option" id="text-edit-stroke-input-color"
-                               type="color" value="#00AAFF">
+                        <input class="input-color" id="text-edit-fill-input-color" type="color">
                       </div>
                     </div>
                   </div>
@@ -1707,15 +1367,14 @@
     <script src="js/user-interface/Item/Tool.js"></script>
     <script src="js/user-interface/Item/Subtool.js"></script>
     <script src="js/user-interface/Item/Toggle.js"></script>
-    <script src="js/user-interface/Item/List.js"></script>
 
     <script src="js/user-interface/Content.js"></script>
 
-    <script src="js/user-interface/Option/BaseOption.js"></script>
+    <script src="js/user-interface/Option/SuperOption.js"></script>
     <script src="js/user-interface/Option/NumberOption.js"></script>
     <script src="js/user-interface/Option/RangeOption.js"></script>
     <script src="js/user-interface/Option/ColorOption.js"></script>
-    <script src="js/user-interface/Option/RadioOption.js"></script>
+    <script src="js/user-interface/Option/SelectOption.js"></script>
     <script src="js/user-interface/Option/CheckboxOption.js"></script>
 
     <script src="js/common/Document.js"></script>

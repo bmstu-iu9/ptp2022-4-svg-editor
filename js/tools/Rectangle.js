@@ -8,7 +8,7 @@ class Rectangle extends Figure {
 	}
 
 	static prepareRectangleDrawing(event) {
-		if (toolbar.item !== shapes || shapesCreateSubtool.item != rect) {
+		if (toolbar.item !== shapes || shapesCreateSubtool.item !== rect) {
 			return;
 		}
 
@@ -17,7 +17,7 @@ class Rectangle extends Figure {
 
 		let figureRectangle = new Rectangle(
 			createSvgRect(x1, y1, 0, 0, rect.create.strokeWidth.value, 
-				          rect.create.strokeOpacity.value, rect.create.stroke.value, rect.create.opacity.value,
+				          rect.create.strokeOpacity.value, rect.create.stroke.value, rect.create.opacity.value * 0.5,
 				          rect.create.fill.value)
 		);
 
@@ -56,7 +56,9 @@ class Rectangle extends Figure {
 			}
 		}
 
-		const finishRectangleDrawing = (event) => {			
+		const finishRectangleDrawing = () => {
+			figureRectangle.opacity = rect.create.opacity.value;
+
 			figureRectangle.initialWidth = figureRectangle.clientWidth;
             figureRectangle.initialHeight = figureRectangle.clientHeight;
 
@@ -124,6 +126,8 @@ class Rectangle extends Figure {
 	set y(value) { this.svg.setAttribute('y', +value); }
 	set width(value) { this.svg.setAttribute('width', +value); }
 	set height(value) { this.svg.setAttribute('height', +value); }
+
+	set opacity(value) { this.svg.setAttribute('opacity', value); }
 
 	get x() { return +this.svg.getAttribute('x'); }
 	get y() { return +this.svg.getAttribute('y'); }

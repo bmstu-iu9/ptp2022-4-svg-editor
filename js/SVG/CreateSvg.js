@@ -80,44 +80,23 @@ const createSvgEllipse = (cx, cy, rx, ry, strokeWidth, strokeOpacity, stroke, op
     return svgEllipse;
 }
 
-const createSvgCircle = (cx, cy, r, strokeWidth, strokeOpacity, stroke, opacity, fill) => {
-    const svgCircle = document.createElementNS(svgNS, 'circle');
-
-    svgCircle.setAttribute('stroke-width', strokeWidth);
-    svgCircle.setAttribute('stroke-opacity', strokeOpacity);
-    svgCircle.setAttribute('stroke', stroke);
-    svgCircle.setAttribute('opacity', opacity);
-    svgCircle.setAttribute('fill', fill);
-
-    svgCircle.setAttribute('cx', cx);
-    svgCircle.setAttribute('cy', cy);
-    svgCircle.setAttribute('r', r);
-
-    return svgCircle;
-};
-
-const createSvgText = (x, y, fontFamily, fontSize, opacity, fill) => {
+const createSvgText = (x, y, fontSize, fontFamily, fontWeight, fontStyle, textDecoration, opacity, fill) => {
     const svgText = document.createElementNS(svgNS, 'text');
 
     svgText.setAttribute('x', x);
     svgText.setAttribute('y', y);
-    // TODO: Подключать шрифт из параметров
-    svgText.setAttribute('font-family', 'Arial');
+
     svgText.setAttribute('font-size', fontSize);
+    svgText.setAttribute('font-family', fontFamily);
+
+    svgText.setAttribute('font-weight', fontWeight);
+    svgText.setAttribute('font-style', fontStyle);
+    svgText.setAttribute('text-decoration', textDecoration);
+
     svgText.setAttribute('opacity', opacity);
     svgText.setAttribute('fill', fill);
 
-    if (text.create.bold.value) {
-        svgText.setAttribute('font-weight', 'bold');
-    }
-    if (text.create.italic.value) {
-        svgText.setAttribute('font-style', 'italic');
-    }
-    if (text.create.underline.value) {
-        svgText.setAttribute('text-decoration', 'underline');
-    }
-
-    svgText.innerHTML = "Click me twice!";
+    svgText.innerHTML = "Щёлкните дважды для редактирования";
 
     return svgText;
 }

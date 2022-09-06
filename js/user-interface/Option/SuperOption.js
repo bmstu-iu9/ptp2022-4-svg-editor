@@ -1,7 +1,7 @@
-// BaseOption - базовый класс для всех типов опций. Выбрано название BaseOption, а не Option, так как имя Option уже
+// SuperOption - базовый класс для всех типов опций. Выбрано название SuperOption, а не Option, так как имя Option уже
 // зарезервировано в языке.
 
-class BaseOption {
+class SuperOption {
     constructor(attribute) {
         this.attribute = attribute;
     }

@@ -1,6 +1,6 @@
 // NumberOption - класс опций, содержащий input типа number как основной и единственный источник ввода.
 
-class NumberOption extends BaseOption {
+class NumberOption extends SuperOption {
     constructor(inputNumber, attribute = null) {
         super(attribute);
 
@@ -10,7 +10,7 @@ class NumberOption extends BaseOption {
     }
 
     enableNumberOptionHandlers() {
-        this.inputNumber.addEventListener('input', this.updateAttribute);
+        this.inputNumber.addEventListener('input', this.updateAttribute.bind(this));
     }
 
     set min(value) { this.inputNumber.min = value; }

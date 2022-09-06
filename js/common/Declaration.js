@@ -307,124 +307,40 @@ const textImg = document.getElementById('text-img');
 // Создание текста
 const textCreateContent = document.getElementById('text-create-content');
 
-const textCreateSizeInputNumber = document.getElementById('text-create-size-input-number');
+const textCreateFontSizeInputNumber = document.getElementById('text-create-font-size-input-number');
 
-const textCreateFontInputText = document.getElementById('text-create-font-input-text');
-const textCreateFontInputCheckbox = document.getElementById('text-create-font-input-checkbox');
-const textCreateFontLabel = document.getElementById('text-create-font-label');
-const textCreateFontMenuList = document.getElementById('text-create-font-menu-list');
+const textCreateFontFamilySelect = document.getElementById('text-create-font-family-select');
 
-const textCreateFontRobotoInputRadio = document.getElementById('text-create-font-roboto-input-radio');
-const textCreateFontRobotoLabel = document.getElementById('text-create-font-roboto-label');
-const textCreateFontRobotoSpan = document.getElementById('text-create-font-roboto-span');
+const textCreateFontWeightInputCheckbox = document.getElementById('text-create-font-weight-input-checkbox');
+const textCreateFontWeightLabel = document.getElementById('text-create-font-weight-label');
 
-const textCreateFontArialInputRadio = document.getElementById('text-create-font-arial-input-radio');
-const textCreateFontArialLabel = document.getElementById('text-create-font-arial-label');
-const textCreateFontArialSpan = document.getElementById('text-create-font-arial-span');
+const textCreateFontStyleInputCheckbox = document.getElementById('text-create-font-style-input-checkbox');
+const textCreateFontStyleLabel = document.getElementById('text-create-font-style-label');
 
-const textCreateFontHelveticaInputRadio = document.getElementById('text-create-font-helvetica-input-radio');
-const textCreateFontHelveticaLabel = document.getElementById('text-create-font-helvetica-label');
-const textCreateFontHelveticaSpan = document.getElementById('text-create-font-helvetica-span');
-
-const textCreateFontOpenSansInputRadio = document.getElementById('text-create-font-open-sans-input-radio');
-const textCreateFontOpenSansLabel = document.getElementById('text-create-font-open-sans-label');
-const textCreateFontOpenSansSpan = document.getElementById('text-create-font-open-sans-span');
-
-const textCreateFontTimesNewRomanInputRadio = document.getElementById('text-create-font-times-new-roman-input-radio');
-const textCreateFontTimesNewRomanLabel = document.getElementById('text-create-font-times-new-roman-label');
-const textCreateFontTimesNewRomanSpan = document.getElementById('text-create-font-times-new-roman-span');
-
-const textCreateBoldInputCheckbox = document.getElementById('text-create-bold-input-checkbox');
-const textCreateBoldLabel = document.getElementById('text-create-bold-label');
-
-const textCreateItalicInputCheckbox = document.getElementById('text-create-italic-input-checkbox');
-const textCreateItalicLabel = document.getElementById('text-create-italic-label');
-
-const textCreateUnderlineInputCheckbox = document.getElementById('text-create-underline-input-checkbox');
-const textCreateUnderlineLabel = document.getElementById('text-create-underline-label');
-
-const textCreateToggleFillInputRadio = document.getElementById('text-create-toggle-fill-input-radio');
-const textCreateToggleFillLabel = document.getElementById('text-create-toggle-fill-label');
-const textCreateToggleFillSpan = document.getElementById('text-create-toggle-fill-span');
-
-const textCreateToggleStrokeInputRadio = document.getElementById('text-create-toggle-stroke-input-radio');
-const textCreateToggleStrokeLabel = document.getElementById('text-create-toggle-stroke-label');
-const textCreateToggleStrokeSpan = document.getElementById('text-create-toggle-stroke-span');
-
-const textCreateFillOptions = document.getElementById('text-create-fill-options');
+const textCreateTextDecorationInputCheckbox = document.getElementById('text-create-text-decoration-input-checkbox');
+const textCreateTextDecorationLabel = document.getElementById('text-create-text-decoration-label');
 
 const textCreateOpacityInputRange = document.getElementById('text-create-opacity-input-range');
 const textCreateOpacityInputNumber = document.getElementById('text-create-opacity-input-number');
 
 const textCreateFillInputColor = document.getElementById('text-create-fill-input-color');
 
-const textCreateStrokeOptions = document.getElementById('text-create-stroke-options');
-
-const textCreateStrokeOpacityInputRange = document.getElementById('text-create-stroke-opacity-input-range');
-const textCreateStrokeOpacityInputNumber = document.getElementById('text-create-stroke-opacity-input-number');
-
-const textCreateStrokeInputColor = document.getElementById('text-create-stroke-input-color');
-
 // Редактирование текста
 const textEditContent = document.getElementById('text-edit-content');
 
-const textEditSizeInputNumber = document.getElementById('text-edit-size-input-number');
+const textEditFontWeightInputCheckbox = document.getElementById('text-edit-font-weight-input-checkbox');
+const textEditFontWeightLabel = document.getElementById('text-edit-font-weight-label');
 
-const textEditFontInputText = document.getElementById('text-edit-font-input-text');
-const textEditFontInputCheckbox = document.getElementById('text-edit-font-input-checkbox');
-const textEditFontLabel = document.getElementById('text-edit-font-label');
-const textEditFontMenuList = document.getElementById('text-edit-font-menu-list');
+const textEditFontStyleInputCheckbox = document.getElementById('text-edit-font-style-input-checkbox');
+const textEditFontStyleLabel = document.getElementById('text-edit-font-style-label');
 
-const textEditFontRobotoInputRadio = document.getElementById('text-edit-font-roboto-input-radio');
-const textEditFontRobotoLabel = document.getElementById('text-edit-font-roboto-label');
-const textEditFontRobotoSpan = document.getElementById('text-edit-font-roboto-span');
-
-const textEditFontArialInputRadio = document.getElementById('text-edit-font-arial-input-radio');
-const textEditFontArialLabel = document.getElementById('text-edit-font-arial-label');
-const textEditFontArialSpan = document.getElementById('text-edit-font-arial-span');
-
-const textEditFontHelveticaInputRadio = document.getElementById('text-edit-font-helvetica-input-radio');
-const textEditFontHelveticaLabel = document.getElementById('text-edit-font-helvetica-label');
-const textEditFontHelveticaSpan = document.getElementById('text-edit-font-helvetica-span');
-
-const textEditFontOpenSansInputRadio = document.getElementById('text-edit-font-open-sans-input-radio');
-const textEditFontOpenSansLabel = document.getElementById('text-edit-font-open-sans-label');
-const textEditFontOpenSansSpan = document.getElementById('text-edit-font-open-sans-span');
-
-const textEditFontTimesNewRomanInputRadio = document.getElementById('text-edit-font-times-new-roman-input-radio');
-const textEditFontTimesNewRomanLabel = document.getElementById('text-edit-font-times-new-roman-label');
-const textEditFontTimesNewRomanSpan = document.getElementById('text-edit-font-times-new-roman-span');
-
-const textEditBoldInputCheckbox = document.getElementById('text-edit-bold-input-checkbox');
-const textEditBoldLabel = document.getElementById('text-edit-bold-label');
-
-const textEditItalicInputCheckbox = document.getElementById('text-edit-italic-input-checkbox');
-const textEditItalicLabel = document.getElementById('text-edit-italic-label');
-
-const textEditUnderlineInputCheckbox = document.getElementById('text-edit-underline-input-checkbox');
-const textEditUnderlineLabel = document.getElementById('text-edit-underline-label');
-
-const textEditToggleFillInputRadio = document.getElementById('text-edit-toggle-fill-input-radio');
-const textEditToggleFillLabel = document.getElementById('text-edit-toggle-fill-label');
-const textEditToggleFillSpan = document.getElementById('text-edit-toggle-fill-span');
-
-const textEditToggleStrokeInputRadio = document.getElementById('text-edit-toggle-stroke-input-radio');
-const textEditToggleStrokeLabel = document.getElementById('text-edit-toggle-stroke-label');
-const textEditToggleStrokeSpan = document.getElementById('text-edit-toggle-stroke-span');
-
-const textEditFillOptions = document.getElementById('text-edit-fill-options');
+const textEditTextDecorationInputCheckbox = document.getElementById('text-edit-text-decoration-input-checkbox');
+const textEditTextDecorationLabel = document.getElementById('text-edit-text-decoration-label');
 
 const textEditOpacityInputRange = document.getElementById('text-edit-opacity-input-range');
 const textEditOpacityInputNumber = document.getElementById('text-edit-opacity-input-number');
 
 const textEditFillInputColor = document.getElementById('text-edit-fill-input-color');
-
-const textEditStrokeOptions = document.getElementById('text-edit-stroke-options');
-
-const textEditStrokeOpacityInputRange = document.getElementById('text-edit-stroke-opacity-input-range');
-const textEditStrokeOpacityInputNumber = document.getElementById('text-edit-stroke-opacity-input-number');
-
-const textEditStrokeInputColor = document.getElementById('text-edit-stroke-input-color');
 
 
 // Ластик
