@@ -11,10 +11,11 @@ class Content {
         this.opacity = null;
         this.fill = null;
 
-        this.size = null;
-        this.font = null;
-        this.bold = null;
-        this.italic = null;
-        this.underline = null;
+        this.fontSize = null;
+        this.fontFamily = null;
+
+        this.fontWeight = null;
+        this.fontStyle = null;
+        this.textDecoration = null;
     }
 }

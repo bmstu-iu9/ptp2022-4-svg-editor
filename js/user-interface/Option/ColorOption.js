@@ -1,6 +1,6 @@
 // ColorOption - класс опций, содержащий input типа color как основной и единственный источник ввода.
 
-class ColorOption extends BaseOption {
+class ColorOption extends SuperOption {
     constructor(inputColor, attribute = null) {
         super(attribute);
 

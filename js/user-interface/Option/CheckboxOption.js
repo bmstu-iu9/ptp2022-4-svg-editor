@@ -1,6 +1,6 @@
 // CheckboxOption - класс опций, содержащий input типа checkbox как основной и единственный источник ввода.
 
-class CheckboxOption extends BaseOption {
+class CheckboxOption extends SuperOption {
     constructor(inputCheckbox, label, attribute = null) {
         super(attribute);
 
@@ -25,11 +25,24 @@ class CheckboxOption extends BaseOption {
         });
     }
 
+    enableValue(valueDefault, valueChecked) {
+        this.valueDefault = valueDefault;
+        this.valueChecked = valueChecked;
+    }
+
     enableLabelStyle(labelHover, labelChecked) {
         this.labelHover = labelHover;
         this.labelChecked = labelChecked;
     }
 
-    set value(value) { this.inputCheckbox.checked = value; }
-    get value() { return this.inputCheckbox.checked; }
+    set value(value) {
+        if (value === this.valueDefault) {
+            return;
+        }
+
+        this.inputCheckbox.checked = true;
+        this.label.classList.add(this.labelChecked);
+    }
+
+    get value() { return this.inputCheckbox.checked ? this.valueChecked : this.valueDefault; }
 }
