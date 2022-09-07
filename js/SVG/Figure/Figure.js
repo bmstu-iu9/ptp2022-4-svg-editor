@@ -21,6 +21,18 @@ class Figure extends SVG {
 
 		this.areScalePointsShowing = false;
 		this.areRotatePointsShowing = false;
+
+		this.enableRemoving();
+	}
+
+	enableRemoving() {
+		this.svg.addEventListener('click', () => {
+			if (toolbar.item != eraser) {
+				return;
+			}
+
+			this.svg.remove();
+		});
 	}
 
 	enableScalePoints() {
