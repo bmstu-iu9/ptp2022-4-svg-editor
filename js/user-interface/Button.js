@@ -15,21 +15,12 @@ class Button {
             this.button.classList.remove(this.hover);
         })
 
-        this.button.addEventListener('mousedown', () => {
-            this.button.classList.add(this.active);
+        this.button.addEventListener('click', () => {
             this.fuctionality();
-
-            const buttonOnMouseUp = () => {
-                this.button.classList.remove(this.active)
-                document.removeEventListener('mouseup', buttonOnMouseUp);
-            }
-
-            document.addEventListener('mouseup', buttonOnMouseUp);
         })
     }
 
-    enableButtonStyle(hover, active) {
+    enableButtonStyle(hover) {
         this.hover = hover;
-        this.active = active;
     }
 }

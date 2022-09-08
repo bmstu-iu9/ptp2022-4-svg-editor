@@ -1,14 +1,23 @@
 // Создание холста
 const create = new Button(createButton, createFunctionality);
-create.enableButtonStyle('button_hover', 'button_active');
+create.enableButtonStyle('button_hover');
 
 function createFunctionality() {
-    // TODO: написать код создания холста.
+    const height = prompt('Высота, px', '600');
+    const width = prompt('Ширина, px', '600');
+
+    if (Number(height) && Number(width)) {
+        canvas.svg.style.height = height;
+        canvas.svg.style.width = width;
+        canvas.svg.innerHTML = '';
+    } else {
+        alert('Некорректный ввод!');
+    }
 }
 
 // Сохранение холста
 const save = new Button(saveButton, saveFunctionality);
-save.enableButtonStyle('button_hover', 'button_active');
+save.enableButtonStyle('button_hover');
 
 function saveFunctionality() {
     // TODO: написать код сохранения холста.
@@ -590,7 +599,7 @@ text.create.opacity.stepNumber = 0.01;
 text.create.opacity.value = 1;
 
 text.create.fill = new ColorOption(textCreateFillInputColor);
-text.create.fill.value = blue;
+text.create.fill.value = black;
 
 // Редактирование текста
 text.edit = new Content(textEditContent);
