@@ -1,8 +1,32 @@
-// В Initialization.js объявлены и настроены все меню и опции инструментов.
+// Создание холста
+const create = new Button(createButton, createFunctionality);
+create.enableButtonStyle('button_hover');
+
+function createFunctionality() {
+    const height = prompt('Высота, px', '600');
+    const width = prompt('Ширина, px', '600');
+
+    if (Number(height) && Number(width)) {
+        canvas.svg.style.height = height;
+        canvas.svg.style.width = width;
+        canvas.svg.innerHTML = '';
+    } else {
+        alert('Некорректный ввод!');
+    }
+}
+
+// Сохранение холста
+const save = new Button(saveButton, saveFunctionality);
+save.enableButtonStyle('button_hover');
+
+function saveFunctionality() {
+    // TODO: написать код сохранения холста.
+}
+
 
 // Меню инструментов
 const toolbar = new Menu(
-    'label_hover-menu-tool', 'label_checked-menu-tool', 'img_checked-menu-tool'
+    'label_hover-menu-tool', 'label_checked-menu-tool', 'img_checked'
 );
 
 const cursor = new Tool(toolbar, cursorInputRadio, cursorLabel, cursorImg);
@@ -72,7 +96,7 @@ pencil.edit.stroke = new ColorOption(pencilEditStrokeInputColor, 'stroke');
 curves.create = new Content(curvesCreateContent);
 
 const curvesCreateSubtool = new Submenu(
-    curves, 'label_hover-menu-subtool', 'label_checked-menu-subtool', 'img_checked-menu-subtool'
+    curves, 'label_hover-menu-subtool', 'label_checked-menu-subtool', 'img_checked'
 );
 
 const line = new Subtool(curvesCreateSubtool, lineInputRadio, lineLabel, lineImg);
@@ -193,7 +217,7 @@ polyline.edit.stroke = new ColorOption(polylineEditStrokeInputColor, 'stroke');
 shapes.create = new Content(shapesCreateContent);
 
 const shapesCreateSubtool = new Submenu(
-    shapes, 'label_hover-menu-subtool', 'label_checked-menu-subtool', 'img_checked-menu-subtool'
+    shapes, 'label_hover-menu-subtool', 'label_checked-menu-subtool', 'img_checked'
 );
 
 const rect = new Subtool(shapesCreateSubtool, rectInputRadio, rectLabel, rectImg);
@@ -549,7 +573,7 @@ text.create = new Content(textCreateContent);
 text.create.fontSize = new NumberOption(textCreateFontSizeInputNumber);
 text.create.fontSize.min = 1;
 text.create.fontSize.step = 1;
-text.create.fontSize.value = 12;
+text.create.fontSize.value = 18;
 
 text.create.fontFamily = new SelectOption(textCreateFontFamilySelect);
 
@@ -575,7 +599,7 @@ text.create.opacity.stepNumber = 0.01;
 text.create.opacity.value = 1;
 
 text.create.fill = new ColorOption(textCreateFillInputColor);
-text.create.fill.value = blue;
+text.create.fill.value = black;
 
 // Редактирование текста
 text.edit = new Content(textEditContent);

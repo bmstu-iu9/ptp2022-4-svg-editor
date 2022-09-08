@@ -27,7 +27,7 @@ class Figure extends SVG {
 
 	enableRemoving() {
 		this.svg.addEventListener('click', () => {
-			if (toolbar.item != eraser) {
+			if (toolbar.item !== eraser) {
 				return;
 			}
 

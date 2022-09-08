@@ -17,7 +17,7 @@
 
 .header {
   background-color: #F7F7F7;
-  height: 30px;
+  display: flex;
   width: 100%;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .main__toolbar {
-  position: absolute;
+  position: fixed;
   left: 0;
   z-index: 2;
 }
@@ -116,6 +116,7 @@
 }
 
 .main__canvas {
+  position: fixed;
   z-index: 1;
 }
 
@@ -124,6 +125,23 @@
   background-color: #FFFFFF;
   box-shadow: 0 0 15px 0 #AFAFAF;
   width: 600px;
+}
+
+
+.button {
+  align-items: center;
+  background-color: #F7F7F7;
+  border: none;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.1s;
+  width: 60px;
+}
+
+.button_hover {
+  background-color: #EFEFEF;
 }
 
 
@@ -225,21 +243,12 @@
 }
 
 
-.img {}
-
-.img_type-option {
-  height: 20px;
-  width: 20px;
-}
-
-.img_type-menu-subtool,
-.img_type-menu-tool {
+.img {
   height: 30px;
   width: 30px;
 }
 
-.img_checked-menu-subtool,
-.img_checked-menu-tool {
+.img_checked {
   filter: invert(100%) sepia(0%) saturate(21%) hue-rotate(26deg) brightness(103%) contrast(100%);
 }
 
@@ -315,7 +324,7 @@
 
 
 .margin-null {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .margin-large {

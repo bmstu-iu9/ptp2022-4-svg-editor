@@ -1,5 +1,21 @@
-// В Declaration.js объявлены переменные, хранящие объекты с одноимённым id в файле index.html. Эти переменные не будут
-// использоваться напрямую, а нужны лишь для инициализации опций инструментов в файле Initialization.js.
+// Используемые цвета
+const white = '#FFFFFF';
+const black = '#000000';
+
+const lightGray = '#EFEFEF';
+const gray = '#DFDFDF';
+
+const lightBlue = '#00CCFF';
+const blue = '#00AAFF';
+
+const darkBlue = '#0080C0';
+const violet = '#C000CC';
+
+
+// Кнопки верхнего меню
+const createButton  = document.getElementById('create-button');
+const saveButton = document.getElementById('save-button');
+
 
 // Курсор
 const cursorInputRadio = document.getElementById('cursor-input-radio');
