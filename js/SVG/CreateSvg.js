@@ -96,7 +96,7 @@ const createSvgText = (x, y, fontSize, fontFamily, fontWeight, fontStyle, textDe
     svgText.setAttribute('opacity', opacity);
     svgText.setAttribute('fill', fill);
 
-    svgText.innerHTML = "Щёлкните дважды для редактирования";
+    svgText.innerHTML = "Щёлкните дважды курсором";
 
     return svgText;
 }

@@ -12,7 +12,12 @@
   </head>
   <body class="body">
     <header class="body__header header">
-      <!--TODO: написать код верхнего меню-->
+      <button class="button" id="create-button" title="Создать">
+        <img class="img" src="media/icons/plus-box-outline.svg" alt="Создать">
+      </button>
+      <button class="button" id="save-button" title="Сохранить">
+        <img class="img" src="media/icons/content-save-outline.svg" alt="Сохранить">
+      </button>
     </header>
     <main class="body__main main">
       <div class="main__toolbar">
@@ -22,50 +27,50 @@
             <ul class="menu menu_direction-column">
               <li class="menu__item">
                 <label class="label label_type-menu-tool label_checked-menu-tool" id="cursor-label"
-                       for="cursor-input-radio">
-                  <img class="img img_type-menu-tool img_checked-menu-tool" id="cursor-img"
-                       src="media/icons/cursor.svg" alt="Курсор" draggable="false">
+                       for="cursor-input-radio" title="Курсор">
+                  <img class="img img_checked" id="cursor-img" src="media/icons/cursor.svg"
+                       alt="Курсор" draggable="false">
                 </label>
                 <input class="input-radio" id="cursor-input-radio" type="radio" name="menu-tool" checked>
               <li class="menu__item">
-                <label class="label label_type-menu-tool" id="hand-label" for="hand-input-radio">
-                  <img class="img img_type-menu-tool" id="hand-img"
-                       src="media/icons/hand.svg" alt="Рука" draggable="false">
+                <label class="label label_type-menu-tool" id="hand-label" for="hand-input-radio" title="Рука">
+                  <img class="img" id="hand-img" src="media/icons/hand.svg"
+                       alt="Рука" draggable="false">
                 </label>
                 <input class="input-radio" id="hand-input-radio" type="radio" name="menu-tool">
               </li>
               <li class="menu__item">
-                <label class="label label_type-menu-tool" id="pencil-label" for="pencil-input-radio">
-                  <img class="img img_type-menu-tool" id="pencil-img"
-                       src="media/icons/pencil.svg" alt="Карандаш" draggable="false">
+                <label class="label label_type-menu-tool" id="pencil-label" for="pencil-input-radio" title="Карандаш">
+                  <img class="img" id="pencil-img" src="media/icons/pencil.svg"
+                       alt="Карандаш" draggable="false">
                 </label>
                 <input class="input-radio" id="pencil-input-radio" type="radio" name="menu-tool">
               </li>
               <li class="menu__item">
-                <label class="label label_type-menu-tool" id="curves-label" for="curves-input-radio">
-                  <img class="img img_type-menu-tool" id="curves-img"
-                       src="media/icons/line.svg" alt="Кривые" draggable="false">
+                <label class="label label_type-menu-tool" id="curves-label" for="curves-input-radio" title="Кривые">
+                  <img class="img" id="curves-img" src="media/icons/line.svg"
+                       alt="Кривые" draggable="false">
                 </label>
                 <input class="input-radio" id="curves-input-radio" type="radio" name="menu-tool">
               </li>
               <li class="menu__item">
-                <label class="label label_type-menu-tool" id="shapes-label" for="shapes-input-radio">
-                  <img class="img img_type-menu-tool" id="shapes-img"
-                       src="media/icons/rectangle.svg" alt="Формы" draggable="false">
+                <label class="label label_type-menu-tool" id="shapes-label" for="shapes-input-radio" title="Формы">
+                  <img class="img" id="shapes-img" src="media/icons/rectangle.svg"
+                       alt="Формы" draggable="false">
                 </label>
                 <input class="input-radio" id="shapes-input-radio" type="radio" name="menu-tool">
               </li>
               <li class="menu__item">
-                <label class="label label_type-menu-tool" id="text-label" for="text-input-radio">
-                  <img class="img img_type-menu-tool" id="text-img"
-                       src="media/icons/text.svg" alt="Текст" draggable="false">
+                <label class="label label_type-menu-tool" id="text-label" for="text-input-radio" title="Текст">
+                  <img class="img" id="text-img" src="media/icons/text.svg"
+                       alt="Текст" draggable="false">
                 </label>
                 <input class="input-radio" id="text-input-radio" type="radio" name="menu-tool">
               </li>
               <li class="menu__item">
-                <label class="label label_type-menu-tool" id="eraser-label" for="eraser-input-radio">
-                  <img class="img img_type-menu-tool" id="eraser-img"
-                       src="media/icons/eraser.svg" alt="Ластик" draggable="false">
+                <label class="label label_type-menu-tool" id="eraser-label" for="eraser-input-radio" title="Ластик">
+                  <img class="img" id="eraser-img" src="media/icons/eraser.svg"
+                       alt="Ластик" draggable="false">
                 </label>
                 <input class="input-radio" id="eraser-input-radio" type="radio" name="menu-tool">
               </li>
@@ -195,17 +200,17 @@
                   <ul class="menu">
                     <li class="menu__item">
                       <label class="label label_type-menu-subtool label_checked-menu-subtool rounded-left" id="line-label"
-                             for="line-input-radio">
-                        <img class="img img_type-menu-subtool img_checked-menu-subtool" id="line-img"
-                             src="media/icons/line.svg" alt="Прямая" draggable="false">
+                             for="line-input-radio" title="Прямая">
+                        <img class="img img_checked" id="line-img" src="media/icons/line.svg"
+                             alt="Прямая" draggable="false">
                       </label>
                       <input class="input-radio" id="line-input-radio" type="radio" name="curves-create-menu-subtool" checked>
                     </li>
                     <li class="menu__item">
                       <label class="label label_type-menu-subtool rounded-right" id="polyline-label"
-                             for="polyline-input-radio">
-                        <img class="img img_type-menu-subtool" id="polyline-img"
-                             src="media/icons/polyline.svg" alt="Ломаная" draggable="false">
+                             for="polyline-input-radio" title="Ломаная">
+                        <img class="img" id="polyline-img" src="media/icons/polyline.svg"
+                             alt="Ломаная" draggable="false">
                       </label>
                       <input class="input-radio" id="polyline-input-radio" type="radio" name="curves-create-menu-subtool">
                     </li>
@@ -454,23 +459,25 @@
                   <ul class="menu">
                     <li class="menu__item">
                       <label class="label label_type-menu-subtool label_checked-menu-subtool rounded-left" id="rect-label"
-                             for="rect-input-radio">
-                        <img class="img img_type-menu-subtool img_checked-menu-subtool" id="rect-img"
-                             src="media/icons/rectangle.svg" alt="Прямоугольник" draggable="false">
+                             for="rect-input-radio" title="Прямоугольник">
+                        <img class="img img_checked" id="rect-img" src="media/icons/rectangle.svg"
+                             alt="Прямоугольник" draggable="false">
                       </label>
                       <input class="input-radio" id="rect-input-radio" type="radio" name="shapes-create-menu-subtool" checked>
                     </li>
                     <li class="menu__item">
-                      <label class="label label_type-menu-subtool" id="polygon-label" for="polygon-input-radio">
-                        <img class="img img_type-menu-subtool" id="polygon-img"
-                             src="media/icons/polygon.svg" alt="Многоугольник" draggable="false">
+                      <label class="label label_type-menu-subtool" id="polygon-label" for="polygon-input-radio"
+                             title="Многоугольник">
+                        <img class="img" id="polygon-img" src="media/icons/polygon.svg"
+                             alt="Многоугольник" draggable="false">
                       </label>
                       <input class="input-radio" id="polygon-input-radio" type="radio" name="shapes-create-menu-subtool">
                     </li>
                     <li class="menu__item">
-                      <label class="label label_type-menu-subtool rounded-right" id="ellipse-label" for="ellipse-input-radio">
-                        <img class="img img_type-menu-subtool" id="ellipse-img"
-                             src="media/icons/circle.svg" alt="Эллипс" draggable="false">
+                      <label class="label label_type-menu-subtool rounded-right" id="ellipse-label"
+                             for="ellipse-input-radio" title="Эллипс">
+                        <img class="img" id="ellipse-img" src="media/icons/circle.svg"
+                             alt="Эллипс" draggable="false">
                       </label>
                       <input class="input-radio" id="ellipse-input-radio" type="radio" name="shapes-create-menu-subtool">
                     </li>
@@ -1368,6 +1375,7 @@
     <script src="js/user-interface/Item/Subtool.js"></script>
     <script src="js/user-interface/Item/Toggle.js"></script>
 
+    <script src="js/user-interface/Button.js"></script>
     <script src="js/user-interface/Content.js"></script>
 
     <script src="js/user-interface/Option/SuperOption.js"></script>
@@ -1378,7 +1386,6 @@
     <script src="js/user-interface/Option/CheckboxOption.js"></script>
 
     <script src="js/common/Document.js"></script>
-    <script src="js/common/Colors.js"></script>
     <script src="js/common/Declaration.js"></script>
     <script src="js/common/Initialization.js"></script>
 
