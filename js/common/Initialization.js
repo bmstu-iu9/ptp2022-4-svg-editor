@@ -20,9 +20,21 @@ const save = new Button(saveButton, saveFunctionality);
 save.enableButtonStyle('button_hover');
 
 function saveFunctionality() {
-    // TODO: написать код сохранения холста.
+    if (Figure.selected !== null) {
+        Figure.selected.removeSelection();
+        Figure.selected = null;
+    }
+    svgExport.downloadSvg(
+      canvas.svg,
+      "mywork",
+      { width: Number(canvas.svg.style.width.slice(0, canvas.svg.style.width.length - 2)), height: Number(canvas.svg.style.height.slice(0, canvas.svg.style.height.length - 2))}
+    );
+    svgExport.downloadPng(
+      canvas.svg,
+      "mywork",
+      { width: Number(canvas.svg.style.width.slice(0, canvas.svg.style.width.length - 2)), height: Number(canvas.svg.style.height.slice(0, canvas.svg.style.height.length - 2))}
+    );
 }
-
 
 // Меню инструментов
 const toolbar = new Menu(
